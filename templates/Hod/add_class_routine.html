@@ -1,0 +1,453 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="content container-fluid">
+    <div class="page-header">
+       <div class="row align-items-center">
+          <div class="col">
+             <h3 class="page-title">Class Routine</h3>
+             <div class="col-auto text-right float-right ml-auto  mb-3">
+               <a href="{% url 'view_routine' %}" class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i></a>
+              </div>
+             <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'admin_home' %}">Class Routine</a></li>
+                <li class="breadcrumb-item">Add Class Routine</li>
+             </ul>
+             
+          </div>
+       </div>
+    </div>
+    <div class="row">
+       <div class="col-sm-12">
+          <div class="card mt-3">
+             <div class="card-body">
+                <form action="{% url 'save_routine' %}" method="post">
+                  {% csrf_token %}
+
+
+                  <div class="row">
+                     <div class="col-12">
+                        <h5 class="form-title"><span>Add Class Routine</span></h5>
+                     </div>
+                     
+
+                      {% comment %} =================   alert message =================== {% endcomment %}
+                     {% include 'includes/messages.html' %}
+                     {% comment %} ======================================================= {% endcomment %}
+
+                     {% comment %} <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Period</label>
+                           <select class="form-control" name="period" required>
+                                 <option> --- Select Class Day --- </option>
+                                 <option value="1">1st</option>
+                                 <option value="2">2nd</option>
+                                 <option value="3 ">3rd </option>
+                                 <option value="4">4th</option>
+                                 <option value="5 ">5th </option>
+                                 <option value="6 ">6th </option>
+                                 <option value="7 ">7th </option>
+                              </select>
+                           </select>
+                        </div>
+                     </div> {% endcomment %}
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Session</label>
+                           <select class="form-control" name="session_id" required>
+                             <option value='None'>--- Select Session ---</option>
+
+                             {% for i in session_year %}
+                                <option value="{{i.id}}">{{i.session_start}}&nbsp;{{i.session_end}}</option>
+                             {% endfor %}
+                             
+                          </select>
+                        </div>
+                     </div>
+
+                      <div class="col-12 col-sm-6">
+                         <div class="form-group">
+                            <label>Section</label>
+                            <select class="form-control" name="section_id" required>
+                              <option value='None'>--- Select Section ---</option>
+
+                              {% for i in section %}
+                                 <option value="{{i.id}}">{{i.section_name}}</option>
+                              {% endfor %}
+                              
+                           </select>
+                         </div>
+                      </div>
+                      
+                      
+
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Class Day</label>
+                           <select class="form-control" name="class_day" required>
+                                 <option> --- Select Class Day --- </option>
+                                 <option value="Saturday">Saturday</option>
+                                 <option value="Sunday">Sunday</option>
+                                 <option value="Monday ">Monday </option>
+                                 <option value="Tuesday">Tuesday</option>
+                                 <option value="Wednesday ">Wednesday </option>
+                                 <option value="Thursday ">Thursday </option>
+                              </select>
+                              
+                           </select>
+                        </div>
+                     </div>
+                      
+
+
+<hr class="pt-5">
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>First Subject</label>
+                           <select class="form-control" name="first_subject_id" required>
+                              <option value='None'>--- Select Subject ---</option>
+
+                              {% for i in subject %}
+                                 <option value="{{i.id}}">{{i.name}}</option>
+                              {% endfor %}
+                              
+                           </select>
+                        </div>
+                     </div>
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>First Subject Teacher </label>
+                           <select class="form-control" name="first_subject_teacher" required>
+                              <option value='None'>--- Select Teacher ---</option>
+
+                              {% for i in teacher %}
+                                 <option value="{{i.id}}">{{i.admin.first_name}}&nbsp;{{i.admin.last_name}}</option>
+                              {% endfor %}
+                              
+                           </select>
+                        </div>
+                     </div>
+
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Select Period</label>
+                           <select class="form-control" name="first_class_time" required>
+                              <option value='None'>Select Period</option>
+
+                              {% for i in period %}
+                                 <option value="{{i.id}}">{{i.name}} - {{i.start_time}}  TO  {{i.end_time}}</option>
+                              {% endfor %}
+                              
+                           </select>
+                        </div>
+                     </div>
+                     
+
+<hr class="pt-5">
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Second Subject</label>
+                           <select class="form-control" name="second_subject_id" required>
+                              <option value='None'>Select Subject</option>
+
+                              {% for i in subject %}
+                                 <option value="{{i.id}}">{{i.name}}</option>
+                              {% endfor %}
+                              
+                           </select>
+                        </div>
+                     </div>
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Second Subject Teacher</label>
+                           <select class="form-control" name="second_subject_teacher" required>
+                              <option value='None'>Select Teacher</option>
+
+                              {% for i in teacher %}
+                                 <option value="{{i.id}}">{{i.admin.first_name}}&nbsp;{{i.admin.last_name}}</option>
+                              {% endfor %}
+                              
+                           </select>
+                        </div>
+                     </div>
+
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Second Period</label>
+                           <select class="form-control" name="second_class_time" required>
+                              <option value='None'>Select Period</option>
+
+                              {% for i in period %}
+                                 <option value="{{i.id}}">{{i.name}} - {{i.start_time}}  TO  {{i.end_time}}</option>
+                              {% endfor %}
+                              
+                           </select>
+                        </div>
+                     </div>
+                     
+<hr class="pt-5">
+
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Third Subject</label>
+                           <select class="form-control" name="third_subject" required>
+                              <option value='None'>Select Subject</option>
+
+                              {% for i in subject %}
+                                 <option value="{{i.id}}">{{i.name}}</option>
+                              {% endfor %}
+                              
+                           </select>
+                        </div>
+                     </div>
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Third Subject Teacher</label>
+                           <select class="form-control" name="third_subject_teacher" required>
+                              <option value='None'> Select Teacher </option>
+
+                              {% for i in teacher %}
+                                 <option value="{{i.id}}">{{i.admin.first_name}}&nbsp;{{i.admin.last_name}}</option>
+                              {% endfor %}
+                              
+                           </select>
+                        </div>
+                     </div>
+
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Select Period</label>
+                           <select class="form-control" name="third_class_time" required>
+                              <option value='None'>Select Period</option>
+
+                              {% for i in period %}
+                                 <option value="{{i.id}}">{{i.name}} - {{i.start_time}}  TO  {{i.end_time}}</option>
+                              {% endfor %}
+                              
+                           </select>
+                        </div>
+                     </div>
+
+                     
+<hr class="pt-5">
+
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Fourth Subject</label>
+                           <select class="form-control" name="fourth_subject_id" required>
+                              <option value='None'>Select Subject</option>
+
+                              {% for i in subject %}
+                                 <option value="{{i.id}}">{{i.name}}</option>
+                              {% endfor %}
+                              
+                           </select>
+                        </div>
+                     </div>
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Fourth Teacher</label>
+                           <select class="form-control" name="fourth_subject_teacher" required>
+                              <option value='None'> Select Teacher</option>
+
+                              {% for i in teacher %}
+                                 <option value="{{i.id}}">{{i.admin.first_name}}&nbsp;{{i.admin.last_name}}</option>
+                              {% endfor %}
+                              
+                           </select>
+                        </div>
+                     </div>
+
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Select Period</label>
+                           <select class="form-control" name="fourth_class_time" required>
+                              <option value='None'>Select Period</option>
+
+                              {% for i in period %}
+                                 <option value="{{i.id}}">{{i.name}} - {{i.start_time}}  TO  {{i.end_time}}</option>
+                              {% endfor %}
+                              
+                           </select>
+                        </div>
+                     </div>
+                     
+
+
+                     <hr class="pt-5">
+
+
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Fifth Subject</label>
+                           <select class="form-control" name="fifth_subject_id" required>
+                              <option value='None'> Select Subject </option>
+
+                              {% for i in subject %}
+                                 <option value="{{i.id}}">{{i.name}}</option>
+                              {% endfor %}
+                              
+                           </select>
+                        </div>
+                     </div>
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Fifth Subject Teacher</label>
+                           <select class="form-control" name="fifth_subject_teacher" required>
+                              <option value='None'> Select Teacher <option>
+
+                              {% for i in teacher %}
+                                 <option value="{{i.id}}">{{i.admin.first_name}}&nbsp;{{i.admin.last_name}}</option>
+                              {% endfor %}
+                              
+                           </select>
+                        </div>
+                     </div>
+
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Select Period</label>
+                           <select class="form-control" name="fifth_class_time" required>
+                              <option value='None'>Select Period</option>
+
+                              {% for i in period %}
+                                 <option value="{{i.id}}">{{i.name}} - {{i.start_time}}  TO  {{i.end_time}}</option>
+                              {% endfor %}
+                              
+                           </select>
+                        </div>
+                     </div>
+                     
+
+                     <hr class="pt-5">
+
+
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Sixth Subject</label>
+                           <select class="form-control" name="sixth_subject_id" required>
+                              <option value='None'> Select Subject </option>
+
+                              {% for i in subject %}
+                                 <option value="{{i.id}}">{{i.name}}</option>
+                              {% endfor %}
+                              
+                           </select>
+                        </div>
+                     </div>
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Sixth Subject Teacher</label>
+                           <select class="form-control" name="sixth_subject_teacher" required>
+                              <option value='None'> Select Teacher </option>
+
+                              {% for i in teacher %}
+                                 <option value="{{i.id}}">{{i.admin.first_name}}&nbsp;{{i.admin.last_name}}</option>
+                              {% endfor %}
+                              
+                           </select>
+                        </div>
+                     </div>
+
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Select Period</label>
+                           <select class="form-control" name="sixth_class_time" required>
+                              <option value='None'>Select Period</option>
+
+                              {% for i in period %}
+                                 <option value="{{i.id}}">{{i.name}} - {{i.start_time}}  TO  {{i.end_time}}</option>
+                              {% endfor %}
+                              
+                           </select>
+                        </div>
+                     </div>
+                     
+
+                     <hr class="pt-5">
+
+
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Seventh Subject</label>
+                           <select class="form-control" name="seventh_subject_id" required>
+                              <option value='None'> Select Subject </option>
+
+                              {% for i in subject %}
+                                 <option value="{{i.id}}">{{i.name}}</option>
+                              {% endfor %}
+                              
+                           </select>
+                        </div>
+                     </div>
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Seventh Subject Teacher</label>
+                           <select class="form-control" name="seventh_subject_teacher" required>
+                              <option value='None'> Select Teacher </option>
+
+                              {% for i in teacher %}
+                                 <option value="{{i.id}}">{{i.admin.first_name}}&nbsp;{{i.admin.last_name}}</option>
+                              {% endfor %}
+                              
+                           </select>
+                        </div>
+                     </div>
+
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Select Period</label>
+                           <select class="form-control" name="seventh_class_time" required>
+                              <option value='None'>Select Period</option>
+
+                              {% for i in period %}
+                                 <option value="{{i.id}}">{{i.name}} - {{i.start_time}}  TO  {{i.end_time}}</option>
+                              {% endfor %}
+                              
+                           </select>
+                        </div>
+                     </div>
+                     
+
+
+
+                     
+                     
+                       <div class="col-12">
+                          <button type="submit" class="btn btn-primary">Add Routine</button>
+                       </div>
+                      </div>
+                   </div>
+                </form>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+
+
+{% endblock content %}

@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="content container-fluid">
+    <div class="page-header">
+       <div class="row align-items-center">
+          <div class="col">
+             <h3 class="page-title">Add Section</h3>
+             <div class="col-auto text-right float-right ml-auto  mb-3">
+               <a href="{% url 'view_section' %}" class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i></a>
+              </div>
+             <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'admin_home' %}">Section</a></li>
+                <li class="breadcrumb-item">Add Section</li>
+             </ul>
+          </div>
+       </div>
+    </div>
+    <div class="row">
+       <div class="col-sm-12">
+          <div class="card mt-3">
+             <div class="card-body">
+                <form action="{% url 'update_section' %}" method="post">
+                  {% csrf_token %}
+
+
+                  <div class="row">
+                     <div class="col-12">
+                        <h5 class="form-title"><span>Add Section</span></h5>
+                     </div>
+
+                      {% comment %} =================   alert message =================== {% endcomment %}
+                     {% include 'includes/messages.html' %}
+                     {% comment %} ======================================================= {% endcomment %}
+
+
+                      <div class="col-12 col-sm-6">
+                         <div class="form-group">
+                            <label>Section Name</label>
+                            <input type="text" class="form-control" name="name" value="{% for i in section %}{{i.section_name}}{% endfor %}" required>
+                            <input type="text" class="form-control" name="section_id" value="{% for i in section %}{{i.id}}{% endfor %}" hidden>
+                         </div>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Class</label>
+                           <select class="form-control" name="class_obj" required>
+                              <option value='{% for i in section %}{{i.class_id.id}}{% endfor %}'>{% for i in section %}{{i.class_id}}{% endfor %}</option>
+
+                              {% for i in class_obj %}
+                                 <option value="{{i.id}}">{{i.name}}</option>
+                              {% endfor %}
+                              
+                           </select>
+                        </div>
+                     </div>
+                      
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Course</label>
+                           <select class="form-control" name="course_id" required>
+                              <option value='{% for i in section %}{{i.course.id}}{% endfor %}'>{% for i in section %}{{i.course}}{% endfor %}</option>
+
+                              {% for i in course_obj %}
+                                 <option value="{{i.id}}">{{i.name}}</option>
+                              {% endfor %}
+                              
+                           </select>
+                        </div> 
+                        </div> 
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Section Teacher</label>
+                           <select class="form-control" name="teacher_id" required>
+                              <option value='{% for i in section %}{{i.id}}{% endfor %}'>{% for i in section %}{{i.teacher_id}}{% endfor %}</option>
+
+                              {% for i in teacher_obj %}
+                                 <option value="{{i.id}}">{{i.admin.first_name}}&nbsp;{{i.admin.last_name}}</option>
+                              {% endfor %}
+                              
+                           </select>
+                        </div>
+                    </div> 
+                     
+                       <div class="col-12">
+                          <button type="submit" class="btn btn-primary">Update Section</button>
+                       </div>
+                      </div>
+                   </div>
+                </form>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+
+
+{% endblock content %}

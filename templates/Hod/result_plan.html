@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="content container-fluid">
+    <div class="page-header">
+       <div class="row align-items-center">
+          <div class="col">
+             <h3 class="page-title">Plan Your Result System</h3>
+             <ul class="breadcrumb">
+                <li class="breadcrumb-item">Add Result Plan</li>
+             </ul>
+          </div>
+          <div class="col-auto text-right float-right ml-auto  mb-3">
+            {% comment %} <a href="#" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a> {% endcomment %}
+            <a href="{% url 'view_result_plan' %}" class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i></a>
+           </div>
+       </div>
+    </div>
+    <div class="row">
+       <div class="col-sm-12">
+          <div class="card mt-3">
+             <div class="card-body">
+                <form action="{% url 'save_result_plan' %}" method="post">
+                  {% csrf_token %}
+
+
+                  <div class="row">
+                     <div class="col-12">
+                        <h5 class="form-title"><span>Result Plan</span></h5>
+                     </div>
+
+                      {% comment %} =================   alert message =================== {% endcomment %}
+                     {% include 'includes/messages.html' %}
+                     {% comment %} ======================================================= {% endcomment %}
+
+
+                      <div class="col-12 col-sm-6">
+                         <div class="form-group">
+                            <label>Subject</label>
+                            <select class="form-control" name="subject_id" required>
+                              <option value='None'>Select Subject</option>
+
+                              {% for i in subject_obj %}
+                                 <option value="{{i.id}}">{{i.name}}</option>
+                              {% endfor %}
+                              
+                           </select>
+                         </div>
+                      </div>
+
+                      <div class="col-12 col-sm-6">
+                         <div class="form-group">
+                            <label>PI & BI No</label>
+                            <input type="text" class="form-control" name="pi_no" required>
+                         </div>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>PI Desc</label>
+                            <input type="text" class="form-control" name="pi_desc" required>
+                        </div>
+                     </div>
+                      
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>BI Desc</label>
+                            <input type="text" class="form-control" name="bi_desc" required>
+                        </div> 
+                        </div> 
+
+                     
+                       <div class="col-12">
+                          <button type="submit" class="btn btn-primary">Add Plan</button>
+                       </div>
+                      </div>
+                   </div>
+                </form>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+
+
+{% endblock content %}

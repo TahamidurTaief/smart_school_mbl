@@ -1,0 +1,105 @@
+{% load static %}
+
+<div class="header">
+    <div class="header-left">
+       <a href="#" class="logo">
+       <img src="{% static 'assets/img/molamgarihat_school_short_title.png' %}" alt="Logo" width="200" height="80">
+       </a>
+       <a href="index.html" class="logo logo-small">
+       <img src="{% static 'assets/img/molamgarihat_school_short_title.png' %}" alt="Logo" height="50">
+       </a>
+    </div>
+    <a href="javascript:void(0);" id="toggle_btn">
+    <i class="fas fa-align-left"></i>
+    </a>
+    <div class="top-nav-search mt-3">
+       <h3><strong>Welcome</strong>&nbsp;<span>{{user.first_name}} {{user.last_name}}&nbsp;!</span></h3>
+    </div>
+    <a class="mobile_btn" id="mobile_btn">
+    <i class="fas fa-bars"></i>
+    </a>
+    <ul class="nav user-menu">
+       <li class="nav-item dropdown noti-dropdown">
+          <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+          <i class="far fa-bell"></i> 
+          </a>
+          <div class="dropdown-menu notifications" style="position: static;">
+             <div class="topnav-dropdown-header">
+                <span class="notification-title">Notifications</span>
+                {% comment %} <a href="javascript:void(0)" class="clear-noti"> Clear All </a> {% endcomment %}
+             </div>
+             <div class="noti-content" style="height:90vh; ">
+                <ul class="notification-list" >
+                   <li class="notification-message">
+                      {% for i in notice_obj %}
+                      <a href="#">
+                         <div class="media">
+                            <span class="avatar avatar-sm">
+                            <img class="avatar-img rounded-circle" alt="User Image" src="{% static 'assets/img/profiles/avatar-02.jpg' %}">
+                            </span>
+                            <div class="media-body">
+                               <p class="noti-details" ><span class="noti-title">{{i.headline}}</span></p>
+                               <p class="noti-time"><span class="notification-time">{{i.notice | slice:":250"}} <strong>DOWNLOAD...</strong></span></p>
+                            </div>
+                           </div>
+                        </a>
+                        </a>
+                        {% endfor %}
+                   </li>
+
+                </ul>
+             </div>
+             <div class="topnav-dropdown-footer">
+                <a href="#">View all Notifications</a>
+             </div>
+          </div>
+       </li>
+       <li class="nav-item dropdown has-arrow">
+          <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+
+            {% if user.profile_pic %}
+            <span class="avatar avatar-sm">
+                <img class="avatar-img rounded-circle" alt="User Image" src="{{ user.profile_pic.url }}">
+            </span>
+            {% else %}
+                  <span class="avatar avatar-sm">
+                     <img class="avatar-img rounded-circle" alt="User Image" src="{% static 'assets/img/user.jpg' %}">
+                  </span>
+            {% endif %}
+
+          </a>
+          <div class="dropdown-menu">
+             <div class="user-header">
+                <div class="avatar avatar-sm">
+                   
+                  {% if user.profile_pic %}
+                  <span class="avatar avatar-sm">
+                        <img class="avatar-img rounded-circle" alt="User Image" src="{{ user.profile_pic.url }}">
+                  </span>
+                  {% else %}
+                        <span class="avatar avatar-sm">
+                           <img class="avatar-img rounded-circle" alt="User Image" src="{% static 'assets/img/user.jpg' %}">
+                        </span>
+                  {% endif %}
+
+                </div>
+                <div class="user-text">
+                   <h6>{{user.first_name}}&nbsp;{{user.last_name}}</h6>
+
+                  {% if user.user_type == '1' %}
+                  <p class="text-muted mb-0">Admin</p>
+                  {% elif user.user_type == '2' %} 
+                  <p class="text-muted mb-0">Staff</p>
+                  {% else %}
+                  <p class="text-muted mb-0">Student</p>
+                  {% endif %}
+               
+               </div>
+             </div>
+             <a class="dropdown-item" href="{% url 'profile' %}">My Profile</a>
+             <a class="dropdown-item" href="inbox.html">Inbox</a>
+             <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+          </div>
+       </li>
+    </ul>
+ </div>

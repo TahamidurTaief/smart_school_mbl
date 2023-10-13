@@ -1,0 +1,155 @@
+{% extends 'staff_base.html' %}
+
+{% block content %}
+
+
+<div class="content container-fluid">
+    <div class="page-header">
+       <div class="row align-items-center">
+          <div class="col">
+             <h3 class="page-title">Take Attendence</h3>
+             <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'admin_home' %}">Dashboard</a></li>
+                <li class="breadcrumb-item">Take Attendence</li>
+             </ul>
+          </div>
+       </div>
+    </div>
+    <div class="row">
+       <div class="col-sm-12">
+          <div class="card mt-3">
+             <div class="card-body">
+
+
+
+                {% if action is None %}
+                <form action="?action=get_student" method="post">
+                  {% csrf_token %}
+
+
+                  <div class="row">
+                     <div class="col-12">
+                        <h5 class="form-title"><span>Attendence</span></h5>
+                     </div>
+
+                      {% comment %} =================   alert message =================== {% endcomment %}
+                     {% include 'includes/messages.html' %}
+                     {% comment %} ======================================================= {% endcomment %}
+
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Session Year</label>
+                           <select class="form-control" name="session_year_id" required>
+                              <option value='None'>Select Session</option>
+
+                              {% for i in session_year %}
+                                 <option value="{{i.id}}">{{i.session_start}} to {{i.session_end}}</option>
+                              {% endfor %}
+                              
+                           </select>
+                        </div>
+                     </div>
+
+
+
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Section</label>
+                           <select class="form-control" name="section_id" required>
+                              <option value='None'>Select Section</option>
+
+                              {% for i in section %}
+                                 <option value="{{i.id}}">{{i.section_name}}</option>
+                              {% endfor %}
+                              
+                           </select>
+                        </div>
+                     </div>
+                      
+                     
+                     
+                       <div class="col-12">
+                          <button type="submit" class="btn btn-primary">Fetch Student</button>
+                       </div>
+                      </div>
+                   </div>
+                </form>
+
+
+                {% else %}
+
+
+
+                <form action="{% url 'save_school_teacher_attendance' %}" method="post">
+                    {% csrf_token %}
+  
+  
+                    <div class="row">
+                       <div class="col-12">
+                          <h5 class="form-title"><span>Attendence</span></h5>
+                       </div>
+  
+                        {% comment %} =================   alert message =================== {% endcomment %}
+                       {% include 'includes/messages.html' %}
+                       {% comment %} ======================================================= {% endcomment %}
+  
+  
+                       <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Session Year</label>
+                           <select class="form-control" name="session_year" required>
+                                 <option value="{{session_year_obj.id}}">{{session_year_obj}}</option>
+                                 
+                           </select>
+                        </div>
+                        </div>
+
+                        <div class="col-12 col-sm-6">
+                          <div class="form-group">
+                             <label>Section</label>
+                             <select class="form-control" name="section_id" required>
+                                   <option value="{{get_section.id}}">{{get_section}}</option>                                
+                             </select>
+                          </div>
+
+                       </div>
+                       <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                            <label>Attendance Date</label>
+                            <input type="date" class="form-control" name="date" required>
+                        </div>
+                     </div>
+
+                     {% for s in students %}
+                     <div class="col-12 mt-4 mt-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="{{s.id}}" name="student_id" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                              {{s.admin.first_name}} {{s.admin.last_name}}
+                            </label>
+                          </div>
+                     </div>
+                    {% endfor %}
+
+
+                     <div class="col-12 mt-4">
+                         <button type="submit" class="btn btn-primary">Submit</button>
+                      </div>
+
+                        </div>
+                     </div>
+                  </form>
+
+
+                {% endif %}
+
+
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+
+
+{% endblock content %}

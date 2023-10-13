@@ -1,0 +1,323 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+<style>
+
+
+@media only screen and (max-width: 786px) {
+   table {
+    font-size: 9px;
+    margin-left: -20px;
+    width: 90%;
+  }
+
+  td{
+      padding: 0px;
+      width: 20px;
+  }
+
+  .routine-header p{
+   font-size: 12px;
+  }
+
+  .actions{
+
+      display: none !important;
+  }
+  .class-day{
+      font-size: 10px;
+      width: 10px;
+      text-wrap: normal;
+  }
+}
+
+   
+</style>
+
+
+<div class="content container-fluid">
+    <div class="page-header">
+       <div class="row align-items-center">
+          <div class="col">
+             <h3 class="page-title">View Routine</h3>
+             <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'admin_home' %}">Dashboard</a></li>
+                <li class="breadcrumb-item active">View Routine</li>
+             </ul>
+          </div>
+       </div>
+    </div>
+
+
+    {% if action is none %}
+    <div class="row">
+       <div class="col-sm-12">
+          <div class="card mt-3">
+             <div class="card-body">
+
+                
+                <form action="?action=view_schedule" method="post">
+                  {% csrf_token %}
+                  <div class="row">
+                     <div class="col-12">
+                        <h5 class="form-title"><span>Attendence</span></h5>
+                     </div>
+
+                      {% comment %} =================   alert message =================== {% endcomment %}
+                     {% include 'includes/messages.html' %}
+                     {% comment %} ======================================================= {% endcomment %}
+
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Session Year</label>
+                           <select class="form-control" name="session_year_id" required>
+                              <option value='None'>Select Session</option>
+
+                              {% for i in session_year %}
+                                 <option value="{{i.id}}">{{i.session_start}} to {{i.session_end}}</option>
+                              {% endfor %}
+                              
+                           </select>
+                        </div>
+                     </div>
+
+
+
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Section</label>
+                           <select class="form-control" name="section_id" required>
+                              <option value='None'>Select Section</option>
+
+                              {% for i in section %}
+                                 <option value="{{i.id}}">{{i.section_name}}</option>
+                              {% endfor %}
+                              
+                           </select>
+                        </div>
+                     </div>
+                     
+                     
+                       <div class="col-12">
+                          <button type="submit" class="btn btn-primary">Show Routine</button>
+                       </div>
+                      </div>
+                   </div>
+                </form>
+                
+
+             </div>
+          </div>
+       </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    {% else %}
+    <div class="row">
+     <div class="col-sm-12">
+        <div class="card mt-3">
+           <div class="card-body">
+
+              
+              <form action="?action=view_schedule" method="post">
+                {% csrf_token %}
+                <div class="row">
+                   <div class="col-12">
+                      <h5 class="form-title"><span>Attendence</span></h5>
+                   </div>
+
+                    {% comment %} =================   alert message =================== {% endcomment %}
+                   {% include 'includes/messages.html' %}
+                   {% comment %} ======================================================= {% endcomment %}
+
+
+                   <div class="col-12 col-sm-6">
+                      <div class="form-group">
+                         <label>Session Year</label>
+                         <select class="form-control" name="session_year_id" disabled>
+                               <option value="{{get_session_year.id}}">{{get_session_year}}</option>
+                         </select>
+                      </div>
+                   </div>
+
+
+
+                    <div class="col-12 col-sm-6">
+                      <div class="form-group">
+                         <label>Section</label>
+                         <select class="form-control" name="section_id" disabled>
+
+                               <option value="{{get_section.id}}">{{get_section}}</option>
+                            
+                         </select>
+                      </div>
+                   </div>
+
+                    
+
+                   
+                   
+                     {% comment %} <div class="col-12 mt-4"> {% endcomment %}
+                         <!-- <div class="row"> -->
+
+                             {% comment %} <div class="col-sm-12"> {% endcomment %}
+                                {% comment %} <div class="card card-table"> {% endcomment %}
+                                   {% comment %} <div class="card-body" style="font-size: 11px; text-align:center;"> {% endcomment %}
+                                    <div class="schedule-table" style="font-size: 12px; text-align:center;">
+                                      <table class="table table-bordered" style="overflow-x:auto;">
+                                          <thead class="text-danger">
+                                             <tr>
+                                                {% for i in routine_report %}
+                                                <th colspan="8" class="routine-header" style="font-size: 15px; text-align:center; color:#f42a41; ;"><p>Class : {{i.section_id.class_id}}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  |  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  {{i.section_id.teacher_id}}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  |  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{i.section_id}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></th>
+                                                <div class="class_nam"></div>
+                                                <td class="text-right">
+                                                   <div class="actions" style="display:flex;">
+                                                     <a href="{% url 'edit_routine' i.id %}" class="btn btn-sm bg-danger-light">
+                                                        <i class="fas fa-pen"></i>
+                                                     </a>
+                                                     <a href="{% url 'delete_routine' i.id %}" class="btn btn-sm bg-success-light mr-2 ml-2">
+                                                        <i class="fas fa-trash"></i>
+                                                      </a>
+                                                   </div>
+                                                </td>
+                                             </tr>
+
+                                             {% endfor %}
+
+                                            <tr style="font-size: 13px; text-align:center;">
+                                              <th scope="col">#</th>
+                                              <th scope="col">1st</th>
+                                              <th scope="col">2nd</th>
+                                              <th scope="col">3rd</th>
+                                              <th scope="col">4th</th>
+                                              <th scope="col">Tiffin</th>
+                                              <th scope="col">5th</th>
+                                              <th scope="col">6th</th>
+                                              <th scope="col">7th</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                             {% for i in saturday %}
+                                             <tr>
+                                                <th scope="row" class="class-day">{{i.class_day}}</th>
+                                              <td>{{i.first_subject}}<br>{{i.fitst_subject_teacher.short_name}}</td>
+                                              <td>{{i.second_subject}}<br>{{i.second_subject_teacher.short_name}}</td>
+                                              <td>{{i.third_subject}}<br>{{i.third_subject_teacher.short_name}}</td>
+                                              <td>{{i.fourth_subject}}<br>{{i.fourth_subject_teacher.short_name}}</td>
+                                              <td style="font-size: 25px; text-align:center; color:white; background-color:#f42a41;"></td>
+                                              <td>{{i.fifth_subject}}<br>{{i.fifth_subject_teacher.short_name}}</td>
+                                              <td>{{i.sixth_subject}}<br>{{i.sixth_subject_teacher.short_name}}</td>
+                                              <td>{{i.seventh_subject}}<br>{{i.seventh_subject_teacher.short_name}}</td>
+                                            </tr>
+                                            {% endfor %}
+                                            
+                                            {% for i in sunday %}
+                                            <tr>
+                                              <th scope="row">{{i.class_day}}</th>
+                                              <td>{{i.first_subject}}<br>{{i.fitst_subject_teacher.short_name}}</td>
+                                              <td>{{i.second_subject}}<br>{{i.second_subject_teacher.short_name}}</td>
+                                              <td>{{i.third_subject}}<br>{{i.third_subject_teacher.short_name}}</td>
+                                              <td>{{i.fourth_subject}}<br>{{i.fourth_subject_teacher.short_name}}</td>
+                                              <td style="font-size: 25px; text-align:center; color:white; background-color:#006a4e;">T</td>
+                                              <td>{{i.fifth_subject}}<br>{{i.fifth_subject_teacher.short_name}}</td>
+                                              <td>{{i.sixth_subject}}<br>{{i.sixth_subject_teacher.short_name}}</td>
+                                              <td>{{i.seventh_subject}}<br>{{i.seventh_subject_teacher.short_name}}</td>
+                                            </tr>
+
+                                            {% endfor %}
+                                             
+                                            {% for i in monday %}
+                                            <tr>
+                                               <th scope="row">{{i.class_day}}</th>
+                                             <td>{{i.first_subject}}<br>{{i.fitst_subject_teacher.short_name}}</td>
+                                             <td>{{i.second_subject}}<br>{{i.second_subject_teacher.short_name}}</td>
+                                             <td>{{i.third_subject}}<br>{{i.third_subject_teacher.short_name}}</td>
+                                             <td>{{i.fourth_subject}}<br>{{i.fourth_subject_teacher.short_name}}</td>
+                                             <td style="font-size: 25px; text-align:center; color:white; background-color:#006a4e;">I</td>
+                                             <td>{{i.fifth_subject}}<br>{{i.fifth_subject_teacher.short_name}}</td>
+                                             <td>{{i.sixth_subject}}<br>{{i.sixth_subject_teacher.short_name}}</td>
+                                             <td>{{i.seventh_subject}}<br>{{i.seventh_subject_teacher.short_name}}</td>
+                                           </tr>
+                                           {% endfor %}
+
+                                           {% for i in tuesday %}
+                                           <tr>
+                                              <th scope="row">{{i.class_day}}</th>
+                                            <td>{{i.first_subject}}<br>{{i.fitst_subject_teacher.short_name}}</td>
+                                            <td>{{i.second_subject}}<br>{{i.second_subject_teacher.short_name}}</td>
+                                            <td>{{i.third_subject}}<br>{{i.third_subject_teacher.short_name}}</td>
+                                            <td>{{i.fourth_subject}}<br>{{i.fourth_subject_teacher.short_name}}</td>
+                                            <td style="font-size: 25px; text-align:center; color:white; background-color:#006a4e;">F</td>
+                                            <td>{{i.fifth_subject}}<br>{{i.fifth_subject_teacher.short_name}}</td>
+                                            <td>{{i.sixth_subject}}<br>{{i.sixth_subject_teacher.short_name}}</td>
+                                            <td>{{i.seventh_subject}}<br>{{i.seventh_subject_teacher.short_name}}</td>
+                                          </tr>
+                                          {% endfor %}
+
+                                          {% for i in wednesday %}
+                                             <tr>
+                                                <th scope="row">{{i.class_day}}</th>
+                                              <td>{{i.first_subject}}<br>{{i.fitst_subject_teacher.short_name}}</td>
+                                              <td>{{i.second_subject}}<br>{{i.second_subject_teacher.short_name}}</td>
+                                              <td>{{i.third_subject}}<br>{{i.third_subject_teacher.short_name}}</td>
+                                              <td>{{i.fourth_subject}}<br>{{i.fourth_subject_teacher.short_name}}</td>
+                                              <td style="font-size: 25px; text-align:center; color:white; background-color:#006a4e;">I</td>
+                                              <td>{{i.fifth_subject}}<br>{{i.fifth_subject_teacher.short_name}}</td>
+                                              <td>{{i.sixth_subject}}<br>{{i.sixth_subject_teacher.short_name}}</td>
+                                              <td>{{i.seventh_subject}}<br>{{i.seventh_subject_teacher.short_name}}</td>
+                                            </tr>
+                                            {% endfor %}
+
+                                            {% for i in thursday %}
+                                             <tr>
+                                                <th scope="row">{{i.class_day}}</th>
+                                              <td>{{i.first_subject}}<br>{{i.fitst_subject_teacher.short_name}}</td>
+                                              <td>{{i.second_subject}}<br>{{i.second_subject_teacher.short_name}}</td>
+                                              <td>{{i.third_subject}}<br>{{i.third_subject_teacher.short_name}}</td>
+                                              <td>{{i.fourth_subject}}<br>{{i.fourth_subject_teacher.short_name}}</td>
+                                              <td style="font-size: 25px; text-align:center; color:white; background-color:#006a4e;">N</td>
+                                              <td>{{i.fifth_subject}}<br>{{i.fifth_subject_teacher.short_name}}</td>
+                                              <td>{{i.sixth_subject}}<br>{{i.sixth_subject_teacher.short_name}}</td>
+                                              <td>{{i.seventh_subject}}<br>{{i.seventh_subject_teacher.short_name}}</td>
+                                            </tr>
+                                            {% endfor %}
+
+                                          </tbody>
+                                        </table>
+                                    </div>
+                                  </div>
+                                </div>
+                             </div>
+                          </div>
+                     </div>
+                    </div>
+                 </div>
+              </form>
+              
+
+           </div>
+
+
+
+
+
+  {% comment %} <div class="row">
+    <div class="col-md-12">
+      
+  </div>
+</div> {% endcomment %}
+
+{% endif %}
+
+{% endblock %}

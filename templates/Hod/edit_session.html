@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="content container-fluid">
+    <div class="page-header">
+       <div class="row align-items-center">
+          <div class="col">
+             <h3 class="page-title">Edit Session</h3>
+             <div class="col-auto text-right float-right ml-auto  mb-3">
+               <a href="{% url 'view_session' %}" class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i></a>
+              </div>
+             <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'view_session' %}">Session</a></li>
+                <li class="breadcrumb-item active">Edit Session</li>
+             </ul>
+          </div>
+       </div>
+    </div>
+    <div class="row">
+       <div class="col-sm-12">
+          <div class="card mt-3">
+             <div class="card-body">
+                <form action="{% url 'update_session' %}" method="post">
+                  {% csrf_token %}
+
+
+                  <div class="row">
+                     <div class="col-12">
+                        <h5 class="form-title"><span>Edit Session</span></h5>
+                     </div>
+
+                      {% comment %} =================   alert message =================== {% endcomment %}
+                     {% include 'includes/messages.html' %}
+                     {% comment %} ======================================================= {% endcomment %}
+
+
+                      <div class="col-12 col-sm-6">
+                         <div class="form-group">
+                            <label>Session Start</label>
+                            <input type="text" class="form-control" name="session_start" value={% for i in session %}{{i.session_start}}{% endfor %} required>
+                            <input type="text" class="form-control" name="session_id" value={% for i in session %}{{i.id}}{% endfor %} hidden>
+                         </div>
+                      </div>
+
+                    <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                            <label>Session End</label>
+                            <input type="text" class="form-control" name="session_end" value={% for i in session %}{{i.session_end}}{% endfor %} required>
+                        </div>
+                    </div>
+                      <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Update Session</button>
+                     </div>
+
+                   </div>
+                </form>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+
+
+
+{% endblock content %}

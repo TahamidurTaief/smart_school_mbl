@@ -1,0 +1,82 @@
+{% extends 'student_base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<div class="content container-fluid">
+    <div class="page-header">
+       <div class="row align-items-center">
+          <div class="col">
+             <h3 class="page-title">Students Notifications</h3>
+             <ul class="breadcrumb mb-3">
+                <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                <li class="breadcrumb-item active">View Notifications</li>
+             </ul>
+          </div>
+          <div class="col-auto text-right float-right ml-auto  mb-3">
+             <a href="#" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
+             <a href="add-student.html" class="{% url 'add_course' %}"><i class="fas fa-plus"></i></a>
+            </div>
+         </div>
+         {% comment %} =================   alert message =================== {% endcomment %}
+         {% include 'includes/messages.html' %}
+         {% comment %} ======================================================= {% endcomment %}
+    </div>
+    <div class="row">
+       <div class="col-sm-12">
+          <div class="card card-table">
+             <div class="card-body" style="font-size: 13px;">
+                <div class="table-responsive">
+                   <table id="table_id" class="table table-hover table-center mb-0">
+                      <thead>
+                         <tr>
+                            <th>Message</th>
+                            <th class="text-right">Action</th>
+                         </tr>
+                      </thead>
+                      <tbody>
+                        {% for n in notifications %}
+                          
+                        
+                         <tr>
+                            <td>{{n.message}}</td>
+                            
+                            <td class="text-right">
+                               <div class="actions">
+                                 {% if n.status == 0 %}
+                                     <td class="text-right">
+                                        <div class="actions">
+                                          <a href="{% url 'student_notifications_seen' status=n.id %}"><i class="fa fa-check"></i></a>
+                                       </div>
+                                     </td>
+
+                                     {% else %}
+                                     <td class="text-right">
+                                       <div class="actions">
+                                          <i class="fa fa-eye" disabled="disable"></i>
+                                       </div>
+                                    </td>
+                                  </tr>
+                                  {% endif %}
+                               </div>
+                            </td>
+                         </tr>
+
+
+
+
+
+
+                         {% endfor %}
+                      </tbody>
+                   </table>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+
+
+{% endblock content %}

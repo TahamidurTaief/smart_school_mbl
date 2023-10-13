@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="content container-fluid">
+    <div class="page-header">
+       <div class="row align-items-center">
+          <div class="col">
+             <h3 class="page-title">Add Stuff Type</h3>
+             <div class="col-auto text-right float-right ml-auto  mb-3">
+               <a href="{% url 'view_staff_type' %}" class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i></a>
+              </div>
+             <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'admin_home' %}">View Staff Type</a></li>
+                <li class="breadcrumb-item">Add Staff Type</li>
+             </ul>
+          </div>
+       </div>
+    </div>
+    <div class="row">
+       <div class="col-sm-12">
+          <div class="card mt-3">
+             <div class="card-body">
+                <form action="{% url 'add_staff_type' %}" method="post">
+                  {% csrf_token %}
+
+
+                  <div class="row">
+                     <div class="col-12">
+                        <h5 class="form-title"><span>Add Staff Type</span></h5>
+                     </div>
+
+                      {% comment %} =================   alert message =================== {% endcomment %}
+                     {% include 'includes/messages.html' %}
+                     {% comment %} ======================================================= {% endcomment %}
+
+
+                      <div class="col-12 col-sm-6">
+                         <div class="form-group">
+                            <label>Staff Type</label>
+                            <input type="text" class="form-control" name="staff_type" required>
+                         </div>
+                      </div>
+                      
+                       <div class="col-12">
+                          <button type="submit" class="btn btn-primary">Add Stuff</button>
+                       </div>
+                      </div>
+                   </div>
+                </form>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+
+
+{% endblock content %}

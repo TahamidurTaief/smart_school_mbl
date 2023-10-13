@@ -1,0 +1,48 @@
+{% load static %}
+{% load active_link_tags %}
+
+
+
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-inner slimscroll">
+       <div id="sidebar-menu" class="sidebar-menu">
+          <ul>
+             <li class="menu-title">   
+                <span>Main Menu</span> 
+             </li>
+             
+             <li class="{% active_link 'student_home' 'active' %}" >
+               <a href="{% url 'student_home' %}"><i class="fas fa-holly-berry"></i> <span>Dashboard</span></a>
+            </li>
+             <li class="{% active_link 'student_view_attendance' 'active' %}" >
+               <a href="{% url 'student_view_attendance' %}"><i class="fas fa-calendar-alt"></i> <span>View Attendence</span></a>
+            </li>
+
+             <li class="{% active_link 'student_view_result' 'active' %}">
+               <a href="{% url 'student_view_result' %}"><i class="fas fa-poll-h"></i> <span>View Result</span></a>
+            </li>
+             <li class="{% active_link 'student_view_routine' 'active' %}">
+               <a href="{% url 'student_view_routine' %}"><i class="fas fa-list"></i> <span>View Routine</span></a>
+            </li>
+             <li class="{% active_link 'student_apply_leave' 'active' %}">
+               <a href="{% url 'student_apply_leave' %}"><i class="fa fa-envelope"></i> <span>Apply for Leave</span></a>
+            </li>
+             <li class="{% active_link 'student_feedback' 'active' %}">
+               <a href="{% url 'student_feedback' %}"><i class="fas fa-comment"></i> <span>Send Feedback</span></a>
+            </li>
+             <li class="{% active_link 'student_notifications' 'active' %}">
+               <a href="{% url 'student_notifications' %}"><i class="fas fa-bell"></i> <span>Notification</span></a>
+            </li>
+             
+            <li>
+               <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
+            </li>
+            
+
+             
+            
+          </ul>
+           
+       </div>
+    </div>
+ </div>

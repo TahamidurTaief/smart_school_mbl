@@ -1,0 +1,229 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="content container-fluid">
+    <div class="page-header">
+       <div class="row align-items-center">
+          <div class="col">
+             <h3 class="page-title">Edit School Teacher</h3>
+             <div class="col-auto text-right float-right ml-auto  mb-3">
+               <a href="{% url 'view_school_teacher' %}" class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i></a>
+              </div>
+             <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'view_staff' %}">School Teacher</a></li>
+                <li class="breadcrumb-item">Edit School Teacher</li>
+             </ul>
+          </div>
+       </div>
+    </div>
+    <div class="row">
+       <div class="col-sm-12">
+          <div class="card mt-3">
+             <div class="card-body">
+                <form action="{% url 'update_school_teacher' %}" method="post"  enctype="multipart/form-data">
+                  {% csrf_token %}
+
+
+                  <div class="row">
+                     <div class="col-12">
+                        <h5 class="form-title"><span>Add Teacher</span></h5>
+                     </div>
+
+
+                      {% comment %} =================   alert message =================== {% endcomment %}
+                     {% include 'includes/messages.html' %}
+                     {% comment %} ======================================================= {% endcomment %}
+
+
+                      <div class="col-12 col-sm-6">
+                         <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" class="form-control" name="first_name" value = "{% for i in school_teacher %}{{i.admin.first_name}}{% endfor %}" required>
+                            <input type="text" class="form-control" name="teacherAdminId" value = "{% for i in school_teacher %}{{i.admin.id}}{% endfor %}" hidden>
+                         </div>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                         <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" class="form-control" name="last_name" value = "{% for i in school_teacher %}{{i.admin.last_name}}{% endfor %}" required>
+                         </div>
+                      </div>
+                      
+                     <div class="col-12 col-sm-6">
+                         <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" class="form-control" name='email'  value = "{% for i in school_teacher %}{{i.admin.email}}{% endfor %}" required>
+                         </div>
+                      </div>
+
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Date of Birth</label>
+                           <input type='date' class="form-control" name="date_of_birth"  value = "{% for i in school_teacher %}{{i.date_of_birth}}{% endfor %}"></input>
+                        </div>
+                     </div>
+
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Joining Date</label>
+                           <input type='date' class="form-control" name="joining_date"></input>
+                        </div>
+                     </div>
+
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Birth Certificate No</label>
+                           <input type='text' class="form-control"  value = "{% for i in school_teacher %}{{i.birth_certificate}}{% endfor %}" name="birth_certificate_no"></input>
+                        </div>
+                     </div>
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Blood Group</label>
+                           <input type='text' class="form-control"value = "{% for i in school_teacher %}{{i.blood_group}}{% endfor %}" name="blood_group"></input>
+                        </div>
+                     </div>
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Qualification</label>
+                           <input type='text' class="form-control" value="{% for i in school_teacher %}{{i.qualification}}{% endfor %}" name="qualification"></input>
+                        </div>
+                     </div>
+
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Course</label>
+                           <select  style="color:red;" class="form-control" name="course_id" required>
+                              <option value="{% for i in school_teacher %}{{i.course.id}}{% endfor %}">{% for i in school_teacher %}{{i.course.name}}{% endfor %}</option>
+                              {% for i in course_obj %}
+                                <option value="{{i.id}}">{{i.name}}</option>
+                              {% endfor %}
+                           </select>
+                        </div>
+                       </div>
+
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Short Name</label>
+                           <input type='text' class="form-control" name="short_name" value = "{% for i in school_teacher %}{{i.short_name}}{% endfor %}"></input>
+                        </div>
+                     </div>
+
+                     
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>NID No</label>
+                           <input type='text' class="form-control" value = "{% for i in school_teacher %}{{i.nid}}{% endfor %}" name="nid_no"></input>
+                        </div>
+                     </div>
+
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Fathers Name</label>
+                           <input type='text' class="form-control" name="fathers_name" value = "{% for i in school_teacher %}{{i.fathers_name}}{% endfor %}"></input>
+                        </div>
+                     </div>
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Mothers Name</label>
+                           <input type='text' class="form-control" name="mothers_name" value = "{% for i in school_teacher %}{{i.mothers_name}}{% endfor %}"></input>
+                        </div>
+                     </div>
+
+                      <div class="col-12 col-sm-6">
+                         <div class="form-group">
+                            <label>Permanent Address</label>
+                            <input type='text' class="form-control" name="permanent_address" value="{% for i in school_teacher %}{{i.permanent_address}}{% endfor %}"></input>
+                         </div>
+                      </div>
+
+                      <div class="col-12 col-sm-6">
+                         <div class="form-group">
+                            <label>Present Address</label>
+                            <input type='text' class="form-control" name="present_address" value="{% for i in school_teacher %}{{i.present_address}}{% endfor %}"></input>
+                         </div>
+                      </div>
+                     
+                      <div class="col-12 col-sm-6">
+                         <div class="form-group">
+                            <label>Gender</label>
+                            <select style="color:red;" class="form-control" name="gender" required>
+                               <option value="{% for i in school_teacher %}{{i.gender}}{% endfor %}" >{% for i in school_teacher %}{{i.gender}}{% endfor %}</option>
+                               <option value="Female">Female</option>
+                               <option value="Male">Male</option>
+                               <option value="Others">Others</option>
+                            </select>
+                         </div>
+                        </div>
+
+                        <div class="col-12 col-sm-6">
+                           <div class="form-group">
+                              <label>Religion</label>
+                              <input type='text' class="form-control" name="religion" value="{% for i in school_teacher %}{{i.religion}}{% endfor %}"></input>
+                           </div>
+                        </div>
+
+
+                        <div class="col-12 col-sm-6">
+                           <div class="form-group">
+                              <label>Mobile Number</label>
+                              <input type='text' class="form-control" name="mobile_number" value="{% for i in school_teacher %}{{i.mobile_number}}{% endfor %}"></input>
+                           </div>
+                        </div>
+
+                      <div class="col-12 col-sm-6">
+                         <div class="form-group">
+                            <label>Teacher Type</label>
+                            <select style="color:red;" class="form-control" name="staff_type" required>
+                               <option value="">Select Type</option>
+                               {% for i in staff_type %}
+                                 <option value="{{i.id}}">{{i.name}}</option>
+                               {% endfor %}
+                            </select>
+                         </div>
+                        </div>
+                        
+                        <div class="col-12 col-sm-6">
+                         <div class="form-group">
+                            <label>Sallery</label>
+                            <input type='text' class="form-control" name="sallery"  value="{% for i in school_teacher %}{{i.sallery}}{% endfor %}"></input>
+                         </div>
+                        </div>
+
+                        <div class="col-12 col-sm-6">
+                           <div class="form-group">
+                              <label>Password</label>
+                              <input type='password' class="form-control" placeholder="Set password if you want to change." name="password"></input>
+                           </div>
+                        </div>
+                        
+                        
+                        <div class="col-12 col-sm-6">
+                           <div class="form-group">
+                               <label style="color:red;" >Teacher Image</label>
+                               <input type="file" class="form-control" name="profile_pic">
+                           </div>
+                       </div>
+
+                       <div class="col-12">
+                          <button type="submit" class="btn btn-primary">Add School Teacher</button>
+                       </div>
+                      </div>
+                   </div>
+                </form>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+
+
+{% endblock content %}

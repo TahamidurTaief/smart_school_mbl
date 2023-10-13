@@ -1,0 +1,161 @@
+{% load static %}
+{% load active_link_tags %}
+
+
+
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-inner slimscroll">
+       <div id="sidebar-menu" class="sidebar-menu">
+          <ul>
+             <li class="menu-title">   
+                <span>Main Menu</span> 
+             </li>
+             
+             <li>
+               <a href="{% url 'admin_home' %}"><i class="fas fa-holly-berry"></i> <span>Dashboard</span></a>
+            </li>
+             <li class="submenu {% active_link 'view_student' 'active' %} {% active_link 'add_student' 'active' %}" >
+                <a href="#"><i class="fas fa-user-graduate"></i><span> Students</span> <span class="menu-arrow"></span></a>
+                <ul>
+                   <li><a href="{% url 'view_student' %}">View Student</a></li>
+                   <li><a href="{% url 'add_student' %}">Add Student</a></li>
+                   {% comment %} <li><a href="edit-student.html">Student Edit</a></li> {% endcomment %}
+                </ul>
+             </li>
+             <li class="submenu {% active_link 'view_staff' 'active' %} {% active_link 'add_staff' 'active' %}">
+                <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span> Staff</span> <span class="menu-arrow"></span></a>
+                <ul>
+                   <li><a href="{% url 'view_school_teacher' %}">School Teacher</a></li>
+                   <li><a href="{% url 'view_staff' %}">View Staff</a></li>
+                   <li><a href="{% url 'view_staff_type' %}">View Staff Type</a></li>
+                   {% comment %} <li><a href="{% url 'add_staff_type' %}">Add Staff Type</a></li> {% endcomment %}
+                   {% comment %} <li><a href="{% url 'add_staff' %}">Add Staff</a></li> {% endcomment %}
+                   {% comment %} <li><a href="{% url 'add_staff_type' %}">College Teacher</a></li> {% endcomment %}
+                </ul>
+             </li>
+             <li class="submenu {% active_link 'view_Course' 'active' %} {% active_link 'add_course' 'active' %}">
+                <a href="#"><i class="fas fa-building"></i> <span> Course</span> <span class="menu-arrow"></span></a>
+                <ul>
+                   <li><a href="{% url 'view_class' %}">View Course</a></li>
+                   <li><a href="{% url 'add_course' %}">Course Add</a></li>
+                </ul>
+             </li>
+
+             
+             <li class="submenu {% active_link 'view_class' 'active' %} {% active_link 'add_class' 'active' %}">
+               <a href="#"><i class="fas fa-list"></i> <span>Class</span> <span class="menu-arrow"></span></a>
+               <ul>
+                  <li><a href="{% url 'view_class' %}">View Class</a></li>
+                  <li><a href="{% url 'add_class' %}">Add Class</a></li>
+               </ul>
+            </li>
+
+
+             <li class="submenu {% active_link 'view_subject' 'active' %} {% active_link 'add_subject' 'active' %}">
+                <a href="#"><i class="fas fa-book-reader"></i> <span> Subjects</span> <span class="menu-arrow"></span></a>
+                <ul>
+                   <li><a href="{% url 'view_subject' %}">View Subject</a></li>
+                   <li><a href="{% url 'add_subject' %}">Add Subject</a></li>
+                </ul>
+             </li>
+
+             <li class="submenu {% active_link 'view_session' 'active' %} {% active_link 'add_session' 'active' %}">
+                <a href="#"><i class="fa fa-clock"></i> <span> Session</span> <span class="menu-arrow"></span></a>
+                <ul>
+                   <li><a href="{% url 'view_session' %}">View Session</a></li>
+                   <li><a href="{% url 'add_session' %}">Add Session</a></li>
+                </ul>
+             </li>
+             <li class="submenu {% active_link 'view_section' 'active' %} {% active_link 'add_section' 'active' %}">
+                <a href="#"><i class="fas fa-building"></i> <span> Section</span> <span class="menu-arrow"></span></a>
+                <ul>
+                   <li><a href="{% url 'view_section' %}">View Section</a></li>
+                   <li><a href="{% url 'add_section' %}">Add Section</a></li>
+                </ul>
+             </li>
+
+             <li class="submenu {% active_link 'view_routine' 'active' %} {% active_link 'add_routine' 'active' %}">
+               <a href="#"><i class="fas fa-list"></i> <span> Routine</span> <span class="menu-arrow"></span></a>
+               <ul>
+                  <li><a href="{% url 'view_routine' %}">View Routine</a></li>
+                  <li><a href="{% url 'add_routine' %}">Add Routine</a></li>
+               </ul>
+            </li>
+
+
+             <li class="submenu {% active_link 'view_result_plan' 'active' %} {% active_link 'result_plan' 'active' %}">
+               <a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path fill="gray" d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm64 192c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32s-32-14.3-32-32V256c0-17.7 14.3-32 32-32zm64-64c0-17.7 14.3-32 32-32s32 14.3 32 32V352c0 17.7-14.3 32-32 32s-32-14.3-32-32V160zM320 288c17.7 0 32 14.3 32 32v32c0 17.7-14.3 32-32 32s-32-14.3-32-32V320c0-17.7 14.3-32 32-32z"/></svg> <span>  Result</span> <span class="menu-arrow"></span></a>
+               <ul>
+                  <li><a href="{% url 'view_result_plan' %}">Result Plan</a></li>
+                  <li><a href="{% url 'add_routine' %}">View Result</a></li>
+               </ul>
+            </li>
+
+
+
+
+             <li class="submenu {% active_link 'add_staff_notification' 'active' %} {% active_link 'student_notifications' 'active' %}">
+               <a href="#"><i class="fa fa-bell"></i> <span> Notifications</span> <span class="menu-arrow"></span></a>
+               <ul>
+                  <li>
+                     <a href="{% url 'add_staff_notification' %}"> <span>Send Staff Notification</span></a>
+                  </li>
+                   <li>
+                     <a href="{% url 'student_notifications' %}"><span>Send Student Notification</span></a>
+                  </li>
+               </ul>
+            </li>
+
+
+             <li class="submenu {% active_link 'add_notice' 'active' %} {% active_link 'view_notice' 'active' %}">
+               <a href="#"><i class="fab fa-wpforms"></i> <span> Notice</span> <span class="menu-arrow"></span></a>
+               <ul>
+                  <li>
+                     <a href="{% url 'add_notice' %}"> <span>Add Notice</span></a>
+                  </li>
+                   <li>
+                     <a href="{% url 'view_notice' %}"><span>View Notice</span></a>
+                  </li>
+               </ul>
+            </li>
+
+             <li class="submenu {% active_link 'staff_feedback_reply' 'active' %} {% active_link 'student_feedback_reply' 'active' %}">
+               <a href="#"><i class="fa fa-star"></i> <span>Feedback</span> <span class="menu-arrow"></span></a>
+               <ul>
+                  <li>
+                     <a href="{% url 'staff_feedback_reply' %}"> <span>Staff Feedback</span></a>
+                  </li>
+      
+                  <li>
+                     <a href="{% url 'student_feedback_reply' %}"><span>Student Feedback</span></a>
+                  </li>
+               </ul>
+            </li>
+
+
+             
+             <li>
+               <a href="{% url 'view_student_attendance' %}"><i class="fa fa-calendar"></i> <span>Attendence</span></a>
+            </li>
+
+            
+
+
+
+            <li>
+               <a href="{% url 'staff_leave' %}"><i class="fa fa-envelope"></i> <span>Staff Leave</span></a>
+            </li>
+            <li>
+               <a href="{% url 'student_leave' %}"><i class="fa fa-envelope"></i> <span>Student Leave</span></a>
+            </li>
+            <li>
+               <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
+            </li>
+            
+
+             
+            
+          </ul>
+       </div>
+    </div>
+ </div>

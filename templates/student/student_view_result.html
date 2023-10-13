@@ -1,0 +1,208 @@
+{% extends 'student_base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="content container-fluid">
+    <div class="page-header">
+       <div class="row align-items-center">
+          <div class="col">
+             <h3 class="page-title">Result</h3>
+             <ul class="breadcrumb mb-3">
+                <li class="breadcrumb-item"><a href="{% url 'view_subject' %}">View Result</a></li>
+                <li class="breadcrumb-item active">View Result</li>
+             </ul>
+          </div>
+          <div class="col-auto text-right float-right ml-auto  mb-3">
+             <a href="#" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
+             <a href="{% url 'add_subject' %}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+            </div>
+         </div>
+         {% comment %} =================   alert message =================== {% endcomment %}
+         {% include 'includes/messages.html' %}
+         {% comment %} ======================================================= {% endcomment %}
+    </div>
+
+
+
+    {% if action is none %}
+    <div class="row">
+       <div class="col-sm-12">
+          <div class="card mt-3">
+             <div class="card-body">
+
+                
+                <form action="?action=view_result" method="post">
+                  {% csrf_token %}
+                  <div class="row">
+                     <div class="col-12">
+                        <h5 class="form-title"><span>Result</span></h5>
+                     </div>
+
+                      {% comment %} =================   alert message =================== {% endcomment %}
+                     {% include 'includes/messages.html' %}
+                     {% comment %} ======================================================= {% endcomment %}
+
+                     
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Subject</label>
+                           <select class="form-control" name="subject" required>
+                              <option value='None'>Select Subject</option>
+
+                              {% for i in subject_obj %}
+                                 <option value="{{i.id}}">{{i.name}}</option>
+                              {% endfor %}
+                              
+                           </select>
+                        </div>
+                     </div>
+
+
+                     
+                       <div class="col-12">
+                          <button type="submit" class="btn btn-primary">Show Result</button>
+                       </div>
+                      </div>
+                   </div>
+                </form>
+                
+
+             </div>
+          </div>
+       </div>
+    </div>
+
+
+
+{% else %}
+    <div class="row">
+     <div class="col-sm-12">
+        <div class="card mt-3">
+           <div class="card-body">
+
+              
+              <form action="?action=view_result" method="post">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="col-12">
+                     <h5 class="form-title"><span>Result</span></h5>
+                  </div>
+
+                   {% comment %} =================   alert message =================== {% endcomment %}
+                  {% include 'includes/messages.html' %}
+                  {% comment %} ======================================================= {% endcomment %}
+
+                  
+
+                  <div class="col-12 col-sm-6">
+                     <div class="form-group">
+                        <label>Subject</label>
+                        <select class="form-control" name="subject" required>
+                           <option value='None'>Select Subject</option>
+
+                           {% for i in subject_obj %}
+                              <option value="{{i.id}}">{{i.name}}</option>
+                           {% endfor %}
+                           
+                        </select>
+                     </div>
+                  </div>
+
+                    
+
+                   
+                   
+                     <div class="col-12 mt-4">
+                         <div class="row">
+                             <div class="col-sm-12">
+                                <div class="card card-table">
+                                   <div class="card-body" style="font-size: 11px;">
+                                    <div class="schedule-table">
+                                       <table class="table table-bordered">
+                                          <thead>
+                                             {% comment %} {% for i in result %} {% endcomment %}
+                                             <tr>
+                                                <th scope="row">প্রতিষ্ঠানের নাম</th>
+                                                <td colspan="7">Molamgari High School, Jaypurhat</td>
+                                              </tr>
+                                              <tr>
+                                                <th scope="row">শিক্ষার্থীর নাম</th>
+                                                <td colspan="2">{{student_name}}</td>
+                                                <th>আইডি : {{student_id}}</th>
+                                                
+                                              </tr>
+                                            <tr>
+                                             <tr>
+                                                <th scope="row">ক্লাস :  {{class_name}}</th>
+                                                <th scope="row">শাখা : {{section_name}}</th>
+                                                <th scope="row">বিষয় : {{subject}}</th>
+                                                <th scope="row">শিক্ষকের নাম : {{teacher_name}}</th>
+                                              </tr>
+                                            <tr>
+                                               {% comment %} {% endfor %} {% endcomment %}
+                                          </thead>
+                                        </table>
+                     
+                                        <table class="table table-bordered mt-4 ">
+                                          
+                                          <thead>
+                                            <tr>
+                                              <th scope="col">পারদর্শীতার সূচক</th>
+                                              <th scope="col" colspan="3" style=" text-align:center;">শিক্ষার্থীর পারদর্শীতার মাত্রা</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                             {% for i in result %}
+                                            <tr style=" text-align:center;">
+                                              <td scope="row" style="text-align:left;">{{i.pi_no}} </td>
+                                              {% if i.grade == "1" %}
+                                                <td><i style="color:red;" class="fas fa-square"></i></td>
+                                                <td><i class="fas fa-circle"></i></td>
+                                                <td><i style="font-size:25px; margin-top:-5px;" class="fa fa-caret-up"  aria-hidden="true"></i></td>
+                     
+                                              {% elif i.grade == "2" %}
+                                              <td><i class="fas fa-square"></i></td>
+                                              <td><i style="color:red; " class="fas fa-circle"></i></td>
+                                              <td><i style="font-size:25px; margin-top:-5px;" class="fa fa-caret-up"  aria-hidden="true"></i></td>
+                                              
+                                              {% elif i.grade == "3" %}
+                                              <td><i class="fas fa-square"></i></td>
+                                                <td><i class="fas fa-circle"></i></td>
+                                              <td><i style="color:red;font-size:25px; margin-top:-5px;" class="fa fa-caret-up"  aria-hidden="true"></i></td>
+                                              {% endif %}
+                                            </tr>
+                                            
+                                            {% endfor %}
+                                          </tbody>
+                                        </table>
+                     
+                                    </div>
+                                  </div>
+                                </div>
+                             </div>
+                          </div>
+                     </div>
+                    </div>
+                 </div>
+              </form>
+              
+
+           </div>
+        </div>
+     </div>
+ </div>
+
+
+
+
+  {% comment %} <div class="row">
+    <div class="col-md-12">
+      
+  </div>
+</div> {% endcomment %}
+
+{% endif %}
+
+{% endblock %}
