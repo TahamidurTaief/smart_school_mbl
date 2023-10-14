@@ -1,13 +1,17 @@
 from django.shortcuts import render,redirect
 from app.models import *
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 
+@login_required(login_url='login')
 def staff_home(request):
     return render(request, 'staff/home.html')
 
 
+
+@login_required(login_url='login')
 def staffNotifications(request):
     staaf = Staff.objects.filter(admin=request.user.id)
     for i in staaf:
@@ -20,6 +24,8 @@ def staffNotifications(request):
         return render(request, 'Staff/staff_admin_notifications.html', context)
     
 
+
+@login_required(login_url='login')
 def staffNotificationsSeen(request, status):
     notification = Staff_Notification.objects.get(id=status)
     notification.status = True
@@ -27,6 +33,8 @@ def staffNotificationsSeen(request, status):
     return redirect('staff_notifications')
 
 
+
+@login_required(login_url='login')
 def staffApplyLeave(request):
     staaf = Staff.objects.get(admin=request.user.id)
     staff_leave_history = Staff_Leave.objects.filter(staff_id=staaf)
@@ -38,6 +46,8 @@ def staffApplyLeave(request):
 
 
 
+
+@login_required(login_url='login')
 def staffApplyLeaveSave(request):
     if request.method == 'POST':
         leaveDate = request.POST.get('leave_date')
@@ -55,6 +65,7 @@ def staffApplyLeaveSave(request):
 
 
 
+@login_required(login_url='login')
 def staffFeedback(request):
     staff_id = Staff.objects.get(admin = request.user.id)
     feedback_history = Staff_Feedback.objects.filter(staff_id=staff_id)
@@ -68,6 +79,8 @@ def staffFeedback(request):
 
 
 
+
+@login_required(login_url='login')
 def staffFeedbackSave(request):
     if request.method == 'POST':
         feedback = request.POST.get('feedback_message')
@@ -82,6 +95,8 @@ def staffFeedbackSave(request):
 
 
 
+
+@login_required(login_url='login')
 def SchoolTeacherAttendance(request):
     school_teacher = SchoolTeacher.objects.get(admin=request.user.id)
     section = Section.objects.filter(teacher_id=school_teacher)
@@ -136,6 +151,10 @@ def SchoolTeacherAttendance(request):
     return render(request, 'staff/st_attendance.html', context)
 
 
+
+
+
+@login_required(login_url='login')
 def saveSchoolTeacherAttendance(request):
     if request.method == "POST":
         attendance_date = request.POST.get('date')
@@ -179,6 +198,7 @@ def saveSchoolTeacherAttendance(request):
 
 
 
+@login_required(login_url='login')
 def viewSchoolTeacherAttendance(request):
     teacher_id = SchoolTeacher.objects.get(admin=request.user.id)
     session_year = Session_Year.objects.all()
@@ -235,7 +255,7 @@ def viewSchoolTeacherAttendance(request):
 
 # Result start here ========================================================
 
-
+@login_required(login_url='login')
 def addResult(request):
     school_teacher = SchoolTeacher.objects.get(admin=request.user.id)
     session_year = Session_Year.objects.all()
@@ -284,6 +304,8 @@ def addResult(request):
 
 
 
+
+@login_required(login_url='login')
 def saveResult(request):
     if request.method == "POST":
         session_year_id = request.POST.get('session_year_id')
@@ -319,6 +341,7 @@ def saveResult(request):
 
 
 
+@login_required(login_url='login')
 def viewRoutine(request):
     section = Section.objects.all()
     subject = SchoolSubjects.objects.all()
@@ -405,7 +428,7 @@ def viewRoutine(request):
 
 
 
-
+@login_required(login_url='login')
 def viewNotice(request):
     notice_obj = Notice.objects.all()
 
@@ -413,3 +436,68 @@ def viewNotice(request):
         'notice_obj' : notice_obj,
     }
     return render(request, 'staff/view_notice.html', context)
+
+
+
+
+@login_required(login_url='login')
+def myProfile(request):
+    school_teacher_obj = SchoolTeacher.objects.filter(admin=request.user.id)
+
+    name = None
+    student_id = None
+    email = None
+    staff_type = None
+    gender = None
+    date_of_birth = None
+    class_name = None
+    joining_date = None
+    mobile_number = None
+    qualification = None
+    course = None
+
+    for i in school_teacher_obj:
+        JoiningDate = str(i.joining_date)
+        DateOfBirth = str(i.date_of_birth)
+
+        name = i.admin.first_name + " " + i.admin.last_name
+        email = i.admin.email
+        staff_type = i.staff_type
+        gender = i.gender
+        date_of_birth = DateOfBirth
+        joining_date = JoiningDate
+        mobile_number = i.mobile_number
+        religion = i.religion
+        fname = i.fathers_name
+        mname = i.mothers_name
+        address = i.present_address
+        profile_pic = i.admin.profile_pic.url
+        qualification = i.qualification
+        course = i.course
+
+        
+
+        
+    
+    context = {
+        'school_teacher_obj' : school_teacher_obj,
+        'name': name,
+        'student_id': student_id,
+        'email': email,
+        'staff_type' : staff_type,
+        'gender' : gender,
+        'date_of_birth' : date_of_birth,
+        'class_name' : class_name,
+        'joining_date' : joining_date,
+        'mobile_number' : mobile_number,
+        'fname' : fname,
+        'mname' : mname,
+        'religion' : religion,
+        'address' : address,
+        'profile_pic' : profile_pic,
+        'qualification' : qualification,
+        'course' : course,
+    }
+
+
+    return render(request, 'staff/my_profile.html', context)

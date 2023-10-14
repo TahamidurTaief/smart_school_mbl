@@ -61,7 +61,7 @@
                       <div class="col-12 col-sm-6">
                         <div class="form-group">
                            <label>Date of Birth</label>
-                           <input type='date' class="form-control" name="date_of_birth"  value = "{% for i in school_teacher %}{{i.date_of_birth}}{% endfor %}"></input>
+                           <input type='date' class="form-control" name="date_of_birth"  value="{{get_date_of_birth}}"></input>
                         </div>
                      </div>
 
@@ -97,7 +97,7 @@
                      <div class="col-12 col-sm-6">
                         <div class="form-group">
                            <label>Course</label>
-                           <select  style="color:red;" class="form-control" name="course_id" required>
+                           <select class="form-control" name="course_id" required>
                               <option value="{% for i in school_teacher %}{{i.course.id}}{% endfor %}">{% for i in school_teacher %}{{i.course.name}}{% endfor %}</option>
                               {% for i in course_obj %}
                                 <option value="{{i.id}}">{{i.name}}</option>
@@ -155,8 +155,8 @@
                       <div class="col-12 col-sm-6">
                          <div class="form-group">
                             <label>Gender</label>
-                            <select style="color:red;" class="form-control" name="gender" required>
-                               <option value="{% for i in school_teacher %}{{i.gender}}{% endfor %}" >{% for i in school_teacher %}{{i.gender}}{% endfor %}</option>
+                            <select class="form-control" name="gender" required>
+                               <option value="{{get_gender}}" >{{get_gender}}</option>
                                <option value="Female">Female</option>
                                <option value="Male">Male</option>
                                <option value="Others">Others</option>
@@ -182,8 +182,8 @@
                       <div class="col-12 col-sm-6">
                          <div class="form-group">
                             <label>Teacher Type</label>
-                            <select style="color:red;" class="form-control" name="staff_type" required>
-                               <option value="">Select Type</option>
+                            <select class="form-control" name="staff_type" required>
+                                 <option value="{{get_teacher_type_id}}">{{get_teacher_type}}</option>
                                {% for i in staff_type %}
                                  <option value="{{i.id}}">{{i.name}}</option>
                                {% endfor %}

@@ -30,6 +30,8 @@ def oops(request):
 
 
 
+
+
 @login_required(login_url='login')
 def admin_home(request):
     student_count = Student.objects.all().count()
@@ -55,6 +57,8 @@ def admin_home(request):
     }
 
     return render(request,"hod/home.html", context)
+
+
 
 
 
@@ -324,7 +328,7 @@ def deleteStudent(request, admin):
     
     
 
-
+@login_required(login_url='login')
 def approveStudent(request, id):
     student = Student.objects.get(id=id)
     student.update_status = 1
@@ -334,7 +338,7 @@ def approveStudent(request, id):
 
 
 
-    
+@login_required(login_url='login')
 def downloadStudentCsv(request):
     # Replace 'queryset' with the actual queryset you want to export as CSV (e.g., Student.objects.all())
     student_obj = Student.objects.all()
@@ -417,7 +421,6 @@ def addCourse(request):
 @login_required(login_url='login')
 def viewCourse(request):
     course_obj = Course.objects.all()
-    print(course_obj)
     context={
         "course_obj":course_obj,
     }
@@ -556,6 +559,8 @@ def addStaff(request):
     return render(request, 'hod/add_staff.html', context)
 
 
+
+@login_required(login_url='login')
 def downloadStaffxlsx(request):
     # Replace 'queryset' with the actual queryset you want to export as CSV (e.g., Student.objects.all())
     staff_obj = Staff.objects.all()
@@ -604,7 +609,7 @@ def downloadStaffxlsx(request):
 
 
 
-
+@login_required(login_url='login')
 def staffView(request):
     staff_obj = Staff.objects.all()
 
@@ -616,17 +621,46 @@ def staffView(request):
     return render(request, 'hod/view_staff.html', context)
 
 
+
+
+
+@login_required(login_url='login')
 def editStaff(request, id):
     staff = Staff.objects.filter(id=id)
+    staff_type = Stafftype.objects.all()
     
+
+    get_gender = None
+    get_date_of_birth = None
+    get_birth_certificate = None
+    get_religion = None
+    get_joining_date = None
+    get_staff_type = None
+    for i in staff:
+        get_gender = i.gender
+        get_date_of_birth = i.date_of_birth
+        get_joining_date = i.joining_date
+        get_staff_type = i.staff_type
+        get_staff_type_id = i.staff_type.id
+
+
+
     context = {
         "staff":staff,
+        "staff_type" : staff_type,
+        'get_gender' : get_gender,
+        'get_date_of_birth' : get_date_of_birth,
+        'get_joining_date' : get_joining_date,
+        'get_staff_type' : get_staff_type,
+        'get_staff_type_id' : get_staff_type_id,
     }
     
     return render(request, 'hod/edit_staff.html', context)
 
 
 
+
+@login_required(login_url='login')
 def updateStaff(request):
 
     if request.method == "POST":
@@ -656,42 +690,48 @@ def updateStaff(request):
         
         user = CustomUser.objects.get(id=staffAdminId)
 
-        if profile_pic != None and profile_pic != "":
-            user.profile_pic = profile_pic
-        if password != None and password != "":
-            user.set_password(password)
-        user.username = username
-        user.first_name = first_name
-        user.last_name = last_name
-        user.email = email
-        user.save()
+        if staff_type == None and date_of_birth == None and joining_date==None:
+            messages.error(request, "Please Select Staff Type, Date of Birth and Joining Date")
+            return redirect('edit_staff')
+        else:
+            if profile_pic != None and profile_pic != "":
+                user.profile_pic = profile_pic
+            if password != None and password != "":
+                user.set_password(password)
+            user.username = username
+            user.first_name = first_name
+            user.last_name = last_name
+            user.email = email
+            user.save()
 
-        staff = Staff.objects.get(admin=staffAdminId)
-        staff = SchoolTeacher.objects.get(admin=staffAdminId)
-        staff.gender = gender
-        staff.date_of_birth= date_of_birth
-        staff.birth_certificate = birth_certificate_no
-        staff.religion = religion
-        staff.joining_date = joining_date
-        staff.mobile_number = mobile_number
-        staff.present_address = present_address
-        staff.permanent_address = permanent_address
-        staff.staff_type = staff_type
-        staff.blood_group = blood_group
-        staff.qualification = qualification
-        staff.nid = nid_no
-        
-        staff.fathers_name = fathers_name
-        staff.mothers_name = mothers_name
-        staff.save()
-        messages.success(request, f"{first_name} {last_name} Updated Successfully")
+            staff = Staff.objects.get(admin=staffAdminId)
+            staff = Staff.objects.get(admin=staffAdminId)
+            staff.gender = gender
+            staff.date_of_birth= date_of_birth
+            staff.birth_certificate = birth_certificate_no
+            staff.religion = religion
+            staff.joining_date = joining_date
+            staff.mobile_number = mobile_number
+            staff.present_address = present_address
+            staff.permanent_address = permanent_address
+            staff.staff_type = staff_type
+            staff.blood_group = blood_group
+            staff.qualification = qualification
+            staff.nid = nid_no
+            
+            staff.fathers_name = fathers_name
+            staff.mothers_name = mothers_name
+            staff.save()
+            messages.success(request, f"{first_name} {last_name} Updated Successfully")
 
-        return redirect('view_staff')
+            return redirect('view_staff')
 
     return render(request, 'hod/edit_staff.html')
 
 
 
+
+@login_required(login_url='login')
 def deleteStaff(request, id):
     if request.method == "POST":
         confirm = request.POST.get('confirm')
@@ -713,7 +753,7 @@ def deleteStaff(request, id):
 
 
 # School Teacher start here ===========================================================================
-
+@login_required(login_url='login')
 def viewSchoolTeacher(request):
     school_teacher_obj = SchoolTeacher.objects.all()
     
@@ -724,6 +764,8 @@ def viewSchoolTeacher(request):
 
 
 
+
+@login_required(login_url='login')
 def addSchoolTeacher(request):
     section_obj = Section.objects.all()
     staff_type = Stafftype.objects.all()
@@ -737,6 +779,7 @@ def addSchoolTeacher(request):
     return render(request, 'hod/add_school_teacher.html', context)
 
 
+@login_required(login_url='login')
 def saveSchoolTeacher(request):
     if request.method == "POST":
         first_name = request.POST.get('first_name')
@@ -811,25 +854,47 @@ def saveSchoolTeacher(request):
             return redirect('add_staff')
     
 
-
+@login_required(login_url='login')
 def editSchoolTeacher(request, id):
     school_teacher = SchoolTeacher.objects.filter(id=id)
     section_obj = Section.objects.all()
     staff_type = Stafftype.objects.all()
     course_obj = Course.objects.all()
-    
+
+
+    get_date_of_birth = None
+    get_joining_date = None
+    get_gender = None
+    get_teacher_type = None
+    get_teacher_type_id = None
+
+    for i in school_teacher:
+        get_date_of_birth = i.date_of_birth
+        get_joining_date = i.joining_date
+        get_gender = i.gender
+        get_teacher_type = i.staff_type
+        get_teacher_type_id = i.staff_type.id
+        
+        # print(f"get_date_of_birth : {get_date_of_birth} \nget joining date = {get_joining_date} \nget gender = {get_gender} \nget teacher type = {get_teacher_type}")
+        
     
     context = {
         "school_teacher":school_teacher,
         "section_obj":section_obj,
         'staff_type':staff_type,
         'course_obj':course_obj,
+        'get_date_of_birth':get_date_of_birth,
+        'get_joining_date':get_joining_date,
+        'get_gender' : get_gender,
+        'get_teacher_type' : get_teacher_type,
+        'get_teacher_type_id' : get_teacher_type_id,
     }
     return render(request, 'hod/edit_school_teacher.html', context)
 
 
 
 
+@login_required(login_url='login')
 def updateSchoolTeacher(request):
 
 
@@ -906,12 +971,12 @@ def updateSchoolTeacher(request):
 
 
 from django.core.exceptions import ObjectDoesNotExist
-
+@login_required(login_url='login')
 def deleteSchoolTeacher(request, admin):
     if request.method == "POST":
         confirm = request.POST.get('confirm')
+        school_teacher = CustomUser.objects.get(id=admin)
         if confirm == "CONFIRM":
-            school_teacher = CustomUser.objects.get(id=admin)
             school_teacher.delete()
             messages.success(request, f"{school_teacher.first_name} {school_teacher.last_name} Deleted Successfully")
 
@@ -923,7 +988,7 @@ def deleteSchoolTeacher(request, admin):
 
 
 
-
+@login_required(login_url='login')
 def downloadSchoolTeacherCsv(request):
     # Replace 'queryset' with the actual queryset you want to export as CSV (e.g., Student.objects.all())
     teacher_obj = SchoolTeacher.objects.all()
@@ -986,7 +1051,7 @@ def downloadSchoolTeacherCsv(request):
 
 # School Teacher start here ===========================================================================
 
-
+@login_required(login_url='login')
 def addClass(request):
     if request.method == "POST":
         class_name = request.POST.get('class_name')
@@ -1001,6 +1066,8 @@ def addClass(request):
     return render(request, 'hod/add_class.html')
 
 
+
+@login_required(login_url='login')
 def viewClass(request):
     class_obj = Classes.objects.all()
 
@@ -1010,6 +1077,11 @@ def viewClass(request):
 
     return render(request, 'hod/view_class.html', context)
 
+
+
+
+
+@login_required(login_url='login')
 def editClass(request, id):
     class_name = Classes.objects.all()
 
@@ -1020,6 +1092,8 @@ def editClass(request, id):
     return render(request, 'hod/edit_class.html', context)
 
 
+
+@login_required(login_url='login')
 def updateClass(request):
     if request.method == "POST":
         class_id = request.POST.get('class_id')
@@ -1035,6 +1109,9 @@ def updateClass(request):
     return render(request, 'hod/edit_class.html')
 
 
+
+
+@login_required(login_url='login')
 def deleteClass(request, id):
     if request.method == "POST":
         confirm = request.POST.get('confirm')
@@ -1051,7 +1128,7 @@ def deleteClass(request, id):
 
 
 
-
+@login_required(login_url='login')
 def addStaffType(request):
     if request.method == "POST":
         staff_type = request.POST.get('staff_type')
@@ -1069,6 +1146,8 @@ def addStaffType(request):
 
 
 
+
+@login_required(login_url='login')
 def viewStaffType(request):
     staff_type_obj = Stafftype.objects.all()
 
@@ -1079,6 +1158,9 @@ def viewStaffType(request):
     return render(request, 'hod/view_staf_type.html', context)
 
 
+
+
+@login_required(login_url='login')
 def editStaffType(request, id):
     staff_type = Stafftype.objects.filter(id=id)
 
@@ -1090,7 +1172,7 @@ def editStaffType(request, id):
 
 
 
-
+@login_required(login_url='login')
 def updateStaffType(request):
     if request.method == "POST":
         staff_type_id = request.POST.get('staff_type_id')
@@ -1108,6 +1190,7 @@ def updateStaffType(request):
 
 
 
+@login_required(login_url='login')
 def deleteStaffType(request, id):
     if request.method == "POST":
         confirm = request.POST.get('confirm')
@@ -1130,7 +1213,7 @@ def deleteStaffType(request, id):
 
 #===================================    SUBJECT START HERE    =====================================
 
-
+@login_required(login_url='login')
 def addSubject(request):
     course_obj = Course.objects.all()
     teacher_obj = SchoolTeacher.objects.all()
@@ -1166,7 +1249,7 @@ def addSubject(request):
     return render(request, 'hod/add_subject.html', context)
 
 
-
+@login_required(login_url='login')
 def viewSubject(request):
     subject_obj = SchoolSubjects.objects.all()
 
@@ -1178,6 +1261,7 @@ def viewSubject(request):
 
 
 
+@login_required(login_url='login')
 def editSubject(request, id):
     subject = SchoolSubjects.objects.filter(id=id)
     course_obj = Course.objects.all()
@@ -1194,7 +1278,7 @@ def editSubject(request, id):
     return render(request, 'hod/edit_subject.html', context)
 
 
-
+@login_required(login_url='login')
 def updateSubject(request):
     if request.method=='POST':
         subjectId = request.POST.get('subjectId')
@@ -1223,7 +1307,7 @@ def updateSubject(request):
         return redirect('view_subject')
 
 
-
+@login_required(login_url='login')
 def deleteSubject(request, id):
     if request.method == "POST":
         confirm = request.POST.get('confirm')
@@ -1238,6 +1322,10 @@ def deleteSubject(request, id):
     
     return redirect('view_subject')
 
+
+
+
+@login_required(login_url='login')
 def deleteStaff(request, id):
     if request.method == "POST":
         confirm = request.POST.get('confirm')
@@ -1261,6 +1349,7 @@ def deleteStaff(request, id):
 
 #===================================    SESSION START HERE    =====================================
 
+@login_required(login_url='login')
 def addSession(request):
     session_obj = Session_Year.objects.all()
 
@@ -1272,7 +1361,6 @@ def addSession(request):
             session_start = session_start,
             session_end = session_end,
         )
-        print(session)
 
         session.save()
         messages.success(request, f"{session_start} - {session_end} Added Successfully")
@@ -1290,7 +1378,7 @@ def addSession(request):
 
 
 
-
+@login_required(login_url='login')
 def viewSession(request):
     session_obj = Session_Year.objects.all()
 
@@ -1300,6 +1388,10 @@ def viewSession(request):
 
     return render(request, 'hod/view_session.html', context)
 
+
+
+
+@login_required(login_url='login')
 def editSession(request, id):
     session = Session_Year.objects.filter(id=id)
     
@@ -1309,6 +1401,10 @@ def editSession(request, id):
 
     return render(request, 'hod/edit_session.html', context)
 
+
+
+
+@login_required(login_url='login')
 def updateSession(request):
     if request.method == "POST":
         session_id = request.POST.get('session_id')
@@ -1345,6 +1441,8 @@ def updateSession(request):
 #     return render(request, 'hod/view_session.html')
 
     
+
+@login_required(login_url='login')
 def deleteSession(request, id):
     if request.method == "POST":
         confirm = request.POST.get('confirm')
@@ -1365,6 +1463,7 @@ def deleteSession(request, id):
 
 
 # staff start here
+@login_required(login_url='login')
 def staffNotification(request):
     staff = Staff.objects.all()
     see_notification = Staff_Notification.objects.all().order_by("-id")[0:5]
@@ -1379,7 +1478,7 @@ def staffNotification(request):
 
 
 
-
+@login_required(login_url='login')
 def saveStaffNotification(request):
 
     if request.method == 'POST':
@@ -1398,7 +1497,7 @@ def saveStaffNotification(request):
     return None
 
 
-
+@login_required(login_url='login')
 def staffLeave(request):
     staff_leave = Staff_Leave.objects.all()
 
@@ -1410,6 +1509,7 @@ def staffLeave(request):
 
 
 
+@login_required(login_url='login')
 def staffApproveLeave(request, id):
     leave = Staff_Leave.objects.get(id=id)
     leave.status = 1
@@ -1419,7 +1519,7 @@ def staffApproveLeave(request, id):
 
 
 
-
+@login_required(login_url='login')
 def staffDisapproveLeave(request, id):
     
     if request.method == "POST":
@@ -1437,7 +1537,7 @@ def staffDisapproveLeave(request, id):
     
 
 
-
+@login_required(login_url='login')
 def staffFeedback(request):
     feedback = Staff_Feedback.objects.all()
     
@@ -1448,6 +1548,8 @@ def staffFeedback(request):
     return render(request, 'hod/staff_feedback.html', context)
 
 
+
+@login_required(login_url='login')
 def staffFeedbackSave(request):
     if request.method == "POST":
         feedback_id = request.POST.get('feedback_id')
@@ -1462,7 +1564,7 @@ def staffFeedbackSave(request):
     
     
     
-
+@login_required(login_url='login')
 def studentNotifications(request):
     student = Student.objects.all()
     student_notification = Student_Notification.objects.all().order_by("-id")[0:5]
@@ -1475,6 +1577,8 @@ def studentNotifications(request):
     return render(request, 'hod/student_notification.html', context)
 
 
+
+@login_required(login_url='login')
 def saveStudentNotification(request):
 
     if request.method == 'POST':
@@ -1496,7 +1600,7 @@ def saveStudentNotification(request):
 
 
 
-
+@login_required(login_url='login')
 def studentFeedback(request):
     feedback = Student_Feedback.objects.all()
     
@@ -1507,6 +1611,8 @@ def studentFeedback(request):
     return render(request, 'hod/student_feedback.html', context)
 
 
+
+@login_required(login_url='login')
 def studentFeedbackSave(request):
     if request.method == "POST":
         feedback_id = request.POST.get('feedback_id')
@@ -1520,7 +1626,9 @@ def studentFeedbackSave(request):
         return redirect('student_feedback_reply')
     
     
-    
+
+
+@login_required(login_url='login')
 def studentLeave(request):
     student_leave = Student_Leave.objects.all()
 
@@ -1531,6 +1639,9 @@ def studentLeave(request):
     return render(request, 'hod/student_leave.html', context)
 
 
+
+
+@login_required(login_url='login')
 def studentApproveLeave(request, id):
 
     leave = Student_Leave.objects.get(id=id)
@@ -1540,7 +1651,7 @@ def studentApproveLeave(request, id):
 
 
 
-
+@login_required(login_url='login')
 def studentDisapproveLeave(request,id):
     if request.method == "POST":
         confirm = request.POST.get('confirm')
@@ -1559,7 +1670,7 @@ def studentDisapproveLeave(request,id):
 
 
 
-
+@login_required(login_url='login')
 def viewStudentAttendance(request):
     session_year = Session_Year.objects.all()
     section = Section.objects.all()
@@ -1605,6 +1716,7 @@ def viewStudentAttendance(request):
 # Section start here ================================================
 
 
+@login_required(login_url='login')
 def addSection(request):
     class_obj = Classes.objects.all()
     course_obj = Course.objects.all()
@@ -1618,6 +1730,9 @@ def addSection(request):
     return render(request, "hod/add_section.html", context)
 
 
+
+
+@login_required(login_url='login')
 def saveSection(request):
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -1644,6 +1759,7 @@ def saveSection(request):
 
 
 
+@login_required(login_url='login')
 def viewSection(request):
     section_obj = Section.objects.all()
     
@@ -1654,6 +1770,7 @@ def viewSection(request):
 
 
 
+@login_required(login_url='login')
 def deleteSection(request, id):
 
     section = Section.objects.get(id=id)
@@ -1663,6 +1780,7 @@ def deleteSection(request, id):
     
 
 
+@login_required(login_url='login')
 def editSection(request, id):
     section = Section.objects.filter(id=id)
     class_obj = Classes.objects.all()
@@ -1680,6 +1798,8 @@ def editSection(request, id):
 
 
 
+
+@login_required(login_url='login')
 def updateSection(request):
     name=request.POST.get('name')
     section_id=request.POST.get('section_id')
@@ -1708,7 +1828,7 @@ def updateSection(request):
 
 
 
-
+@login_required(login_url='login')
 def addRoutine(request):
     section = Section.objects.all()
     subject = SchoolSubjects.objects.all()
@@ -1731,7 +1851,7 @@ def addRoutine(request):
     return render(request, 'hod/add_class_routine.html', context)
 
 
-
+@login_required(login_url='login')
 def saveRoutine(request):
     if request.method == 'POST':
         # period = request.POST.get('period')
@@ -1867,7 +1987,7 @@ def saveRoutine(request):
 
     
     
-
+@login_required(login_url='login')
 def viewRoutine(request):
     section = Section.objects.all()
     session_year = Session_Year.objects.all()
@@ -1938,7 +2058,7 @@ def viewRoutine(request):
 
 
 
-
+@login_required(login_url='login')
 def editRoutine(request, id):
     
     section = Section.objects.all()
@@ -1966,7 +2086,7 @@ def editRoutine(request, id):
     return render(request, 'hod/edit_routine.html', context)
 
 
-
+@login_required(login_url='login')
 def updateRoutine(request):
     if request.method == 'POST':
         # period = request.POST.get('period')
@@ -2088,7 +2208,7 @@ def updateRoutine(request):
         return redirect('view_routine')
 
 
-
+@login_required(login_url='login')
 def deleteRoutine(request, id):
     routine = RoutineSubjects.objects.get(id=id)
     routine.delete()
@@ -2097,7 +2217,7 @@ def deleteRoutine(request, id):
     
 
 
-
+@login_required(login_url='login')
 def AddNotice(request):
     try:
         if request.method=="POST":
@@ -2118,6 +2238,7 @@ def AddNotice(request):
 
 
 
+@login_required(login_url='login')
 def viewNotice(request):
     notice_obj = Notice.objects.all()
 
@@ -2127,6 +2248,10 @@ def viewNotice(request):
     return render(request, 'hod/view_notice.html', context)
 
 
+
+
+
+@login_required(login_url='login')
 def editNotice(request, id):
     notice_obj = Notice.objects.filter(id = id)
 
@@ -2135,6 +2260,8 @@ def editNotice(request, id):
     }
     return render(request, 'hod/edit_notice.html', context)
 
+
+@login_required(login_url='login')
 def updateNotice(request):
     if request.method == "POST":
         title = request.POST.get('title')
@@ -2149,6 +2276,9 @@ def updateNotice(request):
         return redirect('view_notice')
 
 
+
+
+@login_required(login_url='login')
 def deleteNotice(request, id):
     if request.method == "POST":
         confirm = request.POST.get('confirm')
@@ -2169,7 +2299,7 @@ def deleteNotice(request, id):
 
 
 
-
+@login_required(login_url='login')
 def addResultPlan(request):
     subject_obj = SchoolSubjects.objects.all()
 
@@ -2179,6 +2309,9 @@ def addResultPlan(request):
     return render(request, 'hod/result_plan.html', context)	
 
 
+
+
+@login_required(login_url='login')
 def saveResultPlan(request):
     if request.method == 'POST':
         subject = request.POST.get('subject_id')
@@ -2205,7 +2338,7 @@ def saveResultPlan(request):
 
 
 
-
+@login_required(login_url='login')
 def viewResultPlan(request):
     result_plan = ResultPlan.objects.all()
     subject_obj = SchoolSubjects.objects.all()
@@ -2217,6 +2350,9 @@ def viewResultPlan(request):
     return render(request, 'hod/view_result_plan.html', context)
 
 
+
+
+@login_required(login_url='login')
 def editResultPlan(request, id):
     result_plan = ResultPlan.objects.filter(id=id)
 
@@ -2228,6 +2364,7 @@ def editResultPlan(request, id):
 
 
 
+@login_required(login_url='login')
 def updateResultPlan(request):
     if request.method == 'POST':
         plan_id = request.POST.get('plan_id')
@@ -2249,6 +2386,10 @@ def updateResultPlan(request):
         return redirect('oops')
 
 
+
+
+
+@login_required(login_url='login')
 def deleteResultPlan(request, id):
     if request.method == "POST":
         confirm = request.POST.get('confirm')
@@ -2262,3 +2403,87 @@ def deleteResultPlan(request, id):
             messages.error(request, "Please Type CONFIRM to Delete Result Plan")
             return redirect('view_result_plan')
     return render(request, 'hod/view_result_plan.html')
+
+
+
+
+@login_required(login_url='login')
+def adminViewResult(request):
+    try:
+        class_obj = Classes.objects.all()
+        subject_obj = SchoolSubjects.objects.all()
+        student_obj = Student.objects.all()
+        
+        action = request.GET.get('action')
+
+        student_name = None
+        student_id = None
+        roll = None
+        class_name = None
+        section_name = None
+        teacher_name = None
+        subject = None
+        pi_no = None
+        grade = None
+        result = None
+        pi_name = None
+        bi_name = None
+        pi_bi_name = None
+        get_student = None
+        get_subject  = None
+
+        if action is not None:
+            if request.method == 'POST':
+                subject = request.POST.get('subject')
+                student = request.POST.get('student')
+
+                subject_obj = SchoolSubjects.objects.filter(id = subject)
+                subject_id = SchoolSubjects.objects.get(id=subject)
+
+                result = StudentResult.objects.filter(student_id=student, subject_id=subject)
+                get_subject = subject_id
+
+                get_student = Student.objects.get(id=student)
+                get_subject = subject_id
+
+
+                for i in result:
+                    pi_no = i.pi_no
+                    grade = i.grade
+                    student_name = i.student_id.first_name + ' ' + i.student_id.last_name
+                    student_id = i.student_id.id
+                    roll = i.student_id.roll
+                    class_name = i.student_id.class_name.name
+                    section_name = i.student_id.section.section_name
+                    teacher_name = i.subject_id.teacher.admin.first_name + ' ' + i.subject_id.teacher.admin.last_name
+                    subject = i.subject_id.name
+                    
+                # print(f'\n\n student_name: {student_name}\n student_id: {student_id} \n roll: {roll}\n class_name: {class_name}\n section_name: {section_name}\n s teacher_name: {teacher_name}\n subject: {subject}\n pi_no: {pi_no}\n grade: {grade}\n result: {result}\n\n'	)
+
+    except:
+        messages.error(request, "Please Select Subject and Student")
+        return redirect('admin_view_result')
+
+
+    context = {
+        'result': result,
+        'subject_obj' : subject_obj,
+        'student_obj' : student_obj,
+        'get_student' : get_student,
+        'get_subject' : get_subject,
+        'student_name' : student_name,
+        'class_name' : class_name,
+        'section_name' : section_name,
+        'teacher_name' : teacher_name,
+        'roll' : roll,
+        'student_id' : student_id,
+        'subject' : subject,
+        'pi_no' : pi_no,
+        'grade' : grade,
+        'subject_obj' : subject_obj,
+        'class_obj' : class_obj,
+        'action' : action,
+    }
+    
+
+    return render(request, 'hod/view_result.html', context)

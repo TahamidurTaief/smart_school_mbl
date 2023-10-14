@@ -19,6 +19,7 @@ urlpatterns = [
 
     # HOD Path:
     path('admin/', Hod_Views.admin_home, name='admin_home'),
+    # path('admin/my_profile/', Hod_Views.myProfile, name='admin_my_profile'),
     path('admin/add_student/', Hod_Views.addStudent, name='add_student'),
     path('admin/view_student/', Hod_Views.viewStudent, name='view_student'),
     path('admin/student/<str:id>/edit', Hod_Views.editStudent, name='edit_student'),
@@ -53,10 +54,10 @@ urlpatterns = [
     path('admin/add/school/teacher', Hod_Views.addSchoolTeacher, name="add_school_teacher"),
     path('admin/save/school/teacher', Hod_Views.saveSchoolTeacher, name="save_school_teacher"),
     path('admin/view/school/teacher', Hod_Views.viewSchoolTeacher, name="view_school_teacher"),
-    path('admin/teacher/school/<str:id>edit', Hod_Views.editSchoolTeacher, name="edit_school_teacher"),
-    path('admin/teacher/school/update', Hod_Views.updateSchoolTeacher, name="update_school_teacher"),
-    path('admin/teacher/school/<str:admin>delete', Hod_Views.deleteSchoolTeacher, name="delete_school_teacher"),
-    path('admin/teacher/download_csv', Hod_Views.downloadSchoolTeacherCsv, name="download_csv_school_teacher"),
+    path('admin/school/teacher/<str:id>edit', Hod_Views.editSchoolTeacher, name="edit_school_teacher"),
+    path('admin/school/teacher/update', Hod_Views.updateSchoolTeacher, name="update_school_teacher"),
+    path('admin/school/teacher/<str:admin>/delete', Hod_Views.deleteSchoolTeacher, name="delete_school_teacher"),
+    path('admin/school/teacher/download_csv', Hod_Views.downloadSchoolTeacherCsv, name="download_csv_school_teacher"),
     # Subject
     path('admin/subject/add', Hod_Views.addSubject, name="add_subject"),
     path('admin/subject/view', Hod_Views.viewSubject, name="view_subject"),
@@ -134,6 +135,7 @@ urlpatterns = [
     path('admin/result/plan/update', Hod_Views.updateResultPlan, name='update_result_plan'),
     path('admin/result/plan/<str:id>/delete', Hod_Views.deleteResultPlan, name='delete_result_plan'),
 
+    path('admin/result/view', Hod_Views.adminViewResult, name='admin_view_result'),
 
 
     # This is Staff Panel URL
@@ -158,6 +160,7 @@ urlpatterns = [
     path('teacher/routine/view', Staff_Views.viewRoutine, name='staff_view_routine'),
     path('teacher/notice/view', Staff_Views.viewNotice, name='staff_view_notice'),
     
+    path('teacher/my_profile', Staff_Views.myProfile, name='teacher_my_profile'),
 
     
     
@@ -179,6 +182,7 @@ urlpatterns = [
     path('student/result/view', Student_Views.studentViewResult, name='student_view_result'),
     path('student/routine/view', Student_Views.studentViewRoutine, name='student_view_routine'),
 
+    path('student/my_profile', Student_Views.myProfile, name='student_my_profile'),
 
 
     

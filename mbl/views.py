@@ -50,32 +50,38 @@ def doLogout(request):
 
 def profile(request):
     userId = CustomUser.objects.get(id=request.user.id)
-    
+    # student_obj = Student.objects.get(admin=userId)
+
+
+    if userId.user_type == "3":
+        return redirect('student_my_profile')
+
+    elif userId.user_type == "2":
+        return redirect('teacher_my_profile')
+
+    elif userId.user_type == "1":
+        return redirect('admin_home')
+
+
     context = {
         'userId': userId,
     }
     return render(request, 'profile.html', context)
 
+
+
+
+
 def profileUpdate(request):
     if request.method == "POST":
         try:
-            userId = CustomUser.objects.get(id=request.user.id)
-            profile_pic = request.FILES.get('profile_pic')
-            userId.first_name = request.POST.get('first_name')
-            userId.last_name = request.POST.get('last_name')
-            userId.email = request.POST.get('email')
-            userId.username = request.POST.get('username')
             password = request.POST.get('password')
-            # print(userId.profile_pic)
 
-            if password != None and password != "":
-                userId.set_password(password)
-
-            if profile_pic != None and profile_pic != "":
-                userId.profile_pic = profile_pic
-                
+            userId = CustomUser.objects.get(id=request.user.id)
+            userId.set_password(password)
             userId.save()
             messages.success(request, "Profile Updated Successfully!")
+
             return redirect('profile')
         except:
             messages.error(request, "Failed to Update Profile!")

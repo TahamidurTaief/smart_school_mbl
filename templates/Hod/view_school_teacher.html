@@ -31,7 +31,6 @@
                    <table id="table_id" class="table table-hover table-center mb-0">
                       <thead>
                          <tr>
-                            <th>ID</th>
                             <th>Name</th>
                             <th>Short Name</th>
                             <th>Staff Type</th>
@@ -59,7 +58,6 @@
                           
                         
                          <tr>
-                            <td>{{i.admin.id}}</td>
                             <td><img class="avatar-img rounded-circle" src="{{i.admin.profile_pic.url}}" alt=""> &nbsp; {{i.admin.first_name}} {{i.admin.last_name}}</td> 
                             <td>{{i.short_name}}</td>
                             <td>{{i.staff_type}}</td>
@@ -104,7 +102,7 @@
        <div class="modal-body">
          Do you want to delete this course? If you want to delete this course, write <strong>CONFIRM</strong> in the field.
        </div>
-         <form action="{% url 'delete_school_teacher' i.id %}" method="POST">
+         <form action="{% url 'delete_school_teacher' i.admin.id %}" method="POST">
             {% csrf_token %}
          
          <div class="col-12 col-sm-10 ml-4">

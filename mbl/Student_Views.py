@@ -6,11 +6,12 @@ from django.contrib import messages
 
 
 
-
+@login_required(login_url='login')
 def studentHome(request):
     return render(request, 'student/home.html')
 
 
+@login_required(login_url='login')
 def studentNotifications(request):
     student = Student.objects.filter(admin=request.user.id)
     
@@ -23,7 +24,8 @@ def studentNotifications(request):
         
         return render(request, 'student/student_admin_notifications.html', context)
     
-    
+
+@login_required(login_url='login')
 def studentNotificationsSeen(request, status):
     notification = Student_Notification.objects.get(id=status)
     notification.status = True
@@ -31,6 +33,9 @@ def studentNotificationsSeen(request, status):
     return redirect('student_notifications')
 
 
+
+
+@login_required(login_url='login')
 def studentFeedback(request):
     student = Student.objects.get(admin=request.user.id)
     feedback_history = Student_Feedback.objects.filter(student_id=student)
@@ -41,6 +46,9 @@ def studentFeedback(request):
     return render(request, 'student/student_feedback.html', context)
 
 
+
+
+@login_required(login_url='login')
 def saveStudentFeedback(request):
     if request.method == 'POST':
         feedback = request.POST.get('feedback_message')
@@ -55,6 +63,9 @@ def saveStudentFeedback(request):
 
 
 
+
+
+@login_required(login_url='login')
 def studentApplyLeave(request):
     student = Student.objects.get(admin=request.user.id)
     student_leave_history = Student_Leave.objects.filter(student_id=student)
@@ -66,6 +77,7 @@ def studentApplyLeave(request):
 
 
 
+@login_required(login_url='login')
 def studentApplyLeaveSave(request):
     if request.method == 'POST':
         leave_date = request.POST.get('leave_date')
@@ -86,6 +98,9 @@ def studentApplyLeaveSave(request):
 
 
 
+
+
+@login_required(login_url='login')
 def studentViewAttendance(request):
     student = Student.objects.get(admin=request.user.id)
     section = Section.objects.filter(class_id=student.class_name)
@@ -113,7 +128,7 @@ def studentViewAttendance(request):
 
 
 
-
+@login_required(login_url='login')
 def studentViewResult(request):
     student = Student.objects.get(admin=request.user.id)
     stu_class_name = Classes.objects.get(id=student.class_name.id)
@@ -203,7 +218,7 @@ def studentViewResult(request):
 
 
 
-
+@login_required(login_url='login')
 def studentViewRoutine(request):
     section = Section.objects.all()
     subject = SchoolSubjects.objects.all()
@@ -290,7 +305,7 @@ def studentViewRoutine(request):
 
 
 
-
+@login_required(login_url='login')
 def viewNotice(request):
     notice_obj = Notice.objects.all()
 
@@ -298,3 +313,75 @@ def viewNotice(request):
         'notice_obj' : notice_obj,
     }
     return render(request, 'student/view_notice.html', context)
+
+
+
+@login_required(login_url='login')
+def myProfile(request):
+    student_obj = Student.objects.filter(admin=request.user.id)
+        
+        
+    name = None
+    student_id = None
+    email = None
+    session = None
+    roll = None
+    course_id = None
+    gender = None
+    date_of_birth = None
+    class_name = None
+    joining_date = None
+    mobile_number = None
+
+    for i in student_obj:
+        JoiningDate = str(i.joining_date)
+        DateOfBirth = str(i.date_of_birth)
+
+        name = i.admin.first_name + " " + i.admin.last_name
+        student_id = i.student_id
+        email = i.admin.email
+        session = i.session_year_id
+        roll = i.roll
+        course_id = i.course_id
+        gender = i.gender
+        date_of_birth = DateOfBirth
+        class_name = i.class_name
+        joining_date = JoiningDate
+        mobile_number = i.mobile_number
+        section = i.section
+        religion = i.religion
+        fname = i.fathers_name
+        mname = i.mothers_name
+        fnum = i.fathers_mobile
+        mnum = i.mothers_mobile
+        address = i.present_address
+        profile_pic = i.admin.profile_pic.url
+
+        
+
+        
+    
+    context = {
+        'student_obj' : student_obj,
+        'name': name,
+        'student_id': student_id,
+        'email': email,
+        'session': session,
+        'roll': roll,
+        'course_id' : course_id,
+        'gender' : gender,
+        'date_of_birth' : date_of_birth,
+        'class_name' : class_name,
+        'joining_date' : joining_date,
+        'mobile_number' : mobile_number,
+        'section' : section,
+        'fname' : fname,
+        'mname' : mname,
+        'fnum' : fnum,
+        'mnum' : mnum,
+        'religion' : religion,
+        'address' : address,
+        'profile_pic' : profile_pic,
+    }
+    
+    return render(request, 'student/my_profile.html', context)

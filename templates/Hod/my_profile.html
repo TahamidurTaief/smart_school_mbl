@@ -1,6 +1,6 @@
 
 {% extends 'base.html' %}
-
+{% load static %}
 
 {% block content %}
 
@@ -141,7 +141,6 @@ mark {
 <div class="content container-fluid">
    <section class="section about-section gray-bg" id="about">
       <div class="container">
-        {% for i in userId %}
           <div class="row align-items-center flex-row-reverse">
               <div class="col-lg-6">
                   <div class="about-text go-to">
@@ -223,7 +222,6 @@ mark {
                   </div>
               </div>
           </div>
-          {% endfor %}
       </div>
   </section>
 
