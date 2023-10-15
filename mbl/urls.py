@@ -100,7 +100,7 @@ urlpatterns = [
     path('admin/staff/feedback', Hod_Views.staffFeedback, name="staff_feedback_reply"),
     path('admin/staff/feedback/save', Hod_Views.staffFeedbackSave, name="staff_feedback_reply_save"),
 
-    path('admin/student/notifications', Hod_Views.studentNotifications, name="student_notifications"),
+    path('admin/student/notifications', Hod_Views.studentNotifications, name="admin_student_notifications"),
     path('admin/student/notifications/save', Hod_Views.saveStudentNotification, name="save_student_notifications"),
     
     path('admin/view/student/attendance', Hod_Views.viewStudentAttendance, name="view_student_attendance"),
@@ -184,6 +184,8 @@ urlpatterns = [
 
     path('student/my_profile', Student_Views.myProfile, name='student_my_profile'),
 
+
+    # path('html/pdf', Hod_Views.GeneratePdf.as_view(), name='generate_pdf')
 
     
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

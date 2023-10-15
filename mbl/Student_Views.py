@@ -30,7 +30,7 @@ def studentNotificationsSeen(request, status):
     notification = Student_Notification.objects.get(id=status)
     notification.status = True
     notification.save()
-    return redirect('student_notifications')
+    return render(request, 'student/student_admin_notifications.html')
 
 
 

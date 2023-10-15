@@ -14,14 +14,16 @@ def staff_home(request):
 @login_required(login_url='login')
 def staffNotifications(request):
     staaf = Staff.objects.filter(admin=request.user.id)
+
+    notifications = None
     for i in staaf:
         notifications = Staff_Notification.objects.filter(staff_id=i.id)
 
-        context = {
-            'notifications': notifications
-        }
+    context = {
+        'notifications': notifications,
+    }
 
-        return render(request, 'Staff/staff_admin_notifications.html', context)
+    return render(request, 'Staff/staff_admin_notifications.html', context)
     
 
 
@@ -36,8 +38,8 @@ def staffNotificationsSeen(request, status):
 
 @login_required(login_url='login')
 def staffApplyLeave(request):
-    staaf = Staff.objects.get(admin=request.user.id)
-    staff_leave_history = Staff_Leave.objects.filter(staff_id=staaf)
+    school_teacher_id = SchoolTeacher.objects.get(admin = request.user.id)
+    staff_leave_history = Staff_Leave.objects.filter(school_teacher_id=school_teacher_id)
     
     context = {
         'staff_leave_history': staff_leave_history
@@ -67,8 +69,8 @@ def staffApplyLeaveSave(request):
 
 @login_required(login_url='login')
 def staffFeedback(request):
-    staff_id = Staff.objects.get(admin = request.user.id)
-    feedback_history = Staff_Feedback.objects.filter(staff_id=staff_id)
+    school_teacher_id = SchoolTeacher.objects.get(admin = request.user.id)
+    feedback_history = Staff_Feedback.objects.filter(school_teacher_id=school_teacher_id)
     
     context = {
         'feedback_history': feedback_history

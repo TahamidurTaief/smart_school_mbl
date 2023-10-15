@@ -56,7 +56,7 @@ def admin_home(request):
         
     }
 
-    return render(request,"hod/home.html", context)
+    return render(request,"Hod/home.html", context)
 
 
 
@@ -105,9 +105,7 @@ def addStudent(request):
             messages.error(request, f"{email} - Email Already Exists")
             return redirect('add_student')
 
-        if CustomUser.objects.filter(username=username).exists():
-            messages.error(request, f"{first_name}__student - Username Already Exists.")
-            return redirect('add_student')
+
         else:
             user = CustomUser(
                 first_name=first_name,
@@ -200,7 +198,7 @@ def editStudent(request, id):
         'class_obj':class_obj,
     }
     
-    return render(request, 'hod/edit_student.html', context)
+    return render(request, 'Hod/edit_student.html', context)
 
 @login_required(login_url='login')
 def updateStudent(request):
@@ -301,7 +299,7 @@ def updateStudent(request):
         
         messages.success(request, f"{first_name} {last_name} Updated Successfully")
         return redirect('view_student')
-    return render (request, 'hod/edit_student.html')
+    return render (request, 'Hod/edit_student.html')
 
 
 
@@ -414,7 +412,7 @@ def addCourse(request):
         messages.success(request, f"{course_name} Added Successfully")
         return redirect('add_course')
 
-    return render(request, 'hod/add_course.html')
+    return render(request, 'Hod/add_course.html')
 
 
 
@@ -425,7 +423,7 @@ def viewCourse(request):
         "course_obj":course_obj,
     }
 
-    return render(request, 'hod/view_course.html', context)
+    return render(request, 'Hod/view_course.html', context)
 
 
 
@@ -437,7 +435,7 @@ def editCourse(request, id):
         "course":course,
     }
 
-    return render(request, 'hod/edit_course.html', context)
+    return render(request, 'Hod/edit_course.html', context)
 
 
 
@@ -457,7 +455,7 @@ def updateCourse(request):
         return redirect('view_Course')
 
 
-    return render(request, 'hod/edit_course.html')
+    return render(request, 'Hod/edit_course.html')
 
 
 
@@ -556,7 +554,7 @@ def addStaff(request):
         "staff_type_obj":staff_type_obj,
     }
 
-    return render(request, 'hod/add_staff.html', context)
+    return render(request, 'Hod/add_staff.html', context)
 
 
 
@@ -618,7 +616,7 @@ def staffView(request):
     }
 
 
-    return render(request, 'hod/view_staff.html', context)
+    return render(request, 'Hod/view_staff.html', context)
 
 
 
@@ -655,7 +653,7 @@ def editStaff(request, id):
         'get_staff_type_id' : get_staff_type_id,
     }
     
-    return render(request, 'hod/edit_staff.html', context)
+    return render(request, 'Hod/edit_staff.html', context)
 
 
 
@@ -726,7 +724,7 @@ def updateStaff(request):
 
             return redirect('view_staff')
 
-    return render(request, 'hod/edit_staff.html')
+    return render(request, 'Hod/edit_staff.html')
 
 
 
@@ -760,7 +758,7 @@ def viewSchoolTeacher(request):
     context = {
         "school_teacher_obj":school_teacher_obj,
     }
-    return render(request, 'hod/view_school_teacher.html', context)
+    return render(request, 'Hod/view_school_teacher.html', context)
 
 
 
@@ -776,7 +774,7 @@ def addSchoolTeacher(request):
         'staff_type':staff_type,
         'course_obj':course_obj,
     }
-    return render(request, 'hod/add_school_teacher.html', context)
+    return render(request, 'Hod/add_school_teacher.html', context)
 
 
 @login_required(login_url='login')
@@ -889,7 +887,7 @@ def editSchoolTeacher(request, id):
         'get_teacher_type' : get_teacher_type,
         'get_teacher_type_id' : get_teacher_type_id,
     }
-    return render(request, 'hod/edit_school_teacher.html', context)
+    return render(request, 'Hod/edit_school_teacher.html', context)
 
 
 
@@ -965,7 +963,7 @@ def updateSchoolTeacher(request):
 
         return redirect('view_school_teacher')
 
-    return render(request, 'hod/edit_staff.html')
+    return render(request, 'Hod/edit_staff.html')
 
 
 
@@ -1063,7 +1061,7 @@ def addClass(request):
         messages.success(request, f"{class_name} Added Successfully")
         return redirect('add_class')
 
-    return render(request, 'hod/add_class.html')
+    return render(request, 'Hod/add_class.html')
 
 
 
@@ -1075,7 +1073,7 @@ def viewClass(request):
         "class_obj":class_obj,
     }
 
-    return render(request, 'hod/view_class.html', context)
+    return render(request, 'Hod/view_class.html', context)
 
 
 
@@ -1089,7 +1087,7 @@ def editClass(request, id):
         'class_name' : class_name,
     }
 
-    return render(request, 'hod/edit_class.html', context)
+    return render(request, 'Hod/edit_class.html', context)
 
 
 
@@ -1106,7 +1104,7 @@ def updateClass(request):
         messages.success(request, f"{class_name} Updated Successfully")
         return redirect('view_class')
 
-    return render(request, 'hod/edit_class.html')
+    return render(request, 'Hod/edit_class.html')
 
 
 
@@ -1141,7 +1139,7 @@ def addStaffType(request):
         return redirect('add_staff_type')
 
 
-    return render(request, 'hod/add_staff_type.html')
+    return render(request, 'Hod/add_staff_type.html')
 
 
 
@@ -1155,7 +1153,7 @@ def viewStaffType(request):
         "staff_type_obj":staff_type_obj,
     }
 
-    return render(request, 'hod/view_staf_type.html', context)
+    return render(request, 'Hod/view_staf_type.html', context)
 
 
 
@@ -1168,7 +1166,7 @@ def editStaffType(request, id):
         "staff_type":staff_type,
     }
 
-    return render(request, 'hod/edit_staff_type.html', context)
+    return render(request, 'Hod/edit_staff_type.html', context)
 
 
 
@@ -1186,7 +1184,7 @@ def updateStaffType(request):
 
         return redirect('view_staff_type')
 
-    return render(request, 'hod/edit_staff_type.html')
+    return render(request, 'Hod/edit_staff_type.html')
 
 
 
@@ -1246,7 +1244,7 @@ def addSubject(request):
         'class_obj' : class_obj,
     }
 
-    return render(request, 'hod/add_subject.html', context)
+    return render(request, 'Hod/add_subject.html', context)
 
 
 @login_required(login_url='login')
@@ -1257,7 +1255,7 @@ def viewSubject(request):
     context = {
         "subject_obj":subject_obj,
     }
-    return render(request, 'hod/view_subject.html', context)
+    return render(request, 'Hod/view_subject.html', context)
 
 
 
@@ -1275,7 +1273,7 @@ def editSubject(request, id):
         'class_obj' : class_obj,
     }
 
-    return render(request, 'hod/edit_subject.html', context)
+    return render(request, 'Hod/edit_subject.html', context)
 
 
 @login_required(login_url='login')
@@ -1371,7 +1369,7 @@ def addSession(request):
         "session_obj":session_obj,
     }
     
-    return render(request, 'hod/add_session.html', context)
+    return render(request, 'Hod/add_session.html', context)
 
 
 
@@ -1386,7 +1384,7 @@ def viewSession(request):
         "session_obj":session_obj,
     }
 
-    return render(request, 'hod/view_session.html', context)
+    return render(request, 'Hod/view_session.html', context)
 
 
 
@@ -1399,7 +1397,7 @@ def editSession(request, id):
         "session":session,
     }
 
-    return render(request, 'hod/edit_session.html', context)
+    return render(request, 'Hod/edit_session.html', context)
 
 
 
@@ -1420,7 +1418,7 @@ def updateSession(request):
         return redirect('view_session')
 
 
-    return render(request, 'hod/edit_session.html')
+    return render(request, 'Hod/edit_session.html')
 
 
 
@@ -1438,7 +1436,7 @@ def updateSession(request):
 #             messages.error(request, "Please Type CONFIRM to Delete Session")
 #             return redirect('view_session')
         
-#     return render(request, 'hod/view_session.html')
+#     return render(request, 'Hod/view_session.html')
 
     
 
@@ -1473,7 +1471,7 @@ def staffNotification(request):
         "see_notification":see_notification,
     }
 
-    return render(request, 'hod/staff_notification.html', context)
+    return render(request, 'Hod/staff_notification.html', context)
 
 
 
@@ -1505,7 +1503,7 @@ def staffLeave(request):
         "staff_leave":staff_leave,
     }
     
-    return render(request, 'hod/staff_leave.html', context)
+    return render(request, 'Hod/staff_leave.html', context)
 
 
 
@@ -1545,7 +1543,7 @@ def staffFeedback(request):
         "feedback":feedback,
     }
     
-    return render(request, 'hod/staff_feedback.html', context)
+    return render(request, 'Hod/staff_feedback.html', context)
 
 
 
@@ -1574,7 +1572,7 @@ def studentNotifications(request):
         "student_notification":student_notification,
     }
 
-    return render(request, 'hod/student_notification.html', context)
+    return render(request, 'Hod/student_notification.html', context)
 
 
 
@@ -1595,7 +1593,7 @@ def saveStudentNotification(request):
         messages.success(request, f"Notification Sent Successfully")
         return redirect('student_notifications')
 
-    return render(request, 'hod/student_notification.html')
+    return render(request, 'Hod/student_notification.html')
 
 
 
@@ -1608,7 +1606,7 @@ def studentFeedback(request):
         "feedback":feedback,
     }
     
-    return render(request, 'hod/student_feedback.html', context)
+    return render(request, 'Hod/student_feedback.html', context)
 
 
 
@@ -1636,7 +1634,7 @@ def studentLeave(request):
         "student_leave":student_leave,
     }
     
-    return render(request, 'hod/student_leave.html', context)
+    return render(request, 'Hod/student_leave.html', context)
 
 
 
@@ -1664,7 +1662,7 @@ def studentDisapproveLeave(request,id):
         else:
             messages.error(request, "Please Type CONFIRM to Delete Student")
             return redirect('student_leave')
-    return render(request, 'hod/student_leave.html')
+    return render(request, 'Hod/student_leave.html')
 
 
 
@@ -1708,7 +1706,7 @@ def viewStudentAttendance(request):
     }
     
     
-    return render(request, 'hod/view_student_attendance.html', context)
+    return render(request, 'Hod/view_student_attendance.html', context)
 
 
 
@@ -1727,7 +1725,7 @@ def addSection(request):
         'course_obj' : course_obj,
         'teacher_obj' : teacher_obj,
     }
-    return render(request, "hod/add_section.html", context)
+    return render(request, "Hod/add_section.html", context)
 
 
 
@@ -1754,7 +1752,7 @@ def saveSection(request):
         messages.success(request, f"{section.section_name}Section added Successfully")
         return redirect('add_section')
     
-    return render(request, "hod/add_section.html")
+    return render(request, "Hod/add_section.html")
 
 
 
@@ -1766,7 +1764,7 @@ def viewSection(request):
     context = {
         'section_obj' : section_obj
     }
-    return render(request, 'hod/view_section.html', context)
+    return render(request, 'Hod/view_section.html', context)
 
 
 
@@ -1794,7 +1792,7 @@ def editSection(request, id):
         'teacher_obj' : teacher_obj,
     }
     
-    return render(request, "hod/edit_section.html", context)
+    return render(request, "Hod/edit_section.html", context)
 
 
 
@@ -1848,7 +1846,7 @@ def addRoutine(request):
         'period' : period,
         
     }
-    return render(request, 'hod/add_class_routine.html', context)
+    return render(request, 'Hod/add_class_routine.html', context)
 
 
 @login_required(login_url='login')
@@ -1983,7 +1981,7 @@ def saveRoutine(request):
         messages.success(request, f"Routine Added Successfully")
         return redirect('add_routine')
     
-    return render(request, 'hod/add_class_routine.html')
+    return render(request, 'Hod/add_class_routine.html')
 
     
     
@@ -2054,7 +2052,7 @@ def viewRoutine(request):
        
     }
 
-    return render(request, 'hod/view_routine.html', context)
+    return render(request, 'Hod/view_routine.html', context)
 
 
 
@@ -2083,7 +2081,7 @@ def editRoutine(request, id):
         
     }
     
-    return render(request, 'hod/edit_routine.html', context)
+    return render(request, 'Hod/edit_routine.html', context)
 
 
 @login_required(login_url='login')
@@ -2234,7 +2232,7 @@ def AddNotice(request):
     except:
         return redirect('oops')
 
-    return render(request, 'hod/add_notice.html')
+    return render(request, 'Hod/add_notice.html')
 
 
 
@@ -2245,7 +2243,7 @@ def viewNotice(request):
     context = {
         'notice_obj' : notice_obj,
     }
-    return render(request, 'hod/view_notice.html', context)
+    return render(request, 'Hod/view_notice.html', context)
 
 
 
@@ -2258,7 +2256,7 @@ def editNotice(request, id):
     context = {
         'notice_obj' : notice_obj,
     }
-    return render(request, 'hod/edit_notice.html', context)
+    return render(request, 'Hod/edit_notice.html', context)
 
 
 @login_required(login_url='login')
@@ -2291,7 +2289,7 @@ def deleteNotice(request, id):
         else:
             messages.error(request, "Please Type CONFIRM to Delete Notice")
             return redirect('view_notice')
-    return render(request, 'hod/view_notice.html')
+    return render(request, 'Hod/view_notice.html')
 
 
 
@@ -2306,7 +2304,7 @@ def addResultPlan(request):
     context = {
         'subject_obj' : subject_obj,
     }
-    return render(request, 'hod/result_plan.html', context)	
+    return render(request, 'Hod/result_plan.html', context)	
 
 
 
@@ -2347,7 +2345,7 @@ def viewResultPlan(request):
         'result_plan' : result_plan,
         'subject_obj' : subject_obj,
     }
-    return render(request, 'hod/view_result_plan.html', context)
+    return render(request, 'Hod/view_result_plan.html', context)
 
 
 
@@ -2359,7 +2357,7 @@ def editResultPlan(request, id):
     context = {
         'result_plan' : result_plan,
     }
-    return render(request, 'hod/edit_result_plan.html', context)
+    return render(request, 'Hod/edit_result_plan.html', context)
 
 
 
@@ -2402,7 +2400,7 @@ def deleteResultPlan(request, id):
         else:
             messages.error(request, "Please Type CONFIRM to Delete Result Plan")
             return redirect('view_result_plan')
-    return render(request, 'hod/view_result_plan.html')
+    return render(request, 'Hod/view_result_plan.html')
 
 
 
@@ -2486,4 +2484,5 @@ def adminViewResult(request):
     }
     
 
-    return render(request, 'hod/view_result.html', context)
+    return render(request, 'Hod/view_result.html', context)
+

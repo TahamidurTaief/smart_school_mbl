@@ -239,7 +239,7 @@ class Student_Notification(models.Model):
 
 
 class Staff_Leave(models.Model):
-    staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE, default="")
+    school_teacher_id = models.ForeignKey(SchoolTeacher, on_delete=models.CASCADE, default="")
     data = models.CharField(max_length=50, default="")
     message = models.TextField()
     status = models.IntegerField(default=0, null=True)
@@ -252,7 +252,7 @@ class Staff_Leave(models.Model):
      
      
 class Staff_Feedback(models.Model):
-    staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE)
+    school_teacher_id = models.ForeignKey(SchoolTeacher, on_delete=models.CASCADE, default="", null=True)
     feedback = models.TextField()
     feedback_reply = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)

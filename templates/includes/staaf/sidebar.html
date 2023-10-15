@@ -11,13 +11,13 @@
                 <span>Main Menu</span> 
              </li>
              
-             <li class="submenu {% active_link 'staff_home' 'active' %}" >
+             <li class="{% active_link 'staff_home' 'active' %}">
                <a href="{% url 'staff_home' %}"><i class="fas fa-holly-berry"></i> <span>Dashboard</span></a>
             </li>
-             <li class="{% active_link 'school_teacher_attendance' 'active' %}" >
+            <li class="{% active_link 'school_teacher_attendance' 'active' %}">
                <a href="{% url 'school_teacher_attendance' %}"><i class="fas fa-calendar-alt"></i> <span>Take Attendence</span></a>
             </li>
-             <li class="{% active_link 'view_school_teacher_attendance' 'active' %}">
+            <li class="{% active_link 'view_school_teacher_attendance' 'active' %}">
                <a href="{% url 'view_school_teacher_attendance' %}"><i class="fas fa-calendar-alt"></i> <span>View/Update Attendence</span></a>
             </li>
              <li class="{% active_link 'add_result' 'active' %}">
