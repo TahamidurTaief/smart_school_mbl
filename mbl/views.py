@@ -10,6 +10,10 @@ from app.models import *
 def base(request):
     return render(request, 'base.html')
 
+
+def home(request):
+    return render(request, 'website/home.html')
+
 def custom_login(request):
     return render(request, 'login.html')
 

@@ -227,7 +227,7 @@ def viewSchoolTeacherAttendance(request):
             
             
             if get_date != "":
-                attendence_date = Attendence.objects.get(attendence_date=date)
+                attendence_date = Attendence.objects.filter(attendence_date=date)
                 attendence = Attendence.objects.filter(section_id=section_id, session_year_id=session_year_id, attendence_date=date)
                 for i in attendence:
                     attendence = i.id

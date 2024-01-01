@@ -849,7 +849,7 @@ def saveSchoolTeacher(request):
             )
             school_teacher.save()
             messages.success(request, f"{first_name} {last_name} Added Successfully")
-            return redirect('add_staff')
+        return redirect('add_school_teacher')
     
 
 @login_required(login_url='login')
@@ -2022,14 +2022,14 @@ def viewRoutine(request):
                 elif i.class_day == 'Sunday':
                     sunday = RoutineSubjects.objects.filter(id=routine, class_day='Sunday')
                     
-                elif i.class_day == 'Monday ':
-                    monday = RoutineSubjects.objects.filter(id=routine, class_day='Monday ')
+                elif i.class_day == 'Monday':
+                    monday = RoutineSubjects.objects.filter(id=routine, class_day='Monday')
                     
                 elif i.class_day == 'Tuesday':
                     tuesday = RoutineSubjects.objects.filter(id=routine, class_day='Tuesday')
                     
-                elif i.class_day == 'Wednesday':
-                    wednesday = RoutineSubjects.objects.filter(id=routine, class_day='Wednesday')
+                elif i.class_day == 'Wednesday ':
+                    wednesday = RoutineSubjects.objects.filter(id=routine, class_day='Wednesday ')
                 
                 elif i.class_day == 'Thursday':
                     thursday = RoutineSubjects.objects.filter(id=routine, class_day='Thursday')

@@ -6,10 +6,13 @@ from django.conf import settings
 from . import views, Hod_Views, Staff_Views, Student_Views
 
 urlpatterns = [
+    path('', views.home, name='home'),
+
+
     path('oops', Hod_Views.oops, name='oops'),
     path('superadmin/', admin.site.urls),
     path('base/', views.base, name='base'),
-    path('', views.custom_login, name='login'),
+    path('login/', views.custom_login, name='login'),
     path('dologin/', views.doLogin, name='doLogin'),
     path('doLogout/', views.doLogout, name='logout'),
 
