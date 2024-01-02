@@ -7,10 +7,11 @@ from . import views, Hod_Views, Staff_Views, Student_Views
 
 urlpatterns = [
     path('', views.home, name='home'),
+    path('teacher-staff/', views.web_teacher_staff, name='web_teacher_staff'),
 
 
     path('oops', Hod_Views.oops, name='oops'),
-    path('superadmin/', admin.site.urls),
+    path('superadmin/', admin.site.urls, name='superadmin'),
     path('base/', views.base, name='base'),
     path('login/', views.custom_login, name='login'),
     path('dologin/', views.doLogin, name='doLogin'),
@@ -131,12 +132,12 @@ urlpatterns = [
     path('admin/notice/update', Hod_Views.updateNotice, name="update_notice"),
     path('admin/notice/<str:id>/delete', Hod_Views.deleteNotice, name="delete_notice"),
 
-    path('admin/result/plan/add', Hod_Views.addResultPlan, name='result_plan'),
-    path('admin/result/plan/save', Hod_Views.saveResultPlan, name='save_result_plan'),
-    path('admin/result/plan/view', Hod_Views.viewResultPlan, name='view_result_plan'),
-    path('admin/result/plan/<str:id>/edit', Hod_Views.editResultPlan, name='edit_result_plan'),
-    path('admin/result/plan/update', Hod_Views.updateResultPlan, name='update_result_plan'),
-    path('admin/result/plan/<str:id>/delete', Hod_Views.deleteResultPlan, name='delete_result_plan'),
+    # path('admin/result/plan/add', Hod_Views.addResultPlan, name='result_plan'),
+    # path('admin/result/plan/save', Hod_Views.saveResultPlan, name='save_result_plan'),
+    # path('admin/result/plan/view', Hod_Views.viewResultPlan, name='view_result_plan'),
+    # path('admin/result/plan/<str:id>/edit', Hod_Views.editResultPlan, name='edit_result_plan'),
+    # path('admin/result/plan/update', Hod_Views.updateResultPlan, name='update_result_plan'),
+    # path('admin/result/plan/<str:id>/delete', Hod_Views.deleteResultPlan, name='delete_result_plan'),
 
     path('admin/result/view', Hod_Views.adminViewResult, name='admin_view_result'),
 

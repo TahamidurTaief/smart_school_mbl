@@ -89,6 +89,7 @@
                      </div>
                </div>
       </form>
+
       {% else %}
       <form method="post" action="{% url 'save_result' %}">
           {% csrf_token %}
@@ -132,28 +133,16 @@
                                   </div>
                                   </div>
 
-                                  <div class="col-12 col-sm-12">
-                                    <div class="form-group">
-                                        <label>PI / BI</label>
-                                        <select class="form-control" name="pi_bi_no">
-                                          <option value="">Sellect PI & BI</option>
-                                          {% for i in result_plan %}
-                                          <option value="{{i.pi_no}}">{{i.pi_no}} :   {{i.pi_name | slice:"0:100"}}</option>
-                                          {% endfor %}
-                                       </select>
-                                     </div>
-                                </div>
-
                                   <div class="col-12 col-sm-6">
                                     <div class="form-group">
-
-                                    <label>Grade</label>
-                                       <select class="form-control" name="grade_no">
-                                          <option value="">Sellect Grade</option>
-                                          <option value="1">A</option>
-                                          <option value="2">B</option>
-                                          <option value="3">C</option>      
-                                       </select>
+                                       <label>Result Name</label>
+                                       <input type="text" class="form-control" name="result_name">
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                       <label>Result Link</label>
+                                       <input type="text" class="form-control" name="result_link">
                                     </div>
                                   </div>
                                   {% comment %} <div class="col-12 col-sm-6">

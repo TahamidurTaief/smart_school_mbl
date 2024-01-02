@@ -76,6 +76,7 @@ def addStudent(request):
     if request.method == "POST":
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
+        student_name_eng = request.POST.get('student_name_eng')
         student_id = request.POST.get('student_id')
         roll = request.POST.get('roll')
         session_year_id = request.POST.get('session_year_id')
@@ -127,6 +128,7 @@ def addStudent(request):
                 admin=user,
                 first_name=first_name,
                 last_name=last_name,
+                name_eng=student_name_eng,
                 student_id=student_id,
                 roll=roll,
                 session_year_id=session_year,
@@ -206,6 +208,7 @@ def updateStudent(request):
         customUserId = request.POST.get('customUserId')
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
+        student_name_eng = request.POST.get('student_name_eng')
         student_id = request.POST.get('student_id')
         roll = request.POST.get('roll')
         session_year_id = request.POST.get('session_year_id')
@@ -236,6 +239,7 @@ def updateStudent(request):
         student = Student.objects.get(admin=customUserId)
         student.first_name=first_name
         student.last_name=last_name
+        student.name_eng=student_name_eng
         student.student_id=student_id
         student.roll=roll
 
@@ -782,6 +786,7 @@ def saveSchoolTeacher(request):
     if request.method == "POST":
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
+        name_eng = request.POST.get('name_eng')
         email = request.POST.get('email')
         date_of_birth = request.POST.get('date_of_birth')
         birth_certificate_no = request.POST.get('birth_certificate_no')
@@ -828,6 +833,7 @@ def saveSchoolTeacher(request):
 
             school_teacher = SchoolTeacher(
                 admin=user,
+                name_eng=name_eng,
                 gender=gender,
                 date_of_birth = date_of_birth,
                 birth_certificate = birth_certificate_no,
@@ -900,6 +906,7 @@ def updateSchoolTeacher(request):
         teacherAdminId = request.POST.get('teacherAdminId')
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
+        name_eng = request.POST.get('name_eng')
         email = request.POST.get('email')
         date_of_birth = request.POST.get('date_of_birth')
         birth_certificate_no = request.POST.get('birth_certificate_no')
@@ -940,6 +947,7 @@ def updateSchoolTeacher(request):
 
         school_teacher = SchoolTeacher.objects.get(admin=teacherAdminId)
         school_teacher.gender = gender
+        school_teacher.name_eng = name_eng
         school_teacher.date_of_birth= date_of_birth
         school_teacher.birth_certificate = birth_certificate_no
         school_teacher.religion = religion
@@ -1223,7 +1231,7 @@ def addSubject(request):
         teacher_id = request.POST.get('teacher_id')
         class_id = request.POST.get('class_name')
 
-        subject_name = str(name+' - '+class_id)
+        subject_name = str(name)
         course = Course.objects.get(id=course_id)
         teacher = SchoolTeacher.objects.get(id=teacher_id)
         classes = Classes.objects.get(id=class_id)
@@ -1321,22 +1329,23 @@ def deleteSubject(request, id):
     return redirect('view_subject')
 
 
-
-
 @login_required(login_url='login')
-def deleteStaff(request, id):
-    if request.method == "POST":
-        confirm = request.POST.get('confirm')
-        if confirm == "CONFIRM":
-            staff = CustomUser.objects.get(id=id)
-            staff.delete()
-            messages.success(request, f"{staff.first_name} {staff.last_name} Deleted Successfully")
+def deleteSubject(request, id):
+    # if request.method == "POST":
+    #     confirm = request.POST.get('confirm')
+    #     if confirm == "CONFIRM":
+    subject = SchoolSubjects.objects.get(id=id)
+    subject.delete()
+    messages.success(request, f"{subject.name} Deleted Successfully")
 
-        else:
-            messages.error(request, "Please Type CONFIRM to Delete Staff")
-            return redirect('view_staff')
+        # else:
+        #     messages.error(request, "Please Type CONFIRM to Delete Subject")
+        #     return redirect('view_subject')
     
-    return redirect('view_staff')
+    return redirect('view_subject')
+
+
+
 
 
 
@@ -1923,11 +1932,11 @@ def saveRoutine(request):
         
         seventh_subject_id = request.POST.get('seventh_subject_id')
         seventh_subject_teacher = request.POST.get('seventh_subject_teacher')
-        seventh_subject_id = request.POST.get('seventh_subject_id')
+        seventh_subject_time= request.POST.get('seventh_class_time')
         
         seventh_subject = SchoolSubjects.objects.get(id=seventh_subject_id)
         seventh_teacher = SchoolTeacher.objects.get(id=seventh_subject_teacher)
-        seventh_period = Period.objects.get(id=seventh_subject_id)
+        seventh_period = Period.objects.get(id=seventh_subject_time)
         
         
         
@@ -2485,4 +2494,5 @@ def adminViewResult(request):
     
 
     return render(request, 'Hod/view_result.html', context)
+
 

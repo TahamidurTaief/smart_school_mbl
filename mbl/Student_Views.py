@@ -146,13 +146,8 @@ def studentViewResult(request):
     section_name = None
     teacher_name = None
     subject = None
-    pi_no = None
-    grade = None
     result = None
-    pi_name = None
-    bi_name = None
-    pi_bi_name = None
-
+    result_link = None
     if action is not None:
         if request.method == 'POST':
             subject = request.POST.get('subject')
@@ -163,31 +158,19 @@ def studentViewResult(request):
 
 
             for i in result:
-                pi_no = i.pi_no
-                # pi_name = i.result.pi_name
-                # bi_name = i.result.bi_name
-                grade = i.grade
+                
                 student_name = i.student_id.first_name + ' ' + i.student_id.last_name
                 student_id = i.student_id.id
                 roll = i.student_id.roll
                 class_name = i.student_id.class_name.name
                 section_name = i.student_id.section.section_name
+
+                result = i.result
+                result_link = i.result_link
                 # session_year = i.student_id.session_year.session_year
                 teacher_name = i.subject_id.teacher.admin.first_name + ' ' + i.subject_id.teacher.admin.last_name
                 subject = i.subject_id.name
-                
-            print(f'\n\n student_name: {student_name}\n student_id: {student_id} \n roll: {roll}\n class_name: {class_name}\n section_name: {section_name}\n s teacher_name: {teacher_name}\n subject: {subject}\n pi_no: {pi_no}\n grade: {grade}\n result: {result}\n\n'	)
-            
-            # pi_bi_name = ResultPlan.objects.filter(subject=subject_id, pi_no=pi_no)
-            # print(f'\n\n pi_bi_name: {pi_bi_name}\n\n')
 
-            # pi_bi_name = ResultPlan.objects.filter(pi_no=pi_no)
-            # print(f'\n\n pi_bi_name: {pi_bi_name}\n\n')
-
-            # for i in pi_bi_name:
-            #     pi_name = i.pi_name
-            #     bi_name = i.bi_name
-            #     print(f'\n pi_name: {pi_name}\nbi_name : {bi_name}\n')
 
 
     context = {
@@ -200,13 +183,10 @@ def studentViewResult(request):
         'roll' : roll,
         'student_id' : student_id,
         'subject' : subject,
-        'pi_no' : pi_no,
-        'grade' : grade,
         'subject_obj' : subject_obj,
         'class_obj' : class_obj,
-        # 'pi_name' : pi_name,
-        # 'bi_name' : bi_name,
-        # 'pi_bi_name' : pi_bi_name,
+        'result' : result,
+        'result_link' : result_link,
         'action' : action,
     }
     

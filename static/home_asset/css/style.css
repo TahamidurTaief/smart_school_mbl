@@ -106,7 +106,8 @@ table {
 	src: url('fonts/SiyamRupalia2f7.html?version=1.070');
 	src: local('Siyam Rupali'), url('fonts/SiyamRupalia2f7-2.html?version=1.070') format('woff'),       url('fonts/SiyamRupalia2f7-3.html?version=1.070') format('truetype');
 	font-style: normal;
-	unicode-range: U+0980-09FF; //Bangla Range (source: http://www.unicode.org/charts/PDF/U0980.pdf‎‎);
+		unicode-range: U+0980-09FF; //Bangla Range (source: http://www.unicode.org/charts/PDF/U0980.pdf‎‎);
+	} // Add this closing curly brace
 	font-size: 13px;
 	line-height: 22px;
 	float: left;
@@ -361,6 +362,7 @@ table {
 	background: #D8D8D8;
 	float: right;
 	width: 210px;
+	margin-left: 100px;
 }
 .contentBottom{
 	height: 248px;
@@ -847,7 +849,8 @@ font-family: 'Siyam Rupali';
 	src: url('fonts/SiyamRupalia2f7.html?version=1.070');
 	src: local('Siyam Rupali'), url('fonts/SiyamRupalia2f7-2.html?version=1.070') format('woff'),       url('fonts/SiyamRupalia2f7-3.html?version=1.070') format('truetype');
 	font-style: normal;
-	unicode-range: U+0980-09FF; //Bangla Range (source: http://www.unicode.org/charts/PDF/U0980.pdf‎‎);	
+		unicode-range: U+0980-09FF; //Bangla Range (source: http://www.unicode.org/charts/PDF/U0980.pdf‎‎);	
+	 // END: ed8c6549bwf9
 }
 #BeangladiscrriptionName{
 	font-size: 16px;
@@ -1861,14 +1864,14 @@ color: #616060;
 /*---/Body Lower Panel----*/
 
 .singledown{
-	height: 50px;
-	margin: 0px;
+	height: 60px;
+	/* margin: 0px; */
 	border: 1px solid #B0B0B0;
-	margin-top: 18px;
-	border-radius: 5px;
+	margin-top: 25px;
+	border-radius: 10px;
 	background: #fff;
-	width: 210px;
-	float: right;
+	width: 240px;
+	float: left;
 	margin-right: 7px;
 }
 
@@ -1876,6 +1879,7 @@ color: #616060;
 	float: left;
 	padding-right: 10px;
 	margin-left: 5px;
+	margin-top: 10px;
 }
 
 .singledown  h2{
@@ -1885,12 +1889,13 @@ color: #616060;
 
 .singledown  h2 a{
 	font-family: Arial;
-	font-size: 11px;
-	color: #585858;
+	font-size: 13px;
+	color: #4b4b4b;
 	text-decoration: none;
 	text-transform: uppercase;
-	padding-top: 20px;
+	padding-top: 10px;
 	display: block;
+	margin-top: 10px;
 }
 
 .singledown  h2 a:hover{

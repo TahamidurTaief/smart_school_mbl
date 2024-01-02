@@ -30,5 +30,6 @@ admin.site.register(StudentResult)
 admin.site.register(RoutineSubjects)
 admin.site.register(Period)
 admin.site.register(Notice)
-admin.site.register(ResultPlan)
+admin.site.register(webNotice)
+admin.site.register(admissionForm)
 

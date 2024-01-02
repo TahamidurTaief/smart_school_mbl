@@ -12,7 +12,32 @@ def base(request):
 
 
 def home(request):
-    return render(request, 'website/home.html')
+    school_teacher_obj = SchoolTeacher.objects.all()
+    staff_obj = Staff.objects.all()
+    web_notice_obj = webNotice.objects.all()
+    admission_obj = admissionForm.objects.all()
+
+    context = {
+        'school_teacher_obj': school_teacher_obj,
+        'staff_obj': staff_obj,
+        'web_notice_obj': web_notice_obj,
+        'admission_obj': admission_obj,
+    }
+    return render(request, 'website/home.html', context)
+
+
+
+def web_teacher_staff(request):
+    school_teacher_obj = SchoolTeacher.objects.all()
+    staff_obj = Staff.objects.all()
+
+    context = {
+        'school_teacher_obj': school_teacher_obj,
+        'staff_obj': staff_obj,
+    }
+    return render(request, 'website/teacher_staff.html', context)
+
+
 
 def custom_login(request):
     return render(request, 'login.html')

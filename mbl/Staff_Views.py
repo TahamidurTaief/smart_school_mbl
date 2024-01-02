@@ -263,7 +263,7 @@ def addResult(request):
     session_year = Session_Year.objects.all()
     subjects = SchoolSubjects.objects.filter(teacher=school_teacher)
     result = StudentResult.objects.all()
-    result_plan = ResultPlan.objects.all()
+    # result_plan = ResultPlan.objects.all()
     
     action = request.GET.get('action')
     
@@ -300,7 +300,7 @@ def addResult(request):
         'get_session' : get_session,
         'students' : students,
         'result' : result,
-        'result_plan' : result_plan,
+        # 'result_plan' : result_plan,
     }
     return render(request, 'staff/add_result.html', context)
 
@@ -313,10 +313,10 @@ def saveResult(request):
         session_year_id = request.POST.get('session_year_id')
         subject_id = request.POST.get('subject_id')
         student_id = request.POST.get('student_id')
-        pi_bi_no = request.POST.get('pi_bi_no')
-        grade_no = request.POST.get('grade_no')
+        result_name = request.POST.get('result_name')
+        result_link = request.POST.get('result_link')
 
-        print(f'session_year_id: {session_year_id}\nsubject_id: {subject_id}\nstudent_id: {student_id}\npi_bi_no: {pi_bi_no}\ngrade_no: {grade_no}\n')
+        # print(f'session_year_id: {session_year_id}\nsubject_id: {subject_id}\nstudent_id: {student_id}\npi_bi_no: {pi_bi_no}\ngrade_no: {grade_no}\n')
         
         
 
@@ -331,8 +331,8 @@ def saveResult(request):
         result = StudentResult(
             subject_id=subject_obj,
             student_id=student_obj,
-            pi_no=pi_bi_no,
-            grade=grade_no,
+            result = result_name,
+            result_link = result_link,
         )
         result.save()
         messages.success(request, 'Result Added Successfully')

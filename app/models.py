@@ -91,6 +91,7 @@ class Staff(models.Model):
 
 class SchoolTeacher(models.Model):
     admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    name_eng = models.CharField(max_length=50, default="")
     gender = models.CharField(max_length=10, default="", null=True)
     date_of_birth = models.DateField()
     birth_certificate = models.CharField(max_length=50 , default="", null=True)
@@ -149,6 +150,7 @@ class Student(models.Model):
     admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE, default="", null=True)
     first_name = models.CharField(max_length=50, default="")
     last_name = models.CharField(max_length=50, default="")
+    name_eng = models.CharField(max_length=50, default="")
     student_id = models.CharField(max_length=20, unique=True, default="")
     roll = models.CharField(max_length=20, unique=True, default="")
     session_year_id = models.ForeignKey(Session_Year, on_delete=models.DO_NOTHING, default="")
@@ -307,19 +309,19 @@ class Attendence_Report(models.Model):
     
 
     
-class ResultPlan(models.Model):
-    subject = models.ForeignKey(SchoolSubjects, on_delete=models.CASCADE, default="", null=True)
-    pi_no = models.CharField(max_length=20, default="", null=True)
-    pi_name = models.CharField(max_length=20, default="", null=True)
-    bi_name = models.CharField(max_length=20, default="", null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+# class ResultPlan(models.Model):
+#     subject = models.ForeignKey(SchoolSubjects, on_delete=models.CASCADE, default="", null=True)
+#     pi_no = models.CharField(max_length=20, default="", null=True)
+#     pi_name = models.CharField(max_length=20, default="", null=True)
+#     bi_name = models.CharField(max_length=20, default="", null=True)
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     updated_at = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
-         return str(self.pi_no)
+#     def __str__(self):
+#          return str(self.pi_no)
 
 
-    
+'''
 class StudentResult(models.Model):
     student_id = models.ForeignKey(Student, on_delete=models.CASCADE)
     subject_id = models.ForeignKey(SchoolSubjects, on_delete=models.CASCADE)
@@ -331,7 +333,17 @@ class StudentResult(models.Model):
     
     def __str__(self):
         return str(self.student_id.admin.first_name) + "  " + str(self.subject_id.name)
+'''
 
+
+class StudentResult(models.Model):
+    student_id = models.ForeignKey(Student, on_delete=models.CASCADE)
+    subject_id = models.ForeignKey(SchoolSubjects, on_delete=models.CASCADE)
+    result = models.CharField(default=0, null=True, max_length=50)
+    result_link = models.CharField(default="#", max_length=500)
+
+    def __str__(self):
+        return str(self.student_id.admin.first_name) + "  " + str(self.subject_id.name)
 
 
 # class Weak_day(models.Model):
@@ -414,3 +426,24 @@ class Notice(models.Model):
         return str(self.headline)
 
 
+
+
+class webNotice(models.Model):
+    headline = models.CharField(max_length=20, default="", null=True)
+    notice_link = models.TextField(default="", null=True, max_length=500)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return str(self.headline)
+
+
+
+class admissionForm(models.Model):
+    class_name = models.ForeignKey(Classes, on_delete=models.CASCADE, default="", null=True)
+    form_name = models.CharField(max_length=20, default="", null=True)
+    form_link = models.TextField(default="", null=True, max_length=500)
+
+
+    def __str__(self):
+        return str(self.form_name + " " + str(self.class_name))

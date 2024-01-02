@@ -15,6 +15,8 @@
         <link rel="shortcut icon" href="#">
         <link rel="stylesheet" type="text/css" href="{% static 'home_asset/css/ddlevelsmenu-base.css' %}" />
         <link rel="stylesheet" type="text/css" href="{% static 'home_asset/css/ddlevelsmenu-sidebar.css' %}" />
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 		<style>
             .markermenu ul li a{
                 background: url('home_asset/images/bulletlist.gif') no-repeat 3px center; /*light gray background*/
@@ -80,6 +82,7 @@
                     if (hour == 12) {
 
                         frsTime.innerHTML = hour + ' : ' + minutes + ' : ' + sec + ' PM';
+
 
 
                     } else {
@@ -151,15 +154,15 @@
 
                 <div class="menuRight">
                     <ul class="nav">
-                        <li><a href="home-page.html">Home</a></li>
+                        <li><a href="{% url 'home' %}">Home</a></li>
 
 
 
-                        <li><a href="login.html">Web Site Login</a></li>
+                        <li><a href="{% url 'login' %}">Web Site Login</a></li>
 
-                        <li><a href="login.html">Admin Login</a></li>
+                        <li><a href="{% url 'login' %}">Admin Login</a></li>
                       
-                        <li><a href="webmail.html" target="_blank">Web Mail</a></li>
+                        <!-- <li><a href="webmail.html" target="_blank">Web Mail</a></li> -->
 
                     </ul>
                 </div>			
@@ -192,16 +195,16 @@
 
 	                    	<div id="ddsidemenubar" class="markermenu">
 						<ul style="padding: 10px 0;">
-						<li sty><a href="home-page.html">HOME</a></li>
-						<li><a href="about-page.html">ABOUT Our School </a></li>
-						<li><a href="teacher-staff.html">TEACHERS &AMP; STAFFS</a></li>
-						<li><a href="notice-board.html">NOTICE</a></li>
-						<li><a href="admission-form.html">ADMISSION FORM</a></li>
-						<li><a href="students-info.html">STUDENTS' INFO.</a></li>
-						<li><a href="photo-gallery.html">PHOTO GALLERY</a></li>
-						<li><a href="videos-gallery.html">VIDEOS</a></li>
-						<li><a href="download-file.html">All Upload File</a></li>
-						<li><a href="contact-page.html" style="border-bottom-width: 0">CONTACT US</a></li>		
+						<li sty><a href="{% url 'home' %}">HOME</a></li>
+						<li><a href="">ABOUT Our School </a></li>
+						<li><a href="">TEACHERS &AMP; STAFFS</a></li>
+						<!-- <li><a href="notice-board.html">NOTICE</a></li> -->
+						<li><a href="">ADMISSION FORM</a></li>
+						<li><a href="">STUDENTS' INFO.</a></li>
+						<li><a href="">PHOTO GALLERY</a></li>
+						<li><a href="">VIDEOS</a></li>
+						<li><a href="">All Upload File</a></li>
+						<li><a href="" style="border-bottom-width: 0">CONTACT US</a></li>		
 						</ul>
 						</div>
 
@@ -278,7 +281,7 @@
 	        </div>
 	        <div class="contentMiddle">
 	            <div class="contentOne">
-	                <h2 id="allheadCaption"> সোনাগাজী বালিকা পাইলট উচ্চ বিদ্যালয়</h2>
+	                <h2 id="allheadCaption"> মোলামগাড়ীহাট দ্বি-মূখী উচ্চ বিদ্যালয়, কালাই, জয়পুরহাট</h2>
 	            </div>
 	            <div class="contentTwo">
 	                <div id="container">
@@ -354,216 +357,19 @@
 	                                <h2 id="noticeHead">Recent Events</h2>
 	                                <ul class="currentevent clearfix">
 	                                    <marquee direction="up" scrollamount="4">
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/SSC_VOC_RESULT__2023.pdf" target="_blank">
-	                                                        SSC VOC RESULT 2023<br /><span id="noticeDay">03-Aug-2023</span>
+
+												{% for i in web_notice_obj %}
+												  
+												
+	                                        	    <li>
+	                                                    <a href="{{i.notice_link}}" target="_blank">
+	                                                        {{i.headline}}<br /><span id="noticeDay">{{i.updated_at}}</span>
 	                                                    </a>
 
 	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/SSC_RESULT__2023.pdf" target="_blank">
-	                                                        SSC RESULT 2023 <br /><span id="noticeDay">03-Aug-2023</span>
-	                                                    </a>
 
-	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/Rutin_VOC_2023.pdf" target="_blank">
-	                                                        এস এস সি ভোক: 2023 রুটিন <br /><span id="noticeDay">22-Feb-2023</span>
-	                                                    </a>
-
-	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/Routine(SSC-23).pdf" target="_blank">
-	                                                        এস এস সি পরীক্ষা 2023 এর রুটিন <br /><span id="noticeDay">22-Feb-2023</span>
-	                                                    </a>
-
-	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/SSC_VOC_RESULT_2022.pdf" target="_blank">
-	                                                        SSC VOC RESULT 2022<br /><span id="noticeDay">01-Dec-2022</span>
-	                                                    </a>
-
-	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/SSC_RESULT_2022.pdf" target="_blank">
-	                                                        SSC Result 2022<br /><span id="noticeDay">28-Nov-2022</span>
-	                                                    </a>
-
-	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/Admision_from.docx" target="_blank">
-	                                                        ভর্তির ফরম <br /><span id="noticeDay">29-Sep-2022</span>
-	                                                    </a>
-
-	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/New_Routine_SSC_2022.pdf" target="_blank">
-	                                                        এস এস সি পরীক্ষা 2022 এর পরিবর্তিত রুটিন <br /><span id="noticeDay">24-Aug-2022</span>
-	                                                    </a>
-
-	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/getContent.pdf" target="_blank">
-	                                                        শুক্র   ও  শনি বার স্কুল বন্ধ থাকার সরকারী সিদ্ধান্ত । <br /><span id="noticeDay">24-Aug-2022</span>
-	                                                    </a>
-
-	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/ssc_2020_106716.pdf" target="_blank">
-	                                                        SSC EXAM RESULT 2020<br /><span id="noticeDay">31-May-2020</span>
-	                                                    </a>
-
-	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/%e0%a7%ae%e0%a6%ae_%e0%a6%b0%e0%a7%87%e0%a6%9c%e0%a6%bf_%e0%a6%b8%e0%a7%8d%e0%a6%a5%e0%a6%97%e0%a6%bf%e0%a6%a4.pdf" target="_blank">
-	                                                        ৮ম শ্রেনীর রেজি: কার্যক্রম স্থগিত <br /><span id="noticeDay">22-Mar-2020</span>
-	                                                    </a>
-
-	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/%e0%a6%ad%e0%a6%b0%e0%a7%8d%e0%a6%a4%e0%a6%bf_%e0%a6%aa%e0%a6%b0%e0%a7%80%e0%a6%95%e0%a7%8d%e0%a6%b7%e0%a6%be_%e0%a7%a8%e0%a7%a6.xls" target="_blank">
-	                                                        ভর্তি পরীক্ষা 2020 এর ফলাফল <br /><span id="noticeDay">31-Dec-2019</span>
-	                                                    </a>
-
-	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/%e0%a6%ac%e0%a6%be%e0%a6%b0%e0%a7%8d%e0%a6%b7%e0%a6%bf%e0%a6%95_%e0%a6%aa%e0%a6%b0%e0%a7%80%e0%a6%95%e0%a7%8d%e0%a6%b7%e0%a6%be_%e0%a7%a7%e0%a7%af_%e0%a6%8f%e0%a6%b0_%e0%a6%ab%e0%a6%b2%e0%a6%85%e0%a6%ab%e0%a6%b2.xls" target="_blank">
-	                                                        বার্ষিক পরীক্ষা ২০১৯ এর ফলাফল<br /><span id="noticeDay">31-Dec-2019</span>
-	                                                    </a>
-
-	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/comilla_jsc_2019_106716_result.pdf" target="_blank">
-	                                                        JSC Result 19<br /><span id="noticeDay">31-Dec-2019</span>
-	                                                    </a>
-
-	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/%e0%a6%9b%e0%a7%81%e0%a6%9f%e0%a6%bf%e0%a6%b0_%e0%a6%a4%e0%a6%be%e0%a6%b2%e0%a6%bf%e0%a6%95%e0%a6%be_2020.pdf" target="_blank">
-	                                                        ছুটির তালিকা 2020<br /><span id="noticeDay">03-Dec-2019</span>
-	                                                    </a>
-
-	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/JSC-19_Exam_%e0%a6%a4%e0%a6%be%e0%a6%b0%e0%a6%bf%e0%a6%96_%e0%a6%aa%e0%a6%b0%e0%a6%bf%e0%a6%ac%e0%a6%b0%e0%a7%8d%e0%a6%a4%e0%a6%a8.pdf" target="_blank">
-	                                                        জে এস সি পরীক্ষা ২০১৯ ইং এর  সময় সুচী পরীবর্তন <br /><span id="noticeDay">09-Nov-2019</span>
-	                                                    </a>
-
-	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/JSC-109_Exam.pdf" target="_blank">
-	                                                        জে এস সি পরীক্ষা – ২০১৯ ইং পরীবর্তি ত সময় সুচী<br /><span id="noticeDay">09-Nov-2019</span>
-	                                                    </a>
-
-	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/%e0%a6%9b%e0%a7%81%e0%a6%9f%e0%a6%bf%e0%a6%b0_%e0%a6%a4%e0%a6%be%e0%a6%b2%e0%a6%bf%e0%a6%95%e0%a6%be_%e0%a7%a8%e0%a7%a6%e0%a7%a7%e0%a7%af.pdf" target="_blank">
-	                                                        ছুটির তালিকা 2019<br /><span id="noticeDay">17-Sep-2019</span>
-	                                                    </a>
-
-	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/%e0%a6%af%e0%a7%88%e0%a6%be%e0%a6%a8_%e0%a6%b9%e0%a7%9f%e0%a6%b0%e0%a6%be%e0%a6%a8%e0%a7%80_%e0%a6%aa%e0%a7%8d%e0%a6%b0%e0%a6%a4%e0%a6%bf%e0%a6%b0%e0%a7%8b%e0%a6%a7_%e0%a6%95%e0%a6%ae%e0%a6%bf%e0%a6%9f%e0%a6%bf.docx" target="_blank">
-	                                                        যৌন হয়রানী প্রিতিরোধ কমিটি<br /><span id="noticeDay">11-Aug-2019</span>
-	                                                    </a>
-
-	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/comilla_ssc_2019_106716.pdf" target="_blank">
-	                                                        SSC Result  2019<br /><span id="noticeDay">07-May-2019</span>
-	                                                    </a>
-
-	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/%e0%a6%ac%e0%a7%88%e0%a6%b6%e0%a6%be%e0%a6%96%e0%a7%80_%e0%a6%ad%e0%a6%be%e0%a6%a4%e0%a6%be.html" target="_blank">
-	                                                        ৫% বার্ষিক বেতন বৃদ্ধি ও ২০% বৈশাখী ভাতার প্রজ্ঞাপন<br /><span id="noticeDay">18-Nov-2018</span>
-	                                                    </a>
-
-	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/JSC-2018(Routine).pdf" target="_blank">
-	                                                        জে এস সি পরীক্ষার সময় সুচী – ২০১৮ ইং<br /><span id="noticeDay">01-Jul-2018</span>
-	                                                    </a>
-
-	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/comilla_ssc_2018_106716.pdf" target="_blank">
-	                                                        SSC EX Result 18<br /><span id="noticeDay">06-May-2018</span>
-	                                                    </a>
-
-	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/SSC-2018_EX_Rotin.pdf" target="_blank">
-	                                                        SSC 18 EX ROUTIN<br /><span id="noticeDay">10-Oct-2018</span>
-	                                                    </a>
-
-	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/%e0%a6%9b%e0%a7%81%e0%a6%9f%e0%a6%bf%e0%a6%b0_%e0%a6%a4%e0%a6%be%e0%a6%b2%e0%a6%bf%e0%a6%95%e0%a6%be-2018.html" target="_blank">
-	                                                        ছুটির তালিকা ২০১৮<br /><span id="noticeDay">11-Jan-2018</span>
-	                                                    </a>
-
-	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/Test_exam-18.pdf" target="_blank">
-	                                                        এসএসসি পরীক্ষা ২০১৮ এর ফরম পূরণ সংক্রান্ত সতর্কীকরণ নোটিশ<br /><span id="noticeDay">22-Nov-2018</span>
-	                                                    </a>
-
-	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/SSC-2018(_Form-Fill-Up).pdf" target="_blank">
-	                                                        এসএসসি পরীক্ষা-২০১৮ এর ফরম পূরণের বিজ্ঞপ্তি<br /><span id="noticeDay">15-Oct-2018</span>
-	                                                    </a>
-
-	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/SSC-2018(Test_Exam).pdf" target="_blank">
-	                                                        নির্বাচনী পরীক্ষা সংক্রান্ত বিষয়ে নোটিশ<br /><span id="noticeDay">05-Oct-2017</span>
-	                                                    </a>
-
-	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/JSC-17_Routine.pdf" target="_blank">
-	                                                        জে এস সি পরীক্ষার সময় সুচী – ২০১৭ইং<br /><span id="noticeDay">24-Aug-2017</span>
-	                                                    </a>
-
-	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/comilla_ssc_2017_106716.pdf" target="_blank">
-	                                                        SSC RESULT-2017<br /><span id="noticeDay">27-Jul-2017</span>
-	                                                    </a>
-
-	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/comilla_ssc_2016_106716.pdf" target="_blank">
-	                                                        SSC RESULT -2016<br /><span id="noticeDay">27-Jul-2017</span>
-	                                                    </a>
-
-	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/comilla_jsc_2016_106716.pdf" target="_blank">
-	                                                        ২০১৬ JSC RESULT <br /><span id="noticeDay">27-Jul-2017</span>
-	                                                    </a>
-
-	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/FINAL_EX_20221.pdf" target="_blank">
-	                                                        বার্ষিক পরীক্ষা  2022 এর সময়সুচী<br /><span id="noticeDay">11-Oct-2022</span>
-	                                                    </a>
-
-	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/TEST_EX_20221.pdf" target="_blank">
-	                                                        নির্বাচনী পরীক্ষা 2022 এর  সময়সুচী <br /><span id="noticeDay">11-Oct-2022</span>
-	                                                    </a>
-
-	                                                </li>
-	                                        	                                                <li>
-	                                                    <a href="upload/info_file/SSC_Result__20211.pdf" target="_blank">
-	                                                        SSC Result 2021 <br /><span id="noticeDay">30-Dec-2021</span>
-	                                                    </a>
-
-	                                                </li>
+													{% endfor %}
+	                                        	                                                
 	                                        
 
 	                                    </marquee>
@@ -609,9 +415,9 @@
 
 
 
-	                    মাধ্যমিক ও উচ্চ শিক্ষা অধিদপ্তর, ঢাকা, বাংলাদেশ কর্তৃক নির্দেশক্রমে অত্র বিদ্যালয়ের জন্য অতি অল্প সময়ে ডাইনামিক ওয়েভ সাইট তৈরি হয়েছে শুনে আমি মহান আল্লাহ তালার দরবারে শুকরিয়া আদায় করছি। বর্তমান সময়ে তথ্য ও প্রযুক্তি আমাদের হাতের নাগালে। দৈনন্দিন জীবনে লেনদেন, হিসাব-নিকাশ, লেখাপড়া, শিক্ষা-দীক্ষা, আদান-প্রদান সহ সকল প্রকার ব্যবস্থাপনা প্রশাসনিক ও একাডেমিক সব কিছুই তথ্য ও প্রযুক্তি আওতাধীন। সোনাগাজী বালিকা পাইলট উচ্চ বিদ্যালয়ের নিজস্ব ...
+	                    মাধ্যমিক ও উচ্চ শিক্ষা অধিদপ্তর, ঢাকা, বাংলাদেশ কর্তৃক নির্দেশক্রমে অত্র বিদ্যালয়ের জন্য অতি অল্প সময়ে ডাইনামিক ওয়েভ সাইট তৈরি হয়েছে শুনে আমি মহান আল্লাহ তালার দরবারে শুকরিয়া আদায় করছি। বর্তমান সময়ে তথ্য ও প্রযুক্তি আমাদের হাতের নাগালে। দৈনন্দিন জীবনে লেনদেন, হিসাব-নিকাশ, লেখাপড়া, শিক্ষা-দীক্ষা, আদান-প্রদান সহ সকল প্রকার ব্যবস্থাপনা প্রশাসনিক ও একাডেমিক সব কিছুই তথ্য ও প্রযুক্তি আওতাধীন। মোলামগাড়ীহাট দ্বি-মূখী উচ্চ বিদ্যালয়ের নিজস্ব ...
 
-	                    <a href="Home/message_details/7.html"><img src="{% static 'home_asset/images/more-b.png' %}"></a>
+	                    <a href=""><img src="{% static 'home_asset/images/more-b.png' %}"></a>
 	                </p>
 	                </p>
 	            </div>
@@ -623,7 +429,7 @@
 
 
 
-	                    মাধ্যমিক ও উচ্চ শিক্ষা অধিদপ্তর ঢাকা,বাংলাদেশ কর্তৃক প্রকাশিত বিজ্ঞপ্তির আলোকে অত্র বিদ্যালয়ের জন্য স্বল্প সময়ে ডাইনামিক ওয়েবসাইট তৈরী করতে পেরে আমি আল্লাহাতালার নিকট শ্তকরিয়া আদায় করছি।বর্তমান সময়ে তথ্য ও প্রযুক্তি আমাদের হাতের নাগলে।দৈনন্দিন জীবনে লেনদেন হিসাব নিকাশ, লেখাপড়া, শিক্ষাদীক্ষ, আদান প্রদান, সকল প্রকার ব্যবস্থাপনা হউক প্রশাসনিক বা একাডেমিক সব কিছুই তথ্য ও প্রযুক্তির আত্ততাধীন। সোনাগাজী বালিকা পাইলট উচ্চ বিদ্যালয়ের ওয়েব সাইট থাকার..	                    <a href="Home/message_details/8.html"><img src="home_asset/images/more-b.png"></a>
+	                    মাধ্যমিক ও উচ্চ শিক্ষা অধিদপ্তর ঢাকা,বাংলাদেশ কর্তৃক প্রকাশিত বিজ্ঞপ্তির আলোকে অত্র বিদ্যালয়ের জন্য স্বল্প সময়ে ডাইনামিক ওয়েবসাইট তৈরী করতে পেরে আমি আল্লাহাতালার নিকট শ্তকরিয়া আদায় করছি।বর্তমান সময়ে তথ্য ও প্রযুক্তি আমাদের হাতের নাগলে।দৈনন্দিন জীবনে লেনদেন হিসাব নিকাশ, লেখাপড়া, শিক্ষাদীক্ষ, আদান প্রদান, সকল প্রকার ব্যবস্থাপনা হউক প্রশাসনিক বা একাডেমিক সব কিছুই তথ্য ও প্রযুক্তির আত্ততাধীন। মোলামগাড়ীহাট দ্বি-মূখী উচ্চ বিদ্যালয়ের ওয়েব সাইট থাকার..	                    <a href=""><img src="{% static 'home_asset/images/more-b.png' %}"></a>
 	                </p>
 
 	            </div>
@@ -646,46 +452,20 @@
 							<th width="200">ক্যাটাগরি </th>
 							<th width="73">পদবী</th>
 						</tr>
-						                                                
+						          
+						{% for i in staff_obj %}
  		  	<tr>
-							<td >রফিকুল ইসলাম খোকন </td>
-							<td>চেয়ারম্যান </td>
-							<td>সভাপতি </td>
+							<td >{{i.admin.first_name}} {{i.admin.last_name}} </td>
+							<td>{{i.qualification}} </td>
+							<td>{{i.staff_type}}</td>
 						</tr>	
                                                                                                 
- 		  	<tr>
-							<td >শাহাদাত হোসেন চৌধুরী</td>
-							<td>দাতা </td>
-							<td>সদস্য </td>
-						</tr>	
-                                                                                                
- 		  	<tr>
-							<td >আলি হায়দার খোন্দকার</td>
-							<td>অভিভাবক </td>
-							<td>সদস্য </td>
-						</tr>	
-                                                                                                
- 		  	<tr>
-							<td >মো: নুরুল আলম</td>
-							<td>অভিভাবক </td>
-							<td>সদস্য </td>
-						</tr>	
-                                                                                                
- 		  	<tr>
-							<td >মো: আনোয়ার হোসেন</td>
-							<td>অভিভাবক </td>
-							<td>সদস্য </td>
-						</tr>	
-                                                                                                
- 		  	<tr>
-							<td >মো: ছালা উদ্দিন নটন </td>
-							<td>অভিভাবক </td>
-							<td>সদস্য </td>
-						</tr>	
+ 		  	{% endfor %}
+					
                                                 					
 					</table>
 			
-					<a href="Home/view_comittee.html" id="Readmore2"><img src="home_asset/images/more-b.png"></a>					
+					<!-- <a href="Home/view_comittee.html" id="Readmore2"><img src="home_asset/images/more-b.png"></a>					 -->
 					
 				</div>
 
@@ -697,157 +477,19 @@
 						<marquee id="tScrollzone" behavior="alternate" scrollamount="2" onMouseOver="this.stop();" onMouseOut="this.start();" style="height: 163px;">
 						<ul class="" style="display:flex; gap: 10px;     font-size: 12px;
     text-align: center;">
-						       							<li><a href="teacher-staff.html">
-							<img src="upload/client_feedback/1_H_M.jpg"  height="120" width="110" /></a>
-							<p style="margin-top: 4px">মোঃ আবদুল মান্নান</p>
-							<p style="margin-top: 5px; background: #045564; padding: 4px; color: white;">প্রধান শিক্ষক </p>
+							{% for i in school_teacher_obj %}
+						    <li><a href="teacher-staff.html">
+							<img src="{{i.admin.profile_pic.url}}"  height="120" width="110" /></a>
+							<p style="margin-top: 4px">{{i.admin.first_name}} {{i.admin.last_name}}</p>
+							<p style="margin-top: 5px; background: #045564; padding: 4px; color: white;"> {{i.staff_type}} </p>
 							</li>
-                                                        							<li><a href="teacher-staff.html">
-							<img src="upload/client_feedback/2_A_H_M.jpg"  height="120" width="110" /></a>
-							<p style="margin-top: 4px">কৃষ্ণ চন্দ্র মজুমদার </p>
-							<p style="margin-top: 5px; background: #045564; padding: 4px; color: white;">সহকারী প্রধান শিক্ষক  </p>
-							</li>
-                                                        							<li><a href="teacher-staff.html">
-							<img src="upload/client_feedback/4_Anjuman.jpg"  height="120" width="110" /></a>
-							<p style="margin-top: 4px">আনজুমান আরা বেগম</p>
-							<p style="margin-top: 5px; background: #045564; padding: 4px; color: white;">সহকারী শিক্ষক ( ইংরেজী )   </p>
-							</li>
-                                                        							<li><a href="teacher-staff.html">
-							<img src="upload/client_feedback/5_N_M.jpg"  height="120" width="110" /></a>
-							<p style="margin-top: 4px">নুর মোহাম্মদ</p>
-							<p style="margin-top: 5px; background: #045564; padding: 4px; color: white;">সহকারী  শিক্ষক ( বিজ্ঞান )  </p>
-							</li>
-                                                        							<li><a href="teacher-staff.html">
-							<img src="upload/client_feedback/6_Betubi.jpg"  height="120" width="110" /></a>
-							<p style="margin-top: 4px">বিটুবী রানী গুহ </p>
-							<p style="margin-top: 5px; background: #045564; padding: 4px; color: white;">সহকারী শিক্ষক ( শরিরচর্চা ) </p>
-							</li>
-                                                        							<li><a href="teacher-staff.html">
-							<img src="upload/client_feedback/8_Sheraj_uddin.jpg"  height="120" width="110" /></a>
-							<p style="margin-top: 4px">মো: সিরাজুদ্দিন </p>
-							<p style="margin-top: 5px; background: #045564; padding: 4px; color: white;">সহকারী শিক্ষক ( ধর্ম )  </p>
-							</li>
-                                                        							<li><a href="teacher-staff.html">
-							<img src="upload/client_feedback/7_A_Hamid.jpg"  height="120" width="110" /></a>
-							<p style="margin-top: 4px">আবদুল হামিদ </p>
-							<p style="margin-top: 5px; background: #045564; padding: 4px; color: white;">সহকারী শিক্ষক ( গনিত  ) </p>
-							</li>
-                                                        							<li><a href="teacher-staff.html">
-							<img src="upload/client_feedback/8_Rubi_r_b.jpg"  height="120" width="110" /></a>
-							<p style="margin-top: 4px">রুবী রানী বনিক </p>
-							<p style="margin-top: 5px; background: #045564; padding: 4px; color: white;">সহকারী শিক্ষক ( বাংলা ) </p>
-							</li>
-                                                        							<li><a href="teacher-staff.html">
-							<img src="upload/client_feedback/10_A_Razzak1.jpg"  height="120" width="110" /></a>
-							<p style="margin-top: 4px">আবদুর রাজ্জাক </p>
-							<p style="margin-top: 5px; background: #045564; padding: 4px; color: white;">সহকারী শিক্ষক ( ধর্ম )  </p>
-							</li>
-                                                        							<li><a href="teacher-staff.html">
-							<img src="upload/client_feedback/9_Marufa_A1.jpg"  height="120" width="110" /></a>
-							<p style="margin-top: 4px">মারুফা আক্তার </p>
-							<p style="margin-top: 5px; background: #045564; padding: 4px; color: white;">সহকারী শিক্ষক ( সমাজ বিজ্ঞান ) </p>
-							</li>
-                                                        							<li><a href="teacher-staff.html">
-							<img src="upload/client_feedback/11_Ferdous_Ara.jpg"  height="120" width="110" /></a>
-							<p style="margin-top: 4px">ফেরদৌস আরা বেগম </p>
-							<p style="margin-top: 5px; background: #045564; padding: 4px; color: white;">সহকারী শিক্ষক ( ইংরেজী ) </p>
-							</li>
-                                                        							<li><a href="teacher-staff.html">
-							<img src="upload/client_feedback/12_Helana.jpg"  height="120" width="110" /></a>
-							<p style="margin-top: 4px">হেলেনা আক্তার </p>
-							<p style="margin-top: 5px; background: #045564; padding: 4px; color: white;">সহকারী শিক্ষক ( বাংলা ) </p>
-							</li>
-                                                        							<li><a href="teacher-staff.html">
-							<img src="upload/client_feedback/14_Cona.jpg"  height="120" width="110" /></a>
-							<p style="margin-top: 4px">কামরুন নেছা </p>
-							<p style="margin-top: 5px; background: #045564; padding: 4px; color: white;">সহকারী শিক্ষক গ্রন্থাগার বিজ্ঞান  </p>
-							</li>
-                                                        							<li><a href="teacher-staff.html">
-							<img src="upload/client_feedback/15_Amir1.jpg"  height="120" width="110" /></a>
-							<p style="margin-top: 4px">মো: আমির হোসেন </p>
-							<p style="margin-top: 5px; background: #045564; padding: 4px; color: white;">অফিস সহকারী কাম কম্পিউটার অপারেটর  </p>
-							</li>
-                                                        							<li><a href="teacher-staff.html">
-							<img src="upload/client_feedback/NIPU.jpg"  height="120" width="110" /></a>
-							<p style="margin-top: 4px">ইয়াছমিন আক্তার নিপু </p>
-							<p style="margin-top: 5px; background: #045564; padding: 4px; color: white;">কম্পিউটার ল্যাব অপারেটর  </p>
-							</li>
-                                                        							<li><a href="teacher-staff.html">
-							<img src="upload/client_feedback/16_Aleya.jpg"  height="120" width="110" /></a>
-							<p style="margin-top: 4px">আলেয়া বেগম </p>
-							<p style="margin-top: 5px; background: #045564; padding: 4px; color: white;">দপ্তরী  </p>
-							</li>
-                                                        							<li><a href="teacher-staff.html">
-							<img src="upload/client_feedback/18_Uttam1.jpg"  height="120" width="110" /></a>
-							<p style="margin-top: 4px">উত্তম কুমার </p>
-							<p style="margin-top: 5px; background: #045564; padding: 4px; color: white;">ঝাড়ুদার  </p>
-							</li>
-                                                        							<li><a href="teacher-staff.html">
-							<img src="upload/client_feedback/17_Maksud1.jpg"  height="120" width="110" /></a>
-							<p style="margin-top: 4px">মাকছুদুর রহমান </p>
-							<p style="margin-top: 5px; background: #045564; padding: 4px; color: white;">গাড  </p>
-							</li>
-                                                        							<li><a href="teacher-staff.html">
-							<img src="upload/client_feedback/Voc_1Fatema.jpg"  height="120" width="110" /></a>
-							<p style="margin-top: 4px">ফাতেমা খাতুন </p>
-							<p style="margin-top: 5px; background: #045564; padding: 4px; color: white;">ট্রেড ইন্সট্রাক্টর ড্রেস   </p>
-							</li>
-                                                        							<li><a href="teacher-staff.html">
-							<img src="upload/client_feedback/Voc_2_Bellal_Sir1.jpg"  height="120" width="110" /></a>
-							<p style="margin-top: 4px">মোহাম্মদ বেল্লাল হোসেন </p>
-							<p style="margin-top: 5px; background: #045564; padding: 4px; color: white;">ট্রেড ইন্সট্রাক্টর ফুড  </p>
-							</li>
-                                                        							<li><a href="teacher-staff.html">
-							<img src="upload/client_feedback/Voc_3_Md_Quaim.jpg"  height="120" width="110" /></a>
-							<p style="margin-top: 4px">মোহাম্মদ কাইয়ুম </p>
-							<p style="margin-top: 5px; background: #045564; padding: 4px; color: white;">ট্রেড ইন্সট্রাক্টর ফুড  </p>
-							</li>
-                                                        							<li><a href="teacher-staff.html">
-							<img src="upload/client_feedback/Voc_4_Aiyub.jpg"  height="120" width="110" /></a>
-							<p style="margin-top: 4px">মোহাম্মদ আইয়ুব আলী </p>
-							<p style="margin-top: 5px; background: #045564; padding: 4px; color: white;">সহকারী শিক্ষক ( ইংরেজী )  </p>
-							</li>
-                                                        							<li><a href="teacher-staff.html">
-							<img src="upload/client_feedback/Voc_5_Nitta.jpg"  height="120" width="110" /></a>
-							<p style="margin-top: 4px">নিত্য গোপাল দাস </p>
-							<p style="margin-top: 5px; background: #045564; padding: 4px; color: white;">সহকারী শিক্ষক ( গনিত )  </p>
-							</li>
-                                                        							<li><a href="teacher-staff.html">
-							<img src="upload/client_feedback/Voc_6_A_K_Ajed.jpg"  height="120" width="110" /></a>
-							<p style="margin-top: 4px">আবুল কালাম আজাদ </p>
-							<p style="margin-top: 5px; background: #045564; padding: 4px; color: white;">কম্পিউটার ডেমোনেস্টেটর  </p>
-							</li>
-                                                        							<li><a href="teacher-staff.html">
-							<img src="upload/client_feedback/voc_8_%e2%80%8dAminul.jpg"  height="120" width="110" /></a>
-							<p style="margin-top: 4px">মো: আমিনুল ইসলাম </p>
-							<p style="margin-top: 5px; background: #045564; padding: 4px; color: white;">ট্রেড ইন্সট্রাক্টর ড্রেস  </p>
-							</li>
-                                                        							<li><a href="teacher-staff.html">
-							<img src="upload/client_feedback/voc_8_basar.jpg"  height="120" width="110" /></a>
-							<p style="margin-top: 4px">মো: আবুল বাসার </p>
-							<p style="margin-top: 5px; background: #045564; padding: 4px; color: white;">সহকারী শিক্ষক ( পদার্থ )  </p>
-							</li>
-                                                        							<li><a href="teacher-staff.html">
-							<img src="upload/client_feedback/Voc_9_Aru.jpg"  height="120" width="110" /></a>
-							<p style="margin-top: 4px">মোহাম্মদ সিরাজুল হক </p>
-							<p style="margin-top: 5px; background: #045564; padding: 4px; color: white;">সপ এ্যাসিস্ট্যান্ট  </p>
-							</li>
-                                                        							<li><a href="teacher-staff.html">
-							<img src="upload/client_feedback/Voc_10_Alam_Kabir.jpg"  height="120" width="110" /></a>
-							<p style="margin-top: 4px">মো:আলম কবির </p>
-							<p style="margin-top: 5px; background: #045564; padding: 4px; color: white;">ল্যাব এ্যাসিস্টন্ট  </p>
-							</li>
-                                                        							<li><a href="teacher-staff.html">
-							<img src="upload/client_feedback/Panjit.jpg"  height="120" width="110" /></a>
-							<p style="margin-top: 4px">প্রানজিত কুমার দাস </p>
-							<p style="margin-top: 5px; background: #045564; padding: 4px; color: white;">নিরাপত্তা কর্মী  </p>
-							</li>
+                             {% endfor %}
                                                         							
 						</ul>
 	</marquee>  
 						
 					</div>
-					<a href="teacher-staff.html" id="Readmore2" style="margin-top: 25px;display: inline-block;"><img src="home_asset/images/more-b.png"></a>
+					<a href="teacher-staff.html" id="Readmore2" style="margin-top: 25px;display: inline-block;"><img src="{% static 'home_asset/images/more-b.png' %}"></a>
 				</div>				
 
 	<div class="TechContent" style>
@@ -929,139 +571,52 @@
 
                 </div>
 	    </div>
-	    <div class="contentBottom" style="margin-left:10%">
-	        <div class="bottomLeft">
-	            	            <h2 id="allheadCaptionb">জে.এস.সি,এস.এস.সি ও এস.এস.সি ভোকেশনাল পাবলিক পরীক্ষার ফলাফল</h2>
-	            <table>
-	                <tr>
-	                    <th colspan="6">জে.এস.সি ফলাফল</th>
-	                </tr>
-	                <tr>
-	                    <td>সাল</td>
-	                    <td>মোট পরীক্ষার্থী</td>
-	                    <td>মোট পাশ</td>
-	                    <td>A+</td>
-	                    <td>A</td>
-	                    <td>A-</td>
-	                    <td>B</td>
-	                    <td>C</td>
-	                    <td>D</td>
-	                    <td>F</td>
-	                    <td>শতকরা</td>
-	                </tr>
-	                	                    <tr>
-	                        <td>2021</td>
-	                        <td>220</td>
-	                        <td>220</td>
-	                        <td>0</td>
-	                        <td>0</td>
-	                        <td>0</td>
-	                        <td>0</td>
-	                        <td>0</td>
-	                        <td>0</td>
-	                        <td>0</td>
-	                        <td>100%</td>
-	                    </tr>
-	                	            </table>
-	            <table>
-	                <tr>
-	                    <th colspan="6">এস.এস.সি ফলাফল</th>
-	                </tr>
-	                <tr>
-	                    <td>সাল</td>
-	                    <td>মোট পরীক্ষার্থী</td>
-	                    <td>মোট পাশ</td>
-	                    <td>A+</td>
-	                    <td>A</td>
-	                    <td>A-</td>
-	                    <td>B</td>
-	                    <td>C</td>
-	                    <td>D</td>
-	                    <td>F</td>
-	                    <td>শতকরা</td>
-	                </tr>
-	                	                    <tr>
-	                        <td>2023</td>
-	                        <td>130</td>
-	                        <td>119</td>
-	                        <td>04</td>
-	                        <td>45</td>
-	                        <td>26</td>
-	                        <td>26</td>
-	                        <td>17</td>
-	                        <td>01</td>
-	                        <td>11</td>
-	                        <td>91.54 %</td>
-	                    </tr>
-	                	            </table>
 
-	            <table>
-	                <tr>
-	                    <th colspan="6"> এস.এস.সি ভোকেশনাল ফলাফল </th>
-	                </tr>
-	                <tr>
-	                    <td>সাল</td>
-	                    <td>মোট পরীক্ষার্থী</td>
-	                    <td>মোট পাশ</td>
-	                    <td>A+</td>
-	                    <td>A</td>
-	                    <td>A-</td>
-	                    <td>B</td>
-	                    <td>C</td>
-	                    <td>D</td>
-	                    <td>F</td>
-	                    <td>শতকরা</td>
-	                </tr>
-	                	                    <tr>
-	                        <td>2023</td>
-	                        <td>47</td>
-	                        <td>42</td>
-	                        <td>05</td>
-	                        <td>35</td>
-	                        <td>02</td>
-	                        <td>0</td>
-	                        <td>0</td>
-	                        <td>0</td>
-	                        <td>05</td>
-	                        <td>89.36 % </td>
-	                    </tr>
-	                	            </table>
-	        </div>
-	        {% comment %} <div class="bottomRight">
-	            	                    <div class="singledown clearfix">
-	                        <img src="upload/portal_img/archive2.jpg" />
-	                        <h2><a href="http://www.educationboardresults.gov.bd/" target="_blank">results archive</a></h2>
-	                    </div>
 
-	            	                    <div class="singledown clearfix">
-	                        <img src="upload/portal_img/oems.jpg" />
-	                        <h2><a href="http://esif.teletalk.com.bd/" target="_blank">E-SLIF</a></h2>
-	                    </div>
+		</a>
+	    <div class="bottomRight" style="width: 500px; height: 300px; ">
+			<div class="singledown clearfix mt-4">
+<img src="{% static 'upload/portal_img/archive2.jpg' %}" />
+<h2><a href="http://www.educationboardresults.gov.bd/" target="_blank">results archive</a></h2>
+</div>
 
-	            	                    <div class="singledown clearfix">
-	                        <img src="upload/portal_img/eff.jpg" />
-	                        <h2><a href="http://eff.teletalk.com.bd/" target="_blank"> E-FORM FILL-UP</a></h2>
-	                    </div>
+			<div class="singledown clearfix">
+<img src="{% static 'upload/portal_img/oems.jpg' %}" />
+<h2><a href="http://esif.teletalk.com.bd/" target="_blank">E-SLIF</a></h2>
+</div>
 
-	            	                    <div class="singledown clearfix">
-	                        <img src="upload/portal_img/board.png" />
-	                        <h2><a href="http://www.dshe.gov.bd/mpo.php" target="_blank"> MPO INFORMATION</a></h2>
-	                    </div>
+			<div class="singledown clearfix">
+<img src="{% static 'upload/portal_img/eff.jpg' %}" />
+<h2><a href="http://eff.teletalk.com.bd/" target="_blank"> E-FORM FILL-UP</a></h2>
+</div>
 
-	            	                    <div class="singledown clearfix">
-	                        <img src="upload/portal_img/emis.jpg" />
-	                        <h2><a href="http://www.emis.gov.bd/" target="_blank">emis</a></h2>
-	                    </div>
+			<div class="singledown clearfix">
+<img src="{% static 'upload/portal_img/board.png' %}" />
+<h2><a href="http://www.dshe.gov.bd/mpo.php" target="_blank"> MPO INFORMATION</a></h2>
+</div>
 
-	            	                    <div class="singledown clearfix">
-	                        <img src="upload/portal_img/downloadform.jpg" />
-	                        <h2><a href="http://iajuddincollege.com/index.php" target="_blank"> DOWNLOADABLE FORM</a></h2>
-	                    </div>
+			<div class="singledown clearfix">
+<img src="{% static 'upload/portal_img/emis.jpg' %}" />
+<h2><a href="http://www.emis.gov.bd/" target="_blank">emis</a></h2>
+</div>
 
-	            
-	        </div> {% endcomment %}
+			<div class="singledown clearfix">
+<img src="{% static 'upload/portal_img/downloadform.jpg' %}" />
+<h2><a href="http://iajuddincollege.com/index.php" target="_blank"> DOWNLOADABLE FORM</a></h2>
+</div>
 
-	    </div>
+<hr><br><hr>
+
+
+{% for i in admission_obj %}
+    <div class="singledown clearfix" style="height: 48px;" >
+        <img src="{% static 'upload/portal_img/contact-form.png' %}" style="width: 30px;"/>
+        <h2><a href="{{i.form_link}}" target="_blank"> FORM - {{i.form_name}}</a> </h2>
+    </div>
+    
+{% endfor %}
+
+</div>
 
 	</div>
 
@@ -1229,6 +784,6 @@
 
         </body>
 
-    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <!-- Mirrored from eduwebsite.stitbd.app/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 26 Aug 2023 19:22:56 GMT -->
 </html>
