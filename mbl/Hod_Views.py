@@ -86,9 +86,7 @@ def addStudent(request):
         date_of_birth = request.POST.get('date_of_birth')
         class_name = request.POST.get('class_name')
         religion = request.POST.get('religion')
-        joining_date = request.POST.get('joining_date')
         mobile_number = request.POST.get('mobile_number')
-        admission_number = request.POST.get('admission_number')
         section_id = request.POST.get('section')
         fathers_name = request.POST.get('fathers_name')
         fathers_mobile = request.POST.get('fathers_mobile')
@@ -137,9 +135,7 @@ def addStudent(request):
                 date_of_birth= date_of_birth,
                 class_name= class_id,
                 religion= religion,
-                joining_date= joining_date,
                 mobile_number= mobile_number,
-                admission_number= admission_number,
                 section= section,
                 fathers_name= fathers_name,
                 fathers_mobile= fathers_mobile,
@@ -218,10 +214,8 @@ def updateStudent(request):
         date_of_birth = request.POST.get('date_of_birth')
         class_id = request.POST.get('class_id')
         religion = request.POST.get('religion')
-        joining_date = request.POST.get('joining_date')
         mobile_number = request.POST.get('mobile_number')
         password=request.POST.get('password')
-        admission_number = request.POST.get('admission_number')
         section_id = request.POST.get('section')
         fathers_name = request.POST.get('fathers_name')
         fathers_mobile = request.POST.get('fathers_mobile')
@@ -268,12 +262,9 @@ def updateStudent(request):
     
         student.religion = religion
 
-        if joining_date != None and joining_date != "":
-            student.joining_date = joining_date
 
         student.mobile_number = mobile_number
         student.password = password
-        student.admission_number = admission_number
         student.section_id = section_id
         student.fathers_name = fathers_name
         student.fathers_mobile = fathers_mobile
@@ -1119,16 +1110,16 @@ def updateClass(request):
 
 @login_required(login_url='login')
 def deleteClass(request, id):
-    if request.method == "POST":
-        confirm = request.POST.get('confirm')
-        if confirm == "CONFIRM":
-            classes = Classes.objects.get(id=id)
-            classes.delete()
-            messages.success(request, f"{classes.name} Deleted Successfully")
+    # if request.method == "POST":
+    #     confirm = request.POST.get('confirm')
+    #     if confirm == "CONFIRM":
+    classes = Classes.objects.get(id=id)
+    classes.delete()
+    messages.success(request, f"{classes.name} Deleted Successfully")
 
-        else:
-            messages.error(request, "Please Type CONFIRM to Delete Class")
-            return redirect('view_class')
+        # else:
+        #     messages.error(request, "Please Type CONFIRM to Delete Class")
+        #     return redirect('view_class')
     
     return redirect('view_class')
 
