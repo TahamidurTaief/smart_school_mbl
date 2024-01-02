@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 import csv
 from app.models import *
 from django.contrib import messages
-import pandas as pd
+# import pandas as pd
 from django.http import JsonResponse
 from datetime import datetime, timezone
 import openpyxl
