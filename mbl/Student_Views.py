@@ -132,7 +132,7 @@ def studentViewAttendance(request):
 def studentViewResult(request):
     student = Student.objects.get(admin=request.user.id)
     stu_class_name = Classes.objects.get(id=student.class_name.id)
-    subject_obj = SchoolSubjects.objects.filter(class_name=stu_class_name)
+    # subject_obj = SchoolSubjects.objects.filter(class_name=stu_class_name)
     class_obj = Classes.objects.all()
     # result = StudentResult.objects.filter(student_id=student)
     
@@ -148,28 +148,29 @@ def studentViewResult(request):
     subject = None
     result = None
     result_link = None
-    if action is not None:
-        if request.method == 'POST':
-            subject = request.POST.get('subject')
-            subject_id = SchoolSubjects.objects.get(id=subject)
 
-            result = StudentResult.objects.filter(student_id=student, subject_id=subject)
-            get_subject = subject_id
+    # if action is not None:
+        # if request.method == 'POST':
+    # subject = request.POST.get('subject')
+    # subject_id = SchoolSubjects.objects.get(id=subject)
+
+    result = StudentResult.objects.filter(student_id=student, class_id=stu_class_name)
+    # get_subject = subject_id
 
 
-            for i in result:
-                
-                student_name = i.student_id.first_name + ' ' + i.student_id.last_name
-                student_id = i.student_id.id
-                roll = i.student_id.roll
-                class_name = i.student_id.class_name.name
-                section_name = i.student_id.section.section_name
+    for i in result:
+        
+        student_name = i.student_id.first_name + ' ' + i.student_id.last_name
+        student_id = i.student_id.id
+        roll = i.student_id.roll
+        class_name = i.student_id.class_name.name
+        section_name = i.student_id.section.section_name
 
-                result = i.result
-                result_link = i.result_link
-                # session_year = i.student_id.session_year.session_year
-                teacher_name = i.subject_id.teacher.admin.first_name + ' ' + i.subject_id.teacher.admin.last_name
-                subject = i.subject_id.name
+        result = i.result
+        result_link = i.result_link
+        # session_year = i.student_id.session_year.session_year
+        # teacher_name = i.subject_id.teacher.admin.first_name + ' ' + i.subject_id.teacher.admin.last_name
+        # subject = i.subject_id.name
 
 
 
@@ -182,8 +183,8 @@ def studentViewResult(request):
         'teacher_name' : teacher_name,
         'roll' : roll,
         'student_id' : student_id,
-        'subject' : subject,
-        'subject_obj' : subject_obj,
+        # 'subject' : subject,
+        # 'subject_obj' : subject_obj,
         'class_obj' : class_obj,
         'result' : result,
         'result_link' : result_link,

@@ -336,12 +336,13 @@ class StudentResult(models.Model):
 
 class StudentResult(models.Model):
     student_id = models.ForeignKey(Student, on_delete=models.CASCADE)
-    subject_id = models.ForeignKey(SchoolSubjects, on_delete=models.CASCADE)
+    session_year_id = models.ForeignKey(Session_Year, on_delete=models.CASCADE, default="", null=True)
+    class_id = models.ForeignKey(Classes, on_delete=models.CASCADE, default="", null=True)
     result = models.CharField(default=0, null=True, max_length=50)
     result_link = models.CharField(default="#", max_length=500)
 
     def __str__(self):
-        return str(self.student_id.admin.first_name) + "  " + str(self.subject_id.name)
+        return str(self.student_id.admin.first_name) + "  " + str(self.class_id)
 
 
 # class Weak_day(models.Model):

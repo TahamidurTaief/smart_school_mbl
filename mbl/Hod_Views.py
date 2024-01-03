@@ -2294,181 +2294,223 @@ def deleteNotice(request, id):
 
 
 
-
-
-
 @login_required(login_url='login')
-def addResultPlan(request):
-    subject_obj = SchoolSubjects.objects.all()
-
-    context = {
-        'subject_obj' : subject_obj,
-    }
-    return render(request, 'Hod/result_plan.html', context)	
-
-
-
-
-@login_required(login_url='login')
-def saveResultPlan(request):
-    if request.method == 'POST':
-        subject = request.POST.get('subject_id')
-        pi_no = request.POST.get('pi_no')
-        pi_desc = request.POST.get('pi_desc')
-        bi_desc = request.POST.get('bi_desc')
-
-        subject_id = SchoolSubjects.objects.get(id=subject)
-
-        result_plan = ResultPlan(
-            subject = subject_id,
-            pi_no = pi_no,
-            pi_name = pi_desc,
-            bi_name = bi_desc,
-        )
-
-        result_plan.save()
-        messages.success(request, f"Result Plan Added Successfully")
-
-        return redirect('result_plan')
-
-    else:
-        return redirect('oops')
-
-
-
-@login_required(login_url='login')
-def viewResultPlan(request):
-    result_plan = ResultPlan.objects.all()
-    subject_obj = SchoolSubjects.objects.all()
-
-    context = {
-        'result_plan' : result_plan,
-        'subject_obj' : subject_obj,
-    }
-    return render(request, 'Hod/view_result_plan.html', context)
-
-
-
-
-@login_required(login_url='login')
-def editResultPlan(request, id):
-    result_plan = ResultPlan.objects.filter(id=id)
-
-    context = {
-        'result_plan' : result_plan,
-    }
-    return render(request, 'Hod/edit_result_plan.html', context)
-
-
-
-
-@login_required(login_url='login')
-def updateResultPlan(request):
-    if request.method == 'POST':
-        plan_id = request.POST.get('plan_id')
-        pi_no = request.POST.get('pi_no')
-        pi_desc = request.POST.get('pi_desc')
-        bi_desc = request.POST.get('bi_desc')
-
-        result_plan = ResultPlan.objects.get(id=plan_id)
-        result_plan.pi_no = pi_no,
-        result_plan.pi_name = pi_desc,
-        result_plan.bi_name = bi_desc,
-        result_plan.save()
-
-        messages.success(request, f"Result Plan Updated Successfully")
-
-        return redirect('result_plan')
-
-    else:
-        return redirect('oops')
-
-
-
-
-
-@login_required(login_url='login')
-def deleteResultPlan(request, id):
-    if request.method == "POST":
-        confirm = request.POST.get('confirm')
-        if confirm == "CONFIRM":
-            result_plan = ResultPlan.objects.get(id=id)
-            result_plan.delete()
-            return redirect("view_result_plan")
-            messages.success(request, f"Result Plan deleted Successfully")
+def AdminAddResult(request):
+    # school_teacher = SchoolTeacher.objects.get(admin=request.user.id)
+    session_year = Session_Year.objects.all()
+    # subjects = SchoolSubjects.objects.filter(teacher=school_teacher)
+    result = StudentResult.objects.all()
+    class_obj = Classes.objects.all()
+    # result_plan = ResultPlan.objects.all()
     
-        else:
-            messages.error(request, "Please Type CONFIRM to Delete Result Plan")
-            return redirect('view_result_plan')
-    return render(request, 'Hod/view_result_plan.html')
+    action = request.GET.get('action')
+    
+    get_session=None
+    get_class=None
+    students=None
+    
+    if action is not None:
+        if request.method == 'POST':
+            session_year_id = request.POST.get('session_year_id')
+            class_id = request.POST.get('class_id')
+            student_id = request.POST.get('student_id')
+            
+            session_year_obj = Session_Year.objects.get(id=session_year_id)
+            class_obj = Classes.objects.get(id=class_id)
+            
+        
+            get_class = Classes.objects.get(id=class_id)
+            get_session = Session_Year.objects.get(id=session_year_id)
+
+            
+    
+            classes = Classes.objects.filter(id = class_id)
+            # for i in classes:
+            #     class_id = i.course_id.id
+            students = Student.objects.filter(class_name=class_id, session_year_id=session_year_id)
+    
+    
+    context = {
+        'session_year': session_year,
+        # 'subjects': subjects,
+        'action' : action,
+        'get_class' : get_class,
+        'get_session' : get_session,
+        'students' : students,
+        'result' : result,
+        'class_obj' : class_obj,
+        # 'result_plan' : result_plan,
+    }
+    return render(request, 'Hod/add_result.html', context)
+
+
+
+
+
+def AdminSaveResult(request):
+    if request.method == "POST":
+        session_year_id = request.POST.get('session_year_id')
+        class_id = request.POST.get('class_id')
+        student_id = request.POST.get('student_id')
+        result_name = request.POST.get('result_name')
+        result_link = request.POST.get('result_link')
+
+
+        print(f"\n {class_id}\n{session_year_id}")
+
+        # print(f'session_year_id: {session_year_id}\nsubject_id: {subject_id}\nstudent_id: {student_id}\npi_bi_no: {pi_bi_no}\ngrade_no: {grade_no}\n')
+        
+        
+
+        student_obj = Student.objects.get(admin=student_id)
+        session_year_obj = Session_Year.objects.get(id=session_year_id)
+        class_obj = Classes.objects.get(id=class_id)
+        
+        check_exist = StudentResult.objects.filter(student_id=student_obj, class_id=class_id).exists()
+
+
+
+        result = StudentResult(
+            class_id=class_obj,
+            student_id=student_obj,
+            session_year_id=session_year_obj,
+            result = result_name,
+            result_link = result_link,
+        )
+        result.save()
+        messages.success(request, 'Result Added Successfully')
+        return redirect('admin_add_result')
+
+    
+    return render(request, 'Hod/add_result.html')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# @login_required(login_url='login')
+# def editResultPlan(request, id):
+#     result_plan = ResultPlan.objects.filter(id=id)
+
+#     context = {
+#         'result_plan' : result_plan,
+#     }
+#     return render(request, 'Hod/edit_result_plan.html', context)
+
+
+
+
+# @login_required(login_url='login')
+# def updateResultPlan(request):
+#     if request.method == 'POST':
+#         plan_id = request.POST.get('plan_id')
+#         pi_no = request.POST.get('pi_no')
+#         pi_desc = request.POST.get('pi_desc')
+#         bi_desc = request.POST.get('bi_desc')
+
+#         result_plan = ResultPlan.objects.get(id=plan_id)
+#         result_plan.pi_no = pi_no,
+#         result_plan.pi_name = pi_desc,
+#         result_plan.bi_name = bi_desc,
+#         result_plan.save()
+
+#         messages.success(request, f"Result Plan Updated Successfully")
+
+#         return redirect('result_plan')
+
+#     else:
+#         return redirect('oops')
+
+
+
+
+
+# @login_required(login_url='login')
+# def deleteResultPlan(request, id):
+#     if request.method == "POST":
+#         confirm = request.POST.get('confirm')
+#         if confirm == "CONFIRM":
+#             result_plan = ResultPlan.objects.get(id=id)
+#             result_plan.delete()
+#             return redirect("view_result_plan")
+#             messages.success(request, f"Result Plan deleted Successfully")
+    
+#         else:
+#             messages.error(request, "Please Type CONFIRM to Delete Result Plan")
+#             return redirect('view_result_plan')
+#     return render(request, 'Hod/view_result_plan.html')
+
 
 
 
 
 @login_required(login_url='login')
 def adminViewResult(request):
-    try:
-        class_obj = Classes.objects.all()
-        subject_obj = SchoolSubjects.objects.all()
-        student_obj = Student.objects.all()
-        
-        action = request.GET.get('action')
+    # try:
+    class_obj = Classes.objects.all()
+    session_year = Session_Year.objects.all()
+    subject_obj = SchoolSubjects.objects.all()
+    student_obj = Student.objects.all()
+    
+    action = request.GET.get('action')
 
-        student_name = None
-        student_id = None
-        roll = None
-        class_name = None
-        section_name = None
-        teacher_name = None
-        subject = None
-        pi_no = None
-        grade = None
-        result = None
-        pi_name = None
-        bi_name = None
-        pi_bi_name = None
-        get_student = None
-        get_subject  = None
+    student_name = None
+    student_id = None
+    roll = None
+    class_name = None
+    section_name = None
+    teacher_name = None
+    subject = None
+    result = None
+    get_session = None
+    get_class = None
 
-        if action is not None:
-            if request.method == 'POST':
-                subject = request.POST.get('subject')
-                student = request.POST.get('student')
+    if action is not None:
+        if request.method == 'POST':
+            class_id = request.POST.get('class_id')
+            session_year_id = request.POST.get('session_year_id')
 
-                subject_obj = SchoolSubjects.objects.filter(id = subject)
-                subject_id = SchoolSubjects.objects.get(id=subject)
-
-                result = StudentResult.objects.filter(student_id=student, subject_id=subject)
-                get_subject = subject_id
-
-                get_student = Student.objects.get(id=student)
-                get_subject = subject_id
+            class_obj = Classes.objects.filter(id = class_id)
+            session_year_obj = Session_Year.objects.get(id=session_year_id)
 
 
-                for i in result:
-                    pi_no = i.pi_no
-                    grade = i.grade
-                    student_name = i.student_id.first_name + ' ' + i.student_id.last_name
-                    student_id = i.student_id.id
-                    roll = i.student_id.roll
-                    class_name = i.student_id.class_name.name
-                    section_name = i.student_id.section.section_name
-                    teacher_name = i.subject_id.teacher.admin.first_name + ' ' + i.subject_id.teacher.admin.last_name
-                    subject = i.subject_id.name
+            get_session = Session_Year.objects.get(id=session_year_id)
+            get_class = Classes.objects.get(id=class_id)
+
+            
+            result = StudentResult.objects.filter(class_id=class_id, session_year_id=session_year_id)
+
+            for i in result:
+                student_name = i.student_id.first_name + ' ' + i.student_id.last_name
+                student_id = i.student_id.id
+                roll = i.student_id.roll
+                class_name = i.student_id.class_name.name
+                section_name = i.student_id.section.section_name
+                # teacher_name = i.subject_id.teacher.admin.first_name + ' ' + i.subject_id.teacher.admin.last_name
+                # subject = i.subject_id.name
                     
                 # print(f'\n\n student_name: {student_name}\n student_id: {student_id} \n roll: {roll}\n class_name: {class_name}\n section_name: {section_name}\n s teacher_name: {teacher_name}\n subject: {subject}\n pi_no: {pi_no}\n grade: {grade}\n result: {result}\n\n'	)
 
-    except:
-        messages.error(request, "Please Select Subject and Student")
-        return redirect('admin_view_result')
+    # except:
+    #     messages.error(request, "Please Select Subject and Student")
+    #     return redirect('admin_view_result')
 
 
     context = {
         'result': result,
         'subject_obj' : subject_obj,
         'student_obj' : student_obj,
-        'get_student' : get_student,
-        'get_subject' : get_subject,
         'student_name' : student_name,
         'class_name' : class_name,
         'section_name' : section_name,
@@ -2476,11 +2518,12 @@ def adminViewResult(request):
         'roll' : roll,
         'student_id' : student_id,
         'subject' : subject,
-        'pi_no' : pi_no,
-        'grade' : grade,
         'subject_obj' : subject_obj,
         'class_obj' : class_obj,
+        'session_year' : session_year,
         'action' : action,
+        'get_session' : get_session,
+        'get_class' : get_class,
     }
     
 

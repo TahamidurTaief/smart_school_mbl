@@ -86,7 +86,7 @@ DATABASES = {
     # install this: pip install mysqlclient
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'smart_school',
+        'NAME': 'mbl',
         'USER': 'root',
         'PASSWORD': '',
         'HOST':'localhost',

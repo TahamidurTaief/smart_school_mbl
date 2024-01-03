@@ -132,8 +132,8 @@ urlpatterns = [
     path('admin/notice/update', Hod_Views.updateNotice, name="update_notice"),
     path('admin/notice/<str:id>/delete', Hod_Views.deleteNotice, name="delete_notice"),
 
-    # path('admin/result/plan/add', Hod_Views.addResultPlan, name='result_plan'),
-    # path('admin/result/plan/save', Hod_Views.saveResultPlan, name='save_result_plan'),
+    path('admin/result/add', Hod_Views.AdminAddResult, name='admin_add_result'),
+    path('admin/result/save', Hod_Views.AdminSaveResult, name='admin_save_result'),
     # path('admin/result/plan/view', Hod_Views.viewResultPlan, name='view_result_plan'),
     # path('admin/result/plan/<str:id>/edit', Hod_Views.editResultPlan, name='edit_result_plan'),
     # path('admin/result/plan/update', Hod_Views.updateResultPlan, name='update_result_plan'),
@@ -158,8 +158,7 @@ urlpatterns = [
     path('teacher/school/attendance/save', Staff_Views.saveSchoolTeacherAttendance, name='save_school_teacher_attendance'),
     path('teacher/school/attendance/view', Staff_Views.viewSchoolTeacherAttendance, name='view_school_teacher_attendance'),
     
-    path('teacher/result/add', Staff_Views.addResult, name='add_result'),
-    path('teacher/result/save', Staff_Views.saveResult, name='save_result'),
+    path('teacher/result/view', Staff_Views.staffViewResult, name='staff_view_result'),
     
     path('teacher/routine/view', Staff_Views.viewRoutine, name='staff_view_routine'),
     path('teacher/notice/view', Staff_Views.viewNotice, name='staff_view_notice'),

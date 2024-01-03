@@ -25,58 +25,7 @@
 
 
 
-    {% if action is none %}
-    <div class="row">
-       <div class="col-sm-12">
-          <div class="card mt-3">
-             <div class="card-body">
-
-                
-                <form action="?action=view_result" method="post">
-                  {% csrf_token %}
-                  <div class="row">
-                     <div class="col-12">
-                        <h5 class="form-title"><span>Result</span></h5>
-                     </div>
-
-                      {% comment %} =================   alert message =================== {% endcomment %}
-                     {% include 'includes/messages.html' %}
-                     {% comment %} ======================================================= {% endcomment %}
-
-                     
-
-                     <div class="col-12 col-sm-6">
-                        <div class="form-group">
-                           <label>Subject</label>
-                           <select class="form-control" name="subject" required>
-                              <option value='None'>Select Subject</option>
-
-                              {% for i in subject_obj %}
-                                 <option value="{{i.id}}">{{i.name}}</option>
-                              {% endfor %}
-                              
-                           </select>
-                        </div>
-                     </div>
-
-
-                     
-                       <div class="col-12">
-                          <button type="submit" class="btn btn-primary">Show Result</button>
-                       </div>
-                      </div>
-                   </div>
-                </form>
-                
-
-             </div>
-          </div>
-       </div>
-    </div>
-
-
-
-{% else %}
+   
     <div class="row">
      <div class="col-sm-12">
         <div class="card mt-3">
@@ -94,21 +43,6 @@
                   {% include 'includes/messages.html' %}
                   {% comment %} ======================================================= {% endcomment %}
 
-                  
-
-                  <div class="col-12 col-sm-6">
-                     <div class="form-group">
-                        <label>Subject</label>
-                        <select class="form-control" name="subject" required>
-                           <option value='None'>Select Subject</option>
-
-                           {% for i in subject_obj %}
-                              <option value="{{i.id}}">{{i.name}}</option>
-                           {% endfor %}
-                           
-                        </select>
-                     </div>
-                  </div>
 
                     
 
@@ -137,8 +71,7 @@
                                              <tr>
                                                 <th scope="row">ক্লাস :  {{class_name}}</th>
                                                 <th scope="row">শাখা : {{section_name}}</th>
-                                                <th scope="row">বিষয় : {{subject}}</th>
-                                                <th scope="row">শিক্ষকের নাম : {{teacher_name}}</th>
+                                                <th scope="row">বিষয় : All Subject</th>
                                               </tr>
                                             <tr>
                                                {% comment %} {% endfor %} {% endcomment %}
@@ -178,6 +111,6 @@
   </div>
 </div> {% endcomment %}
 
-{% endif %}
+{% comment %} {% endif %} {% endcomment %}
 
 {% endblock %}
