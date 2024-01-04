@@ -1,0 +1,527 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>School website template using pure html and css</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link type="text/css" rel="stylesheet" href="{% static 'home_asset/css/style2.css' %}">
+      <link rel="shortcut icon" href="{% static 'assets/img/favicon.png' %}">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      </head>
+   <body>
+
+
+
+<div class="width-100 header">
+   <div class="container ">
+      <div class="width-25 head-left">
+         <ul>
+            <li><a href="{% url 'login' %}"><i class="fa fa-lock"></i> Admin Login</a></li>
+            <li><a href="{% url 'login' %}"><i class="fa fa-lock"></i> Student Login</a></li>
+         </ul>
+      </div>
+      <div class="width-50">
+         <marquee class="notification">
+            <span><img src="images/new.gif"></span> Examnination Notification <span><img src="images/new.gif"></span> Get Ready To Explore The Genius In You With Genius 2023 <span><img src="images/new.gif"></span> Enrollment Form Notification 2022 23 Batch
+         </marquee>
+      </div>
+      <div class="width-25 head-right">
+         <ul>
+            <li><a href="#"><i class="fa fa-comment"></i> Admission Open <span class="head-span"><img src="images/new.gif"></span></a></li>
+            <li><a href="#"><i class="fa fa-rss"></i> Blogs</a></li>
+         </ul>
+      </div>
+   </div>
+</div>
+
+
+
+{% comment %} <!---------- Logo And Main Menu HTML Starts ---------> {% endcomment %}
+<div class="container">
+   <div class="width-25 logo"> <img src="{% static 'assets/img/molamgarihat_school_short_title.png' %}"> </div>
+   <div class="width-75 head-menu">
+      <ul>
+         <li><a href="{% url 'home' %}">Home</a></li>
+         <li><a href="#">About us</a></li>
+         <li><a href="#">Admission</a></li>
+         <li><a href="#">Gallery</a></li>
+         <li><a href="#">Notice Board</a></li>
+         <li><a href="#">Event</a></li>
+         <li><a href="#">Contact us</a></li>
+      </ul>
+   </div>
+</div>
+{% comment %} <!---------- Logo And Main Menu HTML Ends ---------> {% endcomment %}
+
+
+
+{% comment %} <!---------- Slider HTML Starts ---------> {% endcomment %}
+<div class="width-100">
+    <img src="{% static 'assets/img/banner/banner.jpg' %}" class="main-banner">
+    </div>
+    {% comment %} <!---------- Slider HTML Ends ---------> {% endcomment %}
+
+
+
+
+
+    {% comment %} <!---------- Notice Board, Recent Event HTML Starts ---------> {% endcomment %}
+<div class="main-section">
+    <div class="container">
+       <div class="note-event">
+          <h2 class="heading-text mt-20">Notice Boards</h2>
+          <span class="heading-border"></span>
+          <div class="notice-board mt-30">
+             <marquee direction="up" behavior="scroll" scrollamount="5" style="height:300px;">
+                <ul>
+
+                    {% for i in web_notice_obj %}
+												  
+												
+                        <li>
+                            <a href="{{i.notice_link}}" target="_blank" >
+                                <li><i class="fa fa-check-square-o"></i> {{i.headline}}<br>&nbsp;&nbsp;&nbsp;&nbsp;{{i.updated_at}}</li>
+                                {% comment %} {{i.headline}}<br /><span id="noticeDay">{{i.updated_at}}</span> {% endcomment %}
+                            </a>
+                        </li>
+
+					{% endfor %}
+                   {% comment %} <li><i class="fa fa-check-square-o"></i> Lorem Ipsum is simply dummy text of the printing and typesetting industry.</li>
+                   <li><i class="fa fa-check-square-o"></i> Desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</li>
+                   <li><i class="fa fa-check-square-o"></i> Many desktop publishing packages and web page editors now use</li>
+                   <li><i class="fa fa-check-square-o"></i> Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</li>
+                   <li><i class="fa fa-check-square-o"></i> Welcome To The Best Private University in MP</li>
+                   <li><i class="fa fa-check-square-o"></i> Lorem Ipsum is simply dummy text of the printing and typesetting industry.</li>
+                   <li><i class="fa fa-check-square-o"></i> Desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</li>
+                   <li><i class="fa fa-check-square-o"></i> Many desktop publishing packages and web page editors now use</li>
+                   <li><i class="fa fa-check-square-o"></i> Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</li>
+                   <li><i class="fa fa-check-square-o"></i> Welcome To The Best Private University in MP</li> {% endcomment %}
+                </ul>
+             </marquee>
+          </div>
+       </div>
+       <div class="note-event">
+          <h2 class="heading-text mt-20">Recent Event</h2>
+          <span class="heading-border"></span>
+          <marquee direction="up" behavior="scroll" scrollamount="5" style="height:400px;">
+             <div class="event-list">
+                <div class="event-date">
+                   <p>June</p>
+                   <h4>21</h4>
+                </div>
+                <div class="event-content">
+                   <p>Maths $ English</p>
+                   <h3>Offer With Higher Package Of 40 LPA</h3>
+                </div>
+             </div>
+             <div class="event-list">
+                <div class="event-date">
+                   <p>June</p>
+                   <h4>21</h4>
+                </div>
+                <div class="event-content">
+                   <p>Maths $ English</p>
+                   <h3>Offer With Higher Package Of 40 LPA</h3>
+                </div>
+             </div>
+             <div class="event-list">
+                <div class="event-date">
+                   <p>June</p>
+                   <h4>21</h4>
+                </div>
+                <div class="event-content">
+                   <p>Maths $ English</p>
+                   <h3>Offer With Higher Package Of 40 LPA</h3>
+                </div>
+             </div>
+             <div class="event-list">
+                <div class="event-date">
+                   <p>June</p>
+                   <h4>21</h4>
+                </div>
+                <div class="event-content">
+                   <p>Maths $ English</p>
+                   <h3>Offer With Higher Package Of 40 LPA</h3>
+                </div>
+             </div>
+          </marquee>
+       </div>
+    </div>
+ </div>
+ <!---------- Notice Board, Recent Event HTML Ends --------->
+
+
+
+<!-- MUJIB CORNER START -->
+ <div class="mujib" style="display: flex; padding: 20px 0; background-color: white;">
+    <img src="{% static '/assets/img/mujib-corner1.png' %}" alt="" style="width: 50%; height: 50%;">
+    <img src="{% static '/assets/img/mujib-corner2.png' %}" alt="" style="width: 50%; height: 50%;">
+</div>
+
+
+<!-- MUJIB CORNER START -->
+
+
+
+
+
+ {% comment %} <!---------- Campus Information HTML Starts ---------> {% endcomment %}
+<div class="main-section bg-lightgrey">
+    <div class="container">
+       <div class="width-50"> <img src="{% static 'assets/img/college_photo.png' %}" class="mt-10" style="width:100%; padding:20px;"> </div>
+       <div class="width-50">
+          <div class="about-campus">
+             <h2 class="heading-text">প্রতিষ্ঠান পরিচিতি</h2>
+             <span class="heading-border"></span>
+             <p>মোলামগাড়ীহাট দ্বি-মূখী উচ্চ বিদ্যালয়, কালাই, জয়পুরহাট দেশের অন্যতম প্রসিদ্ধ শিক্ষা প্রতিষ্ঠান। শিক্ষা মানুষের জন্মগত মৌলিক অধিকার যা প্রতিটি দেশ ও জাতির আর্থ-সামাজিক, সাংস্কৃতিক উন্নয়নের প্রধান হাতিয়ার। জ্ঞান ভিত্তিক সমাজ গঠনের লক্ষ্যে জনশক্তিকে শিক্ষার আলােতে উদ্ভাসিত করে জনসম্পদে রূপান্তরের মাধ্যমেই জাতির কাঙ্ক্ষিত পরিবর্তন সম্ভব। এ প্রতিষ্ঠানে ১৯৯৯ সালে নিম্ন মাধ্যমিক, ২০০২ সালে মাধ্যমিক ও ২০১৬ সালে উচ্চ মাধ্যমিক শ্রেণিতে পাঠদান চালু করা হয়েছে যা ভবিষ্যতে গুণে ও মানে আরাে সমৃদ্ধ হবে এ আমাদের লালিত স্বপ্ন। গণপ্রজাতন্ত্রী বাংলাদেশ সরকারের শিক্ষা মন্ত্রণালয় এবং মাধ্যমিক ও উচ্চ মাধ্যমিক শিক্ষা বাের্ড ঢাকা কর্তৃক প্রণীত নীতিমালা পালন ও মান্যকারী এ প্রতিষ্ঠান বাংলাদেশ পুলিশ কর্তৃক পরিকল্পিত ও নিয়ন্ত্রিত। এ প্রতিষ্ঠানকে সুন্দরভাবে গড়ে তােলা এবং সুষ্ঠুভাবে পরিচালনার জন্য রয়েছে দক্ষ ও নিবেদিতপ্রাণ পরিচালনা পর্ষদ, শিক্ষকবৃন্দ ও যুগােপযােগী নীতিমালা। অদূর ভবিষ্যতে উন্নত একাডেমিক ও সহশিক্ষামূলক কার্যক্রম, সুশৃঙ্খল পরিবেশ। এবং অত্যাধুনিক ভৌত অবকাঠামাে ব্যবহারের মাধ্যমে দেশের অন্যতম সেরা বিদ্যাপীঠে পরিণত হবে এ প্রতিষ্ঠান সে লক্ষ্যে নিরন্তর শ্রম, মেধা আর মননের সর্বোচ্চ ব্যবহার করে আসছেন সংশ্লিষ্ট সকলে।</p>
+             
+          </div>
+       </div>
+    </div>
+ </div>
+ {% comment %} <!---------- Campus Information HTML Ends ---------> {% endcomment %}
+
+
+
+
+
+
+
+
+
+
+
+ {% comment %} <!---------- Achievement HTML Starts ---------> {% endcomment %}
+<div class="main-section">
+    <div class="container">
+        
+    <div class="mujib" style="display: flex; padding: 20px 0; background-color: white; margin-bottom: 80px;">
+        <img src="{% static '/assets/img/mujib-corner1.png' %}" alt="" style="width: 50%; height: 50%;">
+        <img src="{% static '/assets/img/mujib-corner2.png' %}" alt="" style="width: 50%; height: 50%;">
+    </div>
+    
+    
+    <div class="note-event">
+            <h2 class="heading-text mt-20">শিক্ষক-শিক্ষিকা কর্ণার</h2>
+            <span class="heading-border"></span>
+            <marquee direction="up" behavior="scroll" scrollamount="5" style="height:400px;">
+               <div class="teacher-list" style="display:flex;">
+
+                {% for i in school_teacher_obj %}         
+
+                    <div class="teacher-img">
+                        <img src="{{i.admin.profile_pic.url}}"  height="80" width="80" /></a>
+                    </div>
+                    <div class="event-content">
+                        <h3>{{i.admin.first_name}} {{i.admin.last_name}}</h3>
+                        <p>{{i.staff_type}} </p>
+                    </div>
+                  
+                  {% endfor %}
+
+               </div>
+            </marquee>
+       </div>
+
+
+
+       <div class="note-event">
+        <h2 class="heading-text mt-20">গভর্নিং বডি কর্ণার</h2>
+        <span class="heading-border"></span>
+        <marquee direction="up" behavior="scroll" scrollamount="5" style="height:400px;">
+           <div class="teacher-list" style="display:flex;">
+
+            {% for i in staff_obj %}
+            <tr>
+                         <td >{{i.admin.first_name}} {{i.admin.last_name}} </td>
+                         <td>{{i.qualification}} </td>
+                         <td>{{i.staff_type}}</td>
+                     </tr>	
+                                                                                             
+            {% endfor %}
+
+            {% for i in staff_obj %}         
+
+                <div class="teacher-img">
+                    <img src="{{i.admin.profile_pic.url}}"  height="80" width="80" /></a>
+                </div>
+                <div class="event-content">
+                    <h3>{{i.admin.first_name}} {{i.admin.last_name}}</h3>
+                    <p><b>{{i.staff_type}} </b></p>
+                    <p>{{i.qualification}} </p>
+                </div>
+              
+              {% endfor %}
+
+           </div>
+        </marquee>
+   </div>
+       
+    </div>
+ </div>
+ {% comment %} <!---------- Achievement HTML Ends ---------> {% endcomment %}
+
+
+
+ {% comment %} <!---------- Popular Courses HTML Starts ---------> {% endcomment %}
+<div class="main-section bg-lightgrey">
+    <div class="container">
+       <!-- <div class="width-33"> -->
+          <div class="popular-course">
+             <h2 class="heading-text mt-50">সরকারি ডিজিটাল লিংক</h2>
+             <span class="heading-border"></span>
+          </div>
+       <!-- </div> -->
+       <div class="width-66" >
+          <div class="width-33">
+            <a href="http://www.educationboardresults.gov.bd/" style="color: black; font-weight: 550; font-family: 'Poppins', sans-serif !important;">
+             <div class="course-list bg-yellow">
+                <img src="{% static 'assets/img/icons/results.png' %}" alt="" style="width: 40px;">
+                <p>Result Archive</p>
+             </div>
+            </a>
+          </div>
+          <div class="width-33">
+            <a href="http://esif.teletalk.com.bd/" style="color: black; font-weight: 550; font-family: 'Poppins',sans-serif !important;">
+             <div class="course-list bg-blue">
+                <img src="{% static 'assets/img/icons/self.png' %}" alt="" style="width: 40px;">
+                <p> eSif</p>
+             </div>
+            </a>
+          </div>
+          
+          <div class="width-33">
+            <a href="http://eff.teletalk.com.bd/" style="color: black; font-weight: 550; font-family: 'Poppins',sans-serif !important;">
+                <div class="course-list bg-blue">
+                   <img src="{% static 'assets/img/icons/form.png' %}" alt="" style="width: 40px;">
+                   <p> e-Form Fill up</p>
+                </div>
+               </a>
+          </div>
+          <div class="width-33">
+            <a href="http://www.dshe.gov.bd/mpo.php" style="color: black; font-weight: 550; font-family: 'Poppins',sans-serif !important;">
+                <div class="course-list bg-blue">
+                   <img src="{% static 'assets/img/icons/board.png' %}" alt="" style="width: 40px;">
+                   <p>MPO Information</p>
+                </div>
+               </a>
+          </div>
+          <div class="width-33">
+            <a href="http://www.emis.gov.bd/" style="color: black; font-weight: 550; font-family: 'Poppins',sans-serif !important;">
+                <div class="course-list bg-blue">
+                   <img src="{% static 'assets/img/icons/emis.jpg' %}" alt="" style="width: 40px;">
+                   <p>EMIS</p>
+                </div>
+               </a>
+          </div>
+          <div class="width-33">
+            <a href="http://iajuddincollege.com/index.php" style="color: black; font-weight: 550; font-family: 'Poppins',sans-serif !important;">
+                <div class="course-list bg-blue">
+                   <img src="{% static 'assets/img/icons/downloadform.jpg' %}" alt="" style="width: 40px;">
+                   <p>Downloadable Form</p>
+                </div>
+            </a>
+        </div>
+        
+    </div>
+        <img src="{% static 'assets/img/mujib.png' %}" style="width: 350px;" alt="">
+          
+    </div>
+ </div>
+ {% comment %} <!---------- Popular Courses HTML Ends ---------> {% endcomment %}
+
+
+
+ {% comment %} <!---------- Testimonial HTML Starts ---------> {% endcomment %}
+<div class="main-section">
+    <div class="container">
+       <h2 class="heading-text mt-50">Contact Info</h2>
+       <span class="heading-border"></span>
+        
+       <div class="contact">
+       
+       <div class="hm">
+        <h2>Headmaster</h2>
+        <p>Name : Md. Haidar Ali Mondol<br>
+            Number : 01713662630<br>
+            Email : haidarmaster55@gmail.com</p>
+        </div>
+
+        
+       <div class="ahm">
+        <h2>Assistant Headmaster</h2>
+        <p>Name :  Md. Samim Hossain <br>
+            Number : 01303-630939<br>
+            Email : N/A</p>
+       </div>
+
+       <div class="office">
+        <h2>Office</h2>
+        <p>
+            Number : 01713662630 <br>
+            Email : molamgarihatblh@yahoo.com</p>
+       </div>
+</div>
+
+    </div>
+ </div>
+ {% comment %} <!---------- Testimonial HTML Ends ---------> {% endcomment %}
+
+
+
+
+ {% comment %} <!---------- Popular Courses HTML Starts ---------> {% endcomment %}
+<div class="main-section bg-lightgrey">
+    <div class="container">
+       <!-- <div class="width-33"> -->
+          <div class="popular-course">
+             <h2 class="heading-text mt-50">সরকারি ডিজিটাল লিংক</h2>
+             <span class="heading-border"></span>
+             
+          </div>
+          <img src="{% static 'assets/img/mujib.png' %}" style="width: 350px;" alt="">
+       <!-- </div> -->
+       <div class="width-66" >
+          <div class="width-33">
+            <a href="http://forms.gov.bd/" style="color: black; font-weight: 550; font-family: 'Poppins', sans-serif !important;">
+             <div class="course-list">
+                <img src="{% static 'assets/img/icons/forms_portal_logo.png' %}" alt="" style="width: 150px0%;">
+             </div>
+            </a>
+          </div>
+          <div class="width-33">
+            <a href="https://www.teachers.gov.bd/" style="color: black; font-weight: 550; font-family: 'Poppins',sans-serif !important;">
+             <div class="course-list">
+                <img src="{% static 'assets/img/icons/TP main-logo.png' %}" alt="" style="width: 150px">
+             </div>
+            </a>
+          </div>
+          
+          <div class="width-33">
+            <a href="https://muktopaath.gov.bd/" style="color: black; font-weight: 550; font-family: 'Poppins',sans-serif !important;">
+                <div class="course-list">
+                   <img src="{% static 'assets/img/icons/MP logo.png' %}" alt="" style="width: 150px;">
+                </div>
+            </a>
+        </div>
+          <div class="width-33">
+            <a href="https://bangladesh.gov.bd/site/page/8ce50d24-d00b-48c1-83ad-276b4fa63202/%E0%A6%AD%E0%A6%BF%E0%A6%B6%E0%A6%A8-%E0%A7%A8%E0%A7%A6%E0%A7%A8%E0%A7%A7" style="color: black; font-weight: 550; font-family: 'Poppins',sans-serif !important;">
+                <div class="course-list">
+                   <img src="{% static 'assets/img/icons/vision_2021_bn.png' %}" alt="" style="width: 200px;">
+                </div>
+               </a>
+          </div>
+
+          <div class="width-33">
+            <a href="https://konnect.edu.bd/public/" style="color: black; font-weight: 550; font-family: 'Poppins',sans-serif !important;">
+                <div class="course-list">
+                   <img src="{% static 'assets/img/icons/Konnect Logo.png' %}" alt="" style="width: 200px;">
+                </div>
+               </a>
+          </div>
+
+          
+
+          <div class="width-33">
+            <a href="http://www.ebook.gov.bd/" style="color: black; font-weight: 550; font-family: 'Poppins',sans-serif !important;">
+                <div class="course-list">
+                   <img src="{% static 'assets/img/icons/ebook_bangla (1).png' %}" alt="" style="width: 200px;">
+                </div>
+               </a>
+          </div>
+
+         
+        
+    </div>
+        
+          
+    </div>
+ </div>
+ {% comment %} <!---------- Popular Courses HTML Ends ---------> {% endcomment %}
+
+
+
+
+
+
+
+ {% comment %} <!---------- Gallery HTML Starts ---------> {% endcomment %}
+<div class="main-section">
+    <div class="container">
+       <h2 class="heading-text">Gallery</h2>
+       <span class="heading-border"></span>
+       <div class="gallery">
+          <div class="width-25"><img src="{% static 'assets/img/gallery/img2.jpg' %}"></div>
+          <div class="width-25"><img src="{% static 'assets/img/gallery/img3.jpg' %}"></div>
+          <div class="width-25"><img src="{% static 'assets/img/gallery/img4.jpg' %}"></div>
+          <div class="width-25"><img src="{% static 'assets/img/gallery/img6.jpg' %}"></div>
+          <div class="width-25"><img src="{% static 'assets/img/gallery/img7.jpg' %}"></div>
+          <div class="width-25"><img src="{% static 'assets/img/gallery/img5.jpg' %}"></div>
+          <div class="width-25"><img src="{% static 'assets/img/gallery/5.jpg' %}"></div>
+          <div class="width-25"><img src="{% static 'assets/img/gallery/16.jpg' %}"></div>
+       </div>
+    </div>
+ </div>
+ {% comment %} <!---------- Gallery HTML Ends ---------> {% endcomment %}
+
+
+
+ 
+
+ {% comment %} <!---------- Footer HTML Starts ---------> {% endcomment %}
+<div class="footer-section">
+    <div class="container">
+       <div class="width-25">
+          <div class="footer-link">
+             <img src="{% static 'assets/img/logo.png' %}" alt="" style="width: 200px;">
+          </div>
+       </div>
+       <div class="width-50">
+          <div class="footer-link">
+             <h2>Featured Links</h2>
+             <div class="width-100">
+                <ul class="footer-menu">
+                    <li><a href="http://www.du.ac.bd/" target="_blank">University of Dhaka</a></li>
+                    <li><a href="http://www.juniv.edu/" target="_blank">Jahangirnagar  University</a></li>
+                    <li><a href="http://www.ru.ac.bd/" target="_blank">Rajshahi University</a></li>
+                    <li><a href="http://www.brur.ac.bd/" target="_blank">Begum Rokeya University</a></li>
+                    <li class="lastlink"><a href="http://www.hstu.ac.bd/" target="_blank">HSTU</a></li>
+
+                    <li><a href="http://www.cu.ac.bd/" target="_blank">University of Chittagonj</a></li>
+                            <li><a href="http://www.ku.ac.bd/" target="_blank">Khulna University</a></li>
+                            <li><a href="http://www.jnu.ac.bd/" target="_blank">Jagannath University</a></li>
+                            <li><a href="http://www.iu.ac.bd/" target="_blank">Islamic University, Kustia</a></li>
+                            <li class="lastlink"><a href="http://www.buet.ac.bd/" target="_blank">BUET</a></li>
+                </ul>
+             </div>
+          </div>
+       </div>
+       <div class="width-25">
+          <div class="footer-link">
+             <h2>Contact Info</h2>
+             <ul class="footer-contact">
+                <li><i class="fa fa-envelope-o"></i> <span>E-MAIL: sonagazigphs@hotmail.com</span> </li>
+                <li><i class="fa fa-whatsapp"></i> <span> WHATS-APP: +8801816-150737</span> </li>
+                <li><i class="fa fa-fax"></i> <span> CONTACT NO.: +8801813-936252</span> </li>
+                <li><i class="fa fa-globe"></i> <span>WEBSITE: https://www.mhblhs.edu.bd</span> </li>
+             </ul>
+          </div>
+       </div>
+       
+    </div>
+ </div>
+
+
+ 
+ </body>
+ </html>
+ <!---------- Footer HTML Ends --------->
+
+
+
+

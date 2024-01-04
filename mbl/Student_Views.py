@@ -208,7 +208,6 @@ def studentViewRoutine(request):
     class_routine = RoutineSubjects.objects.all()
     
     
-    
     section = Section.objects.all()
     session_year = Session_Year.objects.all()
     

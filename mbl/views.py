@@ -23,7 +23,7 @@ def home(request):
         'web_notice_obj': web_notice_obj,
         'admission_obj': admission_obj,
     }
-    return render(request, 'website/home.html', context)
+    return render(request, 'website/home2.html', context)
 
 
 
