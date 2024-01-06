@@ -111,17 +111,18 @@
           <marquee direction="up" behavior="scroll" scrollamount="5" style="height:400px;">
              
              {% for i in admission_obj %}
-
+            <a href="{{i.admission_link}}" target="_blank" >
              <div class="event-list">
                 <div class="event-date">
                    <p>class</p>
                    <h4>{{i.class_name}}</h4>
                 </div>
                 <div class="event-content">
-                   <h3>{{form_name}}</h3>
-                   <p></p>
+                   <h3>{{i.form_name}}</h3>
+                   <p>{{i.updated_at}}</p>
                 </div>
              </div>
+            </a>
              {% endfor %}
              
              

@@ -428,7 +428,7 @@ class Notice(models.Model):
 
 
 class webNotice(models.Model):
-    headline = models.CharField(max_length=20, default="", null=True)
+    headline = models.CharField(max_length=200, default="", null=True)
     notice_link = models.TextField(default="", null=True, max_length=500)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -440,7 +440,7 @@ class webNotice(models.Model):
 
 class admissionForm(models.Model):
     class_name = models.ForeignKey(Classes, on_delete=models.CASCADE, default="", null=True)
-    form_name = models.CharField(max_length=20, default="", null=True)
+    form_name = models.CharField(max_length=200, default="", null=True)
     form_link = models.TextField(default="", null=True, max_length=500)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
