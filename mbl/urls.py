@@ -6,6 +6,7 @@ from django.conf import settings
 from . import views, Hod_Views, Staff_Views, Student_Views
 
 urlpatterns = [
+    # path('jet/', include('jet.urls', 'jet')),  # Django JET URLS
     path('', views.home, name='home'),
     path('teacher-staff/', views.web_teacher_staff, name='web_teacher_staff'),
 

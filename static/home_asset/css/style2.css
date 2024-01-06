@@ -99,16 +99,18 @@ a{
     color: white;
 }
 .head-left ul li a {
+    font-family: 'Poppins', sans-serif !important;
     color:white;
     text-decoration:none;
 }
 .notification {
-    padding-top: 17px;
+    padding-top: 5px;
     color: white;
 }
 .notification span img {
-    height: 14px;
-    width: 30px;
+    height: 20px;
+    width: 20px;
+    padding-top: 5px;
 }
 .notification span {
     padding-right: 5px;
@@ -125,6 +127,7 @@ a{
     color: white;
 }
 .head-right ul li a {
+    font-family: 'Poppins', sans-serif !important;
     color:white;
     text-decoration:none;
 }
@@ -132,6 +135,8 @@ a{
     height: 14px;
     width: 30px;
 }
+
+
 /********** Top Header CSS Ends **********/
 
 
@@ -145,6 +150,7 @@ a{
     height:50px;
 }
 .head-menu {
+    
     padding-top: 25px;
     padding-bottom: 12px;
 }
@@ -158,6 +164,7 @@ a{
     padding-left:20px;
 }
 .head-menu ul li a {
+    font-family: 'Poppins', sans-serif !important;
     color: #4a4a4a;
     text-decoration: none;
     font-size: 17px;
@@ -240,6 +247,7 @@ a{
 
 /********** Campus Information CSS Starts **********/  
 .heading-text {
+    font-family: 'Mukti', Arial, sans-serif !important;
     color: #064727;
     font-size: 28px;
     line-height: 20px;
