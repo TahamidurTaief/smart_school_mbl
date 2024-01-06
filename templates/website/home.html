@@ -1,814 +1,504 @@
 {% load static %}
 
+
 <!DOCTYPE html>
 <html>
-    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />    
-<head>
-        <meta charset="UTF-8">
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="description" content="STITBD School/College/Madrasah Management Software- Develop By STITBD Team">
-        <meta name="keywords" content="Sonagazi Girls Pilot High School">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="author" content="STITBD.COM" />
-        <link rel="shortcut icon" href="{% static 'assets/img/favicon.png' %}">
-        <title>MBL High School</title>	
-        <link type="text/css" rel="stylesheet" href="{% static 'home_asset/css/style.css' %}">
-        <link rel="shortcut icon" href="#">
-        <link rel="stylesheet" type="text/css" href="{% static 'home_asset/css/ddlevelsmenu-base.css' %}" />
-        <link rel="stylesheet" type="text/css" href="{% static 'home_asset/css/ddlevelsmenu-sidebar.css' %}" />
-
-        <!-- bangla fonts -->
-        <link href="https://fonts.maateen.me/mukti/font.css" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,300;1,400&family=Noto+Sans+Bengali:wght@300&family=Nunito+Sans:opsz,wght@6..12,300&family=Playpen+Sans&family=Poppins:wght@100&family=Rubik&display=swap" rel="stylesheet">
-
-		<style>
-            .markermenu ul li a{
-                background: url('home_asset/images/bulletlist.gif') no-repeat 3px center; /*light gray background*/
-                font: bold 13px "Lucida Grande", "Trebuchet MS", Verdana, Helvetica, sans-serif;
-                color: #FFF !important;
-                display: block;
-                width: auto;
-                padding: 3px 0;
-                padding-left: 20px;
-                text-decoration: none;
-                border-bottom: 1px solid #B5B5B5;
-            }
-            .linkItem li {
-                list-style: none;
-                list-style-image: url(home_asset/images/arrow.gif);
-                padding: 3px 0px 6px 0px;
-                border-bottom: 1px dashed #14a601;
-            }
-
-        </style>
-        <!-- HTML5 shim for IE backwards compatibility -->
-        <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-        <!-- code for Timing Section By Rabbee -->
-
-        <script type="text/javascript">
-
-
-            function getTime() {
-
-                var timer = new Date();
-                var sec = timer.getSeconds();
-                var hour = timer.getHours();
-                var minutes = timer.getMinutes();
-
-                var MonthArray = new Array("Jan", "Feb", "Mar", "April", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
-
-
-
-                var frsTime = document.getElementById("FRSTIME");
-                var frsDate = document.getElementById("FRSDATE");
-                var mon = timer.getMonth();
-
-
-                if (sec < 10) {
-
-                    sec = '0' + sec;
-
-                }
-
-
-                if (minutes < 10) {
-
-                    minutes = '0' + minutes;
-
-                }
-
-
-
-
-                if (hour > 0 && hour < 13) {
-                    if (hour == 12) {
-
-                        frsTime.innerHTML = hour + ' : ' + minutes + ' : ' + sec + ' PM';
-
-
-
-                    } else {
-                        frsTime.innerHTML = hour + ' : ' + minutes + ' : ' + sec + ' AM';
-
-                    }
-
-
-                } else if (hour > 12 && hour < 24) {
-                    var i = parseInt(hour);
-                    i = i - 12;
-
-                    if (i < 10) {
-
-                        i = '0' + i;
-
-                    }
-
-
-                    frsTime.innerHTML = i + ' : ' + minutes + ' : ' + sec + ' PM';
-
-
-                } else {
-
-                    frsTime.innerHTML = '12 : ' + minutes + ' : ' + sec + ' AM';
-
-
-                }
-
-
-
-
-                frsDate.innerHTML = timer.getDate() + '&nbsp' + MonthArray[parseInt(mon)] + '&nbsp' + timer.getFullYear()
-
-                setTimeout("getTime()", 100);
-
-
-
-            }
-
-            window.onload = getTime;
-
-        </script>
-
-        <!-- code for Timing Section By Rabbee -->	
-        <!--slider-->
-        <link rel="stylesheet" type="text/css" href="{% static 'home_asset/css/slider.css' %}"/>
-
-        <!--slider-->
-    </head>
-    <body>
-
-        <div class="wrapperSection">
-            <div class="banerZone">
-
-                <p>
-                                        <img src="{% static 'upload/about_us/banne.png' %}" height="200" width="1100"  />
-                                        
-                </p>
-
-
-
-            </div>
-            <div class="menuSection">
-                <div class="menuLeft">
-                    <p id="FRSDATE">Date</p>
-                    <p id="FRSTIME">Time</p>
-                </div>
-
-                <div class="menuRight">
-                    <ul class="nav">
-                        <li><a href="{% url 'home' %}">Home</a></li>
-
-
-
-                        <li><a href="{% url 'login' %}">Web Site Login</a></li>
-
-                        <li><a href="{% url 'login' %}">Admin Login</a></li>
-                      
-                        <!-- <li><a href="webmail.html" target="_blank">Web Mail</a></li> -->
-
-                    </ul>
-                </div>			
-            </div>
-
-
-
-
-            <!---------Main Contain--------->
-
-            	<div class="TechContentTop">
-	    <div class="topHolder">
-
-	        <div class="contentLeftMain">
-
-
-
-	            <script type="text/javascript" src="home_asset/js/ddlevelsmenu.js">
-	            </script>
-	            <!--sidebar-->
-	            <!-- HTML5 shim for IE backwards compatibility -->
-	            <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-	            <!--sideBarEnd-->
-
-
-	            <div Class="leftBar">
-	                <div class="quickSection">
-
-	                    	<div id="ddsidemenubar" class="markermenu">
-						<ul style="padding: 10px 0;">
-						<li sty><a href="{% url 'home' %}">HOME</a></li>
-						<li><a href="">ABOUT Our School </a></li>
-						<li><a href="">TEACHERS &AMP; STAFFS</a></li>
-						<!-- <li><a href="notice-board.html">NOTICE</a></li> -->
-						<li><a href="">ADMISSION FORM</a></li>
-						<li><a href="">STUDENTS' INFO.</a></li>
-						<li><a href="">PHOTO GALLERY</a></li>
-						<li><a href="">VIDEOS</a></li>
-						<li><a href="">All Upload File</a></li>
-						<li><a href="" style="border-bottom-width: 0">CONTACT US</a></li>		
-						</ul>
-						</div>
-
-
- <script type="text/javascript">
-                        ddlevelsmenu.setup("ddsidemenubar", "sidebar") //ddlevelsmenu.setup("mainmenuid", "topbar|sidebar")
-                    </script>
-
-
-                    <style>
-                        .ddsubmenustyle li a {width: 192px !important}
-                        
-                    </style>
-
-
-
-                    <!--HTML for the Drop Down Menus associated with Side Menu Bar-->
-                    <!--They should be inserted OUTSIDE any element other than the BODY tag itself-->
-                    <!--A good location would be the end of the page (right above "</BODY>")-->
-
-
-                    <!--Side Drop Down Menu 1 HTML-->
-
-                    <ul id="ddsubmenuside1" class="ddsubmenustyle blackwhite">
-                        <li><a href="student-attendance.html">Student Attendance</a></li>
-                        <li><a href="teacher-staff-attendance.html">Teacher & Staff Attendance</a></li>
-
-                        <!--<li><a href="https://www.teachers.gov.bd" target="_blank">Digital Content</a></li>-->
-
-                        <li><a href="Home/view_comittee.html">Administration</a></li>
-
-                    </ul>
-                    
-                    <ul id="ddsubmenuside122" class="ddsubmenustyle blackwhite">
-                        <li><a href="teacher-profile.html">Teacher Profile</a></li>
-                        <li><a href="college-teacher-staff-attendance.html">Teacher & Staff Attendance</a></li>
-                        <li><a href="college-student-attendance.html">Student Attendance</a></li>
-
-
-                    </ul>
-                    <!--Side Drop Down Menu 2 HTML-->
-
-
-
-                    <!--Side Drop Down Menu 3 HTML-->
-
-                    <ul id="ddsubmenuside3" class="ddsubmenustyle blackwhite">
-
-
-                        <li><a target="_blank" href="http://www.educationboardresults.gov.bd/">Results Archive</a></li>
-
-                        <li><a  href="Home/exam_result.html" target="_blank">Institute Results </a></li>
-                        
-
-                        <!--<li><a  href="search_Results6.php">Institute Results For Class Ten</a></li>-->
-
-
-                        <!--<li><a  href="search_Results7.php">Institute Results For Class Eleven</a></li>-->
-                    </ul>
-	                </div>
-
-
-
-	            </div>
-
-
-
-
-	            <div class="digitalContent">
-	                <h2>Digital Content</h2>
-
-	                <h3><a href="https://www.teachers.gov.bd/" target="_blank">Click Here</a></h3>
-	            </div>
-	        </div>
-	        <div class="contentMiddle">
-	            <div class="contentOne">
-	                <h2 id="allheadCaption"> মোলামগাড়ীহাট দ্বি-মূখী উচ্চ বিদ্যালয়, কালাই, জয়পুরহাট</h2>
-	            </div>
-	            <div class="contentTwo">
-	                <div id="container">
-
-	                    <div id="lofslidecontent45" class="lof-slidecontent"">
-				<div class=" lof-main-outer" style="width:620px; height:280px;">
-	                        <div onClick="return false" href="#" class="lof-previous">Previous</div>
-	                        <ul class="lof-main-wapper">
-
-
-	                            
-
-	                                    <li><img src="{% static 'upload/slider/FB_IMG_1662560290265.jpg' %}" width="620" height="280" /></li>
-	                            
-
-	                                    <li><img src="{% static 'upload/slider/5.jpg' %}" width="620" height="280" /></li>
-	                            
-
-	                                    <li><img src="{% static 'upload/slider/15_%e0%a6%86%e0%a6%97%e0%a6%b7%e0%a7%8d%e0%a6%9f_23.jpg' %}" width="620" height="280" /></li>
-	                            
-
-	                                    <li><img src="{% static 'upload/slider/FB_IMG_16625602737651.jpg' %}" width="620" height="280" /></li>
-	                            
-
-	                                    <li><img src="{% static 'upload/slider/15_%e0%a6%86%e0%a6%97%e0%a6%b7%e0%a7%8d%e0%a6%a0_%e0%a6%ab%e0%a7%81%e0%a6%b2.jpg' %}" width="620" height="280" /></li>
-	                            
-
-	                                    <li><img src="{% static 'upload/slider/pto1.jpg' %}" width="620" height="280" /></li>
-	                            
-
-	                                    <li><img src="{% static 'upload/slider/20170118_121553.jpg' %}" width="620" height="280" /></li>
-	                            
-
-	                                    <li><img src="{% static 'upload/slider/16.jpg' %}" width="620" height="280" /></li>
-	                            
-
-	                                    <li><img src="{% static 'upload/slider/baner.jpg' %}" width="620" height="280" /></li>
-	                            
-
-	                                    <li><img src="{% static 'upload/slider/15_%e0%a6%86%e0%a6%97%e0%a6%b7%e0%a7%8d%e0%a6%a0_%e0%a6%86%e0%a6%b2%e0%a7%8b%e0%a6%9a%e0%a6%a8%e0%a6%be.jpg' %}" width="620" height="280" /></li>
-	                            
-
-
-	                        </ul>
-	                        <div onClick="return false" href="#" class="lof-next">Next</div>
-	                    </div>
-	                </div>
-
-	            </div>
-	        </div>
-
-
-	    </div>
-	    <div class="contentRight">
-	        <div class="topNews">
-	            <div class="recentDivision">
-	                <marquee behavior="scroll" scrollamount="3">
-	                    	                            <a href="Home/notice_details/15.html" style="text-decoration: none;color:black" title="click here to see notice"><span>*** ভর্তি ফরম বিতরন  ***</span></a>
-	                    	                            <a href="Home/notice_details/14.html" style="text-decoration: none;color:black" title="click here to see notice"><span>***পরিবর্তিত সময় সুচী অনুসারে আগামী 15/09/2022 ইং তারিখ থেকে এস এস সি পরীক্ষা 2022 শুরু হবে । ***</span></a>
-	                    	                            <a href="Home/notice_details/13.html" style="text-decoration: none;color:black" title="click here to see notice"><span>***সরকারী সিদ্ধান্ত মোতাবেক এখন থেকে সাপ্তাহিক ছুটি শুক্র ও শনি বার থাকবে।  ***</span></a>
-	                    
-	                </marquee>
-	            </div>
-	            <div class="noticeDivision">
-
-	                <table id="bartable">
-
-
-	                    <tr>
-	                        <td class="rightnewsflash clearfix">
-
-	                            <div class="newsboard clearfix">
-	                                <h2 id="noticeHead">Recent Events</h2>
-	                                <ul class="currentevent clearfix">
-	                                    <marquee direction="up" scrollamount="4">
-
-												{% for i in web_notice_obj %}
+   <head>
+      <title>MBL HIGH SCHOOL-WEBSITE</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link type="text/css" rel="stylesheet" href="{% static 'home_asset/css/style.css' %}">
+      <link rel="shortcut icon" href="{% static 'assets/img/favicon.png' %}">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      </head>
+   <body>
+
+
+
+<div class="width-100 header">
+   <div class="container ">
+      <div class="width-25 head-left">
+         <ul>
+            <li style="font-family: Arial, Helvetica, sans-serif;"><a href="{% url 'login' %}"> Admin Login</a></li>
+            <li style="font-family: Arial, Helvetica, sans-serif;"><a href="{% url 'login' %}"> Student Login</a></li>
+         </ul>
+      </div>
+      <div class="width-50">
+         <marquee class="notification">
+            <span><img src="{% static 'assets/img/logo.png' %}"></span> Molamgarihat BL High School, Kalai, Jaipurhat <span><img src="images/new.gif"></span> Get Ready To Explore The Genius In You With Genius 2024 <span><img src="{% static 'assets/img/logo.png' %}"></span> মোলামগাড়ীহাট দ্বি-মূখী উচ্চ বিদ্যালয়, কালাই, জয়পুরহাট
+         </marquee>
+      </div>
+      <div class="width-25 head-right">
+         <ul>
+            <li><a href="#">Admission Open <span class="head-span"><img src="images/new.gif"></span></a></li>
+
+         </ul>
+      </div>
+   </div>
+</div>
+
+
+
+{% comment %} <!---------- Logo And Main Menu HTML Starts ---------> {% endcomment %}
+<div class="container">
+   <div class="width-25 logo"> <img src="{% static 'assets/img/molamgarihat_school_short_title.png' %}"> </div>
+   <div class="width-75 head-menu">
+      <ul>
+         <li><a href="{% url 'home' %}">Home</a></li>
+         <li><a href="#">About us</a></li>
+         <li><a href="#">Admission</a></li>
+         <li><a href="#">Gallery</a></li>
+         <li><a href="#">Notice Board</a></li>
+         <li><a href="#">Event</a></li>
+         <li><a href="#">Contact us</a></li>
+      </ul>
+   </div>
+</div>
+{% comment %} <!---------- Logo And Main Menu HTML Ends ---------> {% endcomment %}
+
+
+
+{% comment %} <!---------- Slider HTML Starts ---------> {% endcomment %}
+<div class="width-100">
+    <img src="{% static 'assets/img/banner/banner.jpg' %}" class="main-banner">
+    </div>
+    {% comment %} <!---------- Slider HTML Ends ---------> {% endcomment %}
+
+
+
+
+
+    {% comment %} <!---------- Notice Board, Recent Event HTML Starts ---------> {% endcomment %}
+<div class="main-section">
+    <div class="container">
+       <div class="note-event">
+          <h2 class="heading-text mt-20">নোটিশ কর্ণার</h2>
+          <span class="heading-border"></span>
+          <div class="notice-board mt-30">
+             <marquee direction="up" behavior="scroll" scrollamount="5" style="height:300px;">
+                <ul>
+
+                    {% for i in notice_obj %}
 												  
 												
-	                                        	    <li>
-	                                                    <a href="{{i.notice_link}}" target="_blank">
-	                                                        {{i.headline}}<br /><span id="noticeDay">{{i.updated_at}}</span>
-	                                                    </a>
+                        <li>
+                            <a href="{{i.notice_link}}" target="_blank" >
+                                <li><i class="fa fa-check-square-o"></i> {{i.headline}}<br>&nbsp;&nbsp;&nbsp;&nbsp;{{i.updated_at}}</li>
+                                {% comment %} {{i.headline}}<br /><span id="noticeDay">{{i.updated_at}}</span> {% endcomment %}
+                            </a>
+                        </li>
 
-	                                                </li>
-
-													{% endfor %}
-	                                        	                                                
-	                                        
-
-	                                    </marquee>
-	                                </ul>
-	                            </div>
-
-	                        </td>
-	                    </tr>
-
-	                </table>
-
-
-	            </div>
-
-	        </div>
-
-
-	        <!--
-				<div class="newsSection">
-					<h2 id="noteheadText">Recent Events</h2>
-					<marquee behavior="alternate" direction="down" scrollamount="1" onmouseover="this.stop();" onmouseout="this.start();">
-					<ul class="updateItem">
-						<li><a href="#">Rangpur Technical School &amp; College, Rangpur is going to launch it's Official Portal.</a></li>
-						<li><a href="#">All Information of Rangpur Technical School &amp; College in a place</a></li>
-						<li><a href="#">All Information of Rangpur Technical School &amp; College in a place</a></li>
-						<li><a href="#">All Information of Rangpur Technical School &amp; College in a place</a></li>
-						<li><a href="#">All Information of Rangpur Technical School &amp; College in a place</a></li>
-						<li><a href="#">All Information of Rangpur Technical School &amp; College in a place</a></li>
-					</ul>
-					</marquee>
-				</div>
-				-->
-	    </div>
-	    <div class="contentBottom">
-	        	            <div class="bottomLeft">
-	                <h2 id="allheadCaption">
-
-
-	                    সভাপতির বাণী	                </h2>
-	                <p id="Beangladiscrription2">
-	                    <img id="disImage" src="{% static 'upload/services/KHOKON.jpg' %}" alt="hadmasters Photo" width="120px" height="130px">
+					{% endfor %}
+                   {% comment %} <li><i class="fa fa-check-square-o"></i> Lorem Ipsum is simply dummy text of the printing and typesetting industry.</li>
+                   <li><i class="fa fa-check-square-o"></i> Desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</li>
+                   <li><i class="fa fa-check-square-o"></i> Many desktop publishing packages and web page editors now use</li>
+                   <li><i class="fa fa-check-square-o"></i> Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</li>
+                   <li><i class="fa fa-check-square-o"></i> Welcome To The Best Private University in MP</li>
+                   <li><i class="fa fa-check-square-o"></i> Lorem Ipsum is simply dummy text of the printing and typesetting industry.</li>
+                   <li><i class="fa fa-check-square-o"></i> Desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</li>
+                   <li><i class="fa fa-check-square-o"></i> Many desktop publishing packages and web page editors now use</li>
+                   <li><i class="fa fa-check-square-o"></i> Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</li>
+                   <li><i class="fa fa-check-square-o"></i> Welcome To The Best Private University in MP</li> {% endcomment %}
+                </ul>
+             </marquee>
+          </div>
+       </div>
+       <div class="note-event">
+          <h2 class="heading-text mt-20">এডমিশন কর্ণার</h2>
+          <span class="heading-border"></span>
+          <marquee direction="up" behavior="scroll" scrollamount="5" style="height:400px;">
+             
+             {% for i in admission_obj %}
+            <a href="{{i.admission_link}}" target="_blank" >
+             <div class="event-list">
+                <div class="event-date">
+                   <p>class</p>
+                   <h4>{{i.class_name}}</h4>
+                </div>
+                <div class="event-content">
+                   <h3>{{i.form_name}}</h3>
+                   <p>{{i.updated_at}}</p>
+                </div>
+             </div>
+            </a>
+             {% endfor %}
+             
+             
+          </marquee>
+       </div>
+    </div>
+ </div>
+ <!---------- Notice Board, Recent Event HTML Ends --------->
 
 
 
-
-	                    মাধ্যমিক ও উচ্চ শিক্ষা অধিদপ্তর, ঢাকা, বাংলাদেশ কর্তৃক নির্দেশক্রমে অত্র বিদ্যালয়ের জন্য অতি অল্প সময়ে ডাইনামিক ওয়েভ সাইট তৈরি হয়েছে শুনে আমি মহান আল্লাহ তালার দরবারে শুকরিয়া আদায় করছি। বর্তমান সময়ে তথ্য ও প্রযুক্তি আমাদের হাতের নাগালে। দৈনন্দিন জীবনে লেনদেন, হিসাব-নিকাশ, লেখাপড়া, শিক্ষা-দীক্ষা, আদান-প্রদান সহ সকল প্রকার ব্যবস্থাপনা প্রশাসনিক ও একাডেমিক সব কিছুই তথ্য ও প্রযুক্তি আওতাধীন। মোলামগাড়ীহাট দ্বি-মূখী উচ্চ বিদ্যালয়ের নিজস্ব ...
-
-	                    <a href=""><img src="{% static 'home_asset/images/more-b.png' %}"></a>
-	                </p>
-	                </p>
-	            </div>
-	            <div class="bottomRight">
-	                <h2 id="allheadCaption">
-	                    প্রধান শিক্ষকের বাণী	                </h2>
-	                <p id="Beangladiscrription2">
-	                    <img id="disImage" src="{% static 'upload/services/head.jpg' %}" alt="hadmasters Photo" width="120px" height="130px">
-
-
-
-	                    মাধ্যমিক ও উচ্চ শিক্ষা অধিদপ্তর ঢাকা,বাংলাদেশ কর্তৃক প্রকাশিত বিজ্ঞপ্তির আলোকে অত্র বিদ্যালয়ের জন্য স্বল্প সময়ে ডাইনামিক ওয়েবসাইট তৈরী করতে পেরে আমি আল্লাহাতালার নিকট শ্তকরিয়া আদায় করছি।বর্তমান সময়ে তথ্য ও প্রযুক্তি আমাদের হাতের নাগলে।দৈনন্দিন জীবনে লেনদেন হিসাব নিকাশ, লেখাপড়া, শিক্ষাদীক্ষ, আদান প্রদান, সকল প্রকার ব্যবস্থাপনা হউক প্রশাসনিক বা একাডেমিক সব কিছুই তথ্য ও প্রযুক্তির আত্ততাধীন। মোলামগাড়ীহাট দ্বি-মূখী উচ্চ বিদ্যালয়ের ওয়েব সাইট থাকার..	                    <a href=""><img src="{% static 'home_asset/images/more-b.png' %}"></a>
-	                </p>
-
-	            </div>
-	        	    </div>
-
-	</div>
-
-	<div class="scServices" style="height: 250px; margin-top:60px;">
-				<div class="bottomLeftfoot" style="height: 240px">
-					<h2 id="allheadCaption">
-		বর্তমান গভর্নিং বডির নামের তালিকা</h2>
-					
-				
-		 <table class="managingBoard">
-
-						
-						<tr>
-							
-							<th width="200">নাম</th>
-							<th width="200">ক্যাটাগরি </th>
-							<th width="73">পদবী</th>
-						</tr>
-						          
-						{% for i in staff_obj %}
- 		  	<tr>
-							<td >{{i.admin.first_name}} {{i.admin.last_name}} </td>
-							<td>{{i.qualification}} </td>
-							<td>{{i.staff_type}}</td>
-						</tr>	
-                                                                                                
- 		  	{% endfor %}
-					
-                                                					
-					</table>
-			
-					<!-- <a href="Home/view_comittee.html" id="Readmore2"><img src="home_asset/images/more-b.png"></a>					 -->
-					
-				</div>
-
-				<div class="bottomLeftfoot" style="height: 240px">
-					<h2 id="allheadCaption"> 
-		শিক্ষক-শিক্ষিকা কর্ণার 
-	 </h2>
-					<div class="tSlider">
-						<marquee id="tScrollzone" behavior="alternate" scrollamount="2" onMouseOver="this.stop();" onMouseOut="this.start();" style="height: 163px;">
-						<ul class="" style="display:flex; gap: 10px;     font-size: 12px;
-    text-align: center;">
-							{% for i in school_teacher_obj %}
-						    <li><a href="teacher-staff.html">
-							<img src="{{i.admin.profile_pic.url}}"  height="120" width="110" /></a>
-							<p style="margin-top: 4px">{{i.admin.first_name}} {{i.admin.last_name}}</p>
-							<p style="margin-top: 5px; background: #045564; padding: 4px; color: white;"> {{i.staff_type}} </p>
-							</li>
-                             {% endfor %}
-                                                        							
-						</ul>
-	</marquee>  
-						
-					</div>
-					<a href="teacher-staff.html" id="Readmore2" style="margin-top: 25px;display: inline-block;"><img src="{% static 'home_asset/images/more-b.png' %}"></a>
-				</div>				
-				</div>				
-
-
-
-<div class="mujib" style="display: flex; padding: 20px 0; background-color: white;">
+<!-- MUJIB CORNER START -->
+ <div class="mujib" style="display: flex; padding: 20px 0; background-color: white;">
     <img src="{% static '/assets/img/mujib-corner1.png' %}" alt="" style="width: 50%; height: 50%;">
     <img src="{% static '/assets/img/mujib-corner2.png' %}" alt="" style="width: 50%; height: 50%;">
 </div>
 
 
-
-
-
-	<div class="TechContent" style>
-	    <div class="contentLeftMainll">
-	        <a href="https://www.police.gov.bd/en/contact_us" target="_blank">
-
-	        </a>
-	        <br>
-
-
-
-	        <div class="otherSectionLeft">
-	            <h2 id="noteheadText">Important Links</h2>
-	            	                <ul class="linkItem">
-	                    	                        <li><a href="https://moedu.gov.bd/" target="_blank">Ministry of Education</a></li>
-	                    	                        <li><a href="http://www.dshe.gov.bd/" target="_blank">DSHE</a></li>
-	                    	                        <li><a href="https://dhakaeducationboard.gov.bd/" target="_blank">Dhaka Education Board</a></li>
-	                    	                        <li><a href="http://www.techedu.gov.bd/" target="_blank">BTEB</a></li>
-	                    	                        <li><a href="http://www.dpe.gov.bd/" target="_blank">Primary & Mass Education</a></li>
-	                    	                        <li><a href="http://www.techedu.gov.bd/" target="_blank">techedu</a></li>
-	                    	                        <li><a href="http://www.banbeis.gov.bd/" target="_blank">BANBEIS</a></li>
-	                    	                        <li><a href="http://esif.teletalk.com.bd/" target="_blank">ESIF</a></li>
-	                    	                        <li><a href="https://comillaboard.portal.gov.bd/" target="_blank">comilla Education Board</a></li>
-	                    	                        <li><a href="http://emis.gov.bd/" target="_blank">EMIS </a></li>
-	                    
-	                </ul>
-	            	        </div>
-
-
-	    </div>
-	    
-	    <div class="studentHolder">
-
-
-
-	        <div class="otherSection">
-	            <h2 id="noteheadText">Students Corner</h2>
-	            <ul class="linkItemStu">
-	                <li><a href="https://www.teachers.gov.bd/" target="_blank">Digital Content</a></li>
-	                <li><a href="notice-board.html">Notice Board</a></li>
-	                <li><a href="boys-scout.html">Boys Scout</a></li>
-
-	                <li><a href="#">Exam Routine</a></li>
-	                <li><a href="admission-form.html">Form Download</a></li>
-	                <li><a href="students-info.html">Students Statistics</a></li>
-	                <li><a href="http://www.nctb.gov.bd/" target="_blank">Books Download (NCTB)</a></li>
-	                <li class="last"><a href="http://www.educationboardresults.gov.bd/" target="_blank">Results Archive</a></li>
-
-
-	            </ul>
-
-	        </div>
+<!-- MUJIB CORNER START -->
 
 
 
 
-	       			<style>
-		.buttonc {
-			color: #ffffff;
-			background-color: #1C7383;
-			font-size: 19px;
-			
-			border: 3px solid #145800;
-			padding: 15px 10px;
-			cursor: pointer
-			
-		}
-		.buttonc:hover {
-			color: #2d63c8;
-			background-color: #ffffff;
-		}
-	</style>
-				
-				<div class="hitC">
-					<div class="buttonc" name="myButton" style="
-    text-align: center; border-radius: 15px; font-family: fantasy;
-">121904</div>
-			
 
-                </div>
-	    </div>
+ {% comment %} <!---------- Campus Information HTML Starts ---------> {% endcomment %}
+<div class="main-section bg-lightgrey">
+    <div class="container">
+       <div class="width-50"> <img src="{% static 'assets/img/college_photo.png' %}" class="mt-10" style="width:100%; padding:20px;"> </div>
+       <div class="width-50">
+          <div class="about-campus">
+             <h2 class="heading-text">প্রতিষ্ঠান পরিচিতি</h2>
+             <span class="heading-border"></span>
+             <p>মোলামগাড়ীহাট দ্বি-মূখী উচ্চ বিদ্যালয়, কালাই, জয়পুরহাট দেশের অন্যতম প্রসিদ্ধ শিক্ষা প্রতিষ্ঠান। শিক্ষা মানুষের জন্মগত মৌলিক অধিকার যা প্রতিটি দেশ ও জাতির আর্থ-সামাজিক, সাংস্কৃতিক উন্নয়নের প্রধান হাতিয়ার। জ্ঞান ভিত্তিক সমাজ গঠনের লক্ষ্যে জনশক্তিকে শিক্ষার আলােতে উদ্ভাসিত করে জনসম্পদে রূপান্তরের মাধ্যমেই জাতির কাঙ্ক্ষিত পরিবর্তন সম্ভব। এ প্রতিষ্ঠানে ১৯৯৯ সালে নিম্ন মাধ্যমিক, ২০০২ সালে মাধ্যমিক ও ২০১৬ সালে উচ্চ মাধ্যমিক শ্রেণিতে পাঠদান চালু করা হয়েছে যা ভবিষ্যতে গুণে ও মানে আরাে সমৃদ্ধ হবে এ আমাদের লালিত স্বপ্ন। গণপ্রজাতন্ত্রী বাংলাদেশ সরকারের শিক্ষা মন্ত্রণালয় এবং মাধ্যমিক ও উচ্চ মাধ্যমিক শিক্ষা বাের্ড ঢাকা কর্তৃক প্রণীত নীতিমালা পালন ও মান্যকারী এ প্রতিষ্ঠান বাংলাদেশ পুলিশ কর্তৃক পরিকল্পিত ও নিয়ন্ত্রিত। এ প্রতিষ্ঠানকে সুন্দরভাবে গড়ে তােলা এবং সুষ্ঠুভাবে পরিচালনার জন্য রয়েছে দক্ষ ও নিবেদিতপ্রাণ পরিচালনা পর্ষদ, শিক্ষকবৃন্দ ও যুগােপযােগী নীতিমালা। অদূর ভবিষ্যতে উন্নত একাডেমিক ও সহশিক্ষামূলক কার্যক্রম, সুশৃঙ্খল পরিবেশ। এবং অত্যাধুনিক ভৌত অবকাঠামাে ব্যবহারের মাধ্যমে দেশের অন্যতম সেরা বিদ্যাপীঠে পরিণত হবে এ প্রতিষ্ঠান সে লক্ষ্যে নিরন্তর শ্রম, মেধা আর মননের সর্বোচ্চ ব্যবহার করে আসছেন সংশ্লিষ্ট সকলে।</p>
+             
+          </div>
+       </div>
+    </div>
+ </div>
+ {% comment %} <!---------- Campus Information HTML Ends ---------> {% endcomment %}
 
 
-		</a>
-	    <div class="bottomRight" style="width: 500px; height: 300px; ">
-			<div class="singledown clearfix mt-4">
-<img src="{% static 'upload/portal_img/archive2.jpg' %}" />
-<h2><a href="http://www.educationboardresults.gov.bd/" target="_blank">results archive</a></h2>
-</div>
-
-			<div class="singledown clearfix">
-<img src="{% static 'upload/portal_img/oems.jpg' %}" />
-<h2><a href="http://esif.teletalk.com.bd/" target="_blank">E-SLIF</a></h2>
-</div>
-
-			<div class="singledown clearfix">
-<img src="{% static 'upload/portal_img/eff.jpg' %}" />
-<h2><a href="http://eff.teletalk.com.bd/" target="_blank"> E-FORM FILL-UP</a></h2>
-</div>
-
-			<div class="singledown clearfix">
-<img src="{% static 'upload/portal_img/board.png' %}" />
-<h2><a href="http://www.dshe.gov.bd/mpo.php" target="_blank"> MPO INFORMATION</a></h2>
-</div>
-
-			<div class="singledown clearfix">
-<img src="{% static 'upload/portal_img/emis.jpg' %}" />
-<h2><a href="http://www.emis.gov.bd/" target="_blank">emis</a></h2>
-</div>
-
-			<div class="singledown clearfix">
-<img src="{% static 'upload/portal_img/downloadform.jpg' %}" />
-<h2><a href="http://iajuddincollege.com/index.php" target="_blank"> DOWNLOADABLE FORM</a></h2>
-</div>
-
-<hr><br><hr>
 
 
-{% for i in admission_obj %}
-    <div class="singledown clearfix" style="height: 48px;" >
-        <img src="{% static 'upload/portal_img/contact-form.png' %}" style="width: 30px;"/>
-        <h2><a href="{{i.form_link}}" target="_blank"> FORM - {{i.form_name}}</a> </h2>
+
+
+
+
+
+
+
+ {% comment %} <!---------- Achievement HTML Starts ---------> {% endcomment %}
+<div class="main-section">
+    <div class="container">
+        
+    <div class="mujib" style="display: flex; padding: 20px 0; background-color: white; margin-bottom: 80px;">
+        <img src="{% static '/assets/img/mujib-corner1.png' %}" alt="" style="width: 50%; height: 50%;">
+        <img src="{% static '/assets/img/mujib-corner2.png' %}" alt="" style="width: 50%; height: 50%;">
     </div>
     
-{% endfor %}
+    
+    <div class="note-event">
+            <h2 class="heading-text mt-20">শিক্ষক-শিক্ষিকা কর্ণার</h2>
+            <span class="heading-border"></span>
+            <marquee direction="up" behavior="scroll" scrollamount="5" style="height:400px;">
+               <div class="teacher-list" style="display:flex;">
 
+                {% for i in school_teacher_obj %}         
+
+                    <div class="teacher-img">
+                        <img src="{{i.admin.profile_pic.url}}"  height="80" width="80" /></a>
+                    </div>
+                    <div class="event-content">
+                        <h3>{{i.admin.first_name}} {{i.admin.last_name}}</h3>
+                        <p>{{i.staff_type}} </p>
+                    </div>
+                  
+                  {% endfor %}
+
+               </div>
+            </marquee>
+       </div>
+
+
+
+       <div class="note-event">
+        <h2 class="heading-text mt-20">গভর্নিং বডি কর্ণার</h2>
+        <span class="heading-border"></span>
+        <marquee direction="up" behavior="scroll" scrollamount="5" style="height:400px;">
+           <div class="teacher-list" style="display:flex;">
+
+            {% for i in staff_obj %}
+            <tr>
+                         <td >{{i.admin.first_name}} {{i.admin.last_name}} </td>
+                         <td>{{i.qualification}} </td>
+                         <td>{{i.staff_type}}</td>
+                     </tr>	
+                                                                                             
+            {% endfor %}
+
+            {% for i in staff_obj %}         
+
+                <div class="teacher-img">
+                    <img src="{{i.admin.profile_pic.url}}"  height="80" width="80" /></a>
+                </div>
+                <div class="event-content">
+                    <h3>{{i.admin.first_name}} {{i.admin.last_name}}</h3>
+                    <p><b>{{i.staff_type}} </b></p>
+                    <p>{{i.qualification}} </p>
+                </div>
+              
+              {% endfor %}
+
+           </div>
+        </marquee>
+   </div>
+       
+    </div>
+ </div>
+ {% comment %} <!---------- Achievement HTML Ends ---------> {% endcomment %}
+
+
+
+ {% comment %} <!---------- Popular Courses HTML Starts ---------> {% endcomment %}
+<div class="main-section bg-lightgrey">
+    <div class="container">
+       <!-- <div class="width-33"> -->
+          <div class="popular-course">
+             <h2 class="heading-text mt-50">সরকারি ডিজিটাল লিংক</h2>
+             <span class="heading-border"></span>
+          </div>
+       <!-- </div> -->
+       <div class="width-66" >
+          <div class="width-33">
+            <a href="http://www.educationboardresults.gov.bd/" style="color: black; font-weight: 550; font-family: 'Poppins', sans-serif !important;">
+             <div class="course-list bg-yellow">
+                <img src="{% static 'assets/img/icons/results.png' %}" alt="" style="width: 40px;">
+                <p>Result Archive</p>
+             </div>
+            </a>
+          </div>
+          <div class="width-33">
+            <a href="http://esif.teletalk.com.bd/" style="color: black; font-weight: 550; font-family: 'Poppins',sans-serif !important;">
+             <div class="course-list bg-blue">
+                <img src="{% static 'assets/img/icons/self.png' %}" alt="" style="width: 40px;">
+                <p> eSif</p>
+             </div>
+            </a>
+          </div>
+          
+          <div class="width-33">
+            <a href="http://eff.teletalk.com.bd/" style="color: black; font-weight: 550; font-family: 'Poppins',sans-serif !important;">
+                <div class="course-list bg-blue">
+                   <img src="{% static 'assets/img/icons/form.png' %}" alt="" style="width: 40px;">
+                   <p> e-Form Fill up</p>
+                </div>
+               </a>
+          </div>
+          <div class="width-33">
+            <a href="http://www.dshe.gov.bd/mpo.php" style="color: black; font-weight: 550; font-family: 'Poppins',sans-serif !important;">
+                <div class="course-list bg-blue">
+                   <img src="{% static 'assets/img/icons/board.png' %}" alt="" style="width: 40px;">
+                   <p>MPO Information</p>
+                </div>
+               </a>
+          </div>
+          <div class="width-33">
+            <a href="http://www.emis.gov.bd/" style="color: black; font-weight: 550; font-family: 'Poppins',sans-serif !important;">
+                <div class="course-list bg-blue">
+                   <img src="{% static 'assets/img/icons/emis.jpg' %}" alt="" style="width: 40px;">
+                   <p>EMIS</p>
+                </div>
+               </a>
+          </div>
+          <div class="width-33">
+            <a href="http://iajuddincollege.com/index.php" style="color: black; font-weight: 550; font-family: 'Poppins',sans-serif !important;">
+                <div class="course-list bg-blue">
+                   <img src="{% static 'assets/img/icons/downloadform.jpg' %}" alt="" style="width: 40px;">
+                   <p>Downloadable Form</p>
+                </div>
+            </a>
+        </div>
+        
+    </div>
+        <img src="{% static 'assets/img/mujib.png' %}" style="width: 350px;" alt="">
+          
+    </div>
+ </div>
+ {% comment %} <!---------- Popular Courses HTML Ends ---------> {% endcomment %}
+
+
+
+ {% comment %} <!---------- Testimonial HTML Starts ---------> {% endcomment %}
+<div class="main-section">
+    <div class="container">
+       <h2 class="heading-text mt-50">Contact Info</h2>
+       <span class="heading-border"></span>
+        
+       <div class="contact">
+       
+       <div class="hm">
+        <h2>Headmaster</h2>
+        <p>Name : Md. Haidar Ali Mondol<br>
+            Number : 01713662630<br>
+            Email : haidarmaster55@gmail.com</p>
+        </div>
+
+        
+       <div class="ahm">
+        <h2>Assistant Headmaster</h2>
+        <p>Name :  Md. Samim Hossain <br>
+            Number : 01303-630939<br>
+            Email : N/A</p>
+       </div>
+
+       <div class="office">
+        <h2>Office</h2>
+        <p>
+            Number : 01713662630 <br>
+            Email : molamgarihatblh@yahoo.com</p>
+       </div>
 </div>
 
-	</div>
-
-            <!----------End Main ConTain---------------->
-
-
+    </div>
+ </div>
+ {% comment %} <!---------- Testimonial HTML Ends ---------> {% endcomment %}
 
 
 
 
-
-
-            <div class="prefooterArea">
-                <div class="footerLeft">
-                    <div class="medireshare clearfix">
-                        
-
-                        <!-- <a href="https://www.facebook.com/molamgarihatblhighschool" target="_blank"><img src="{% static '/home_asset/images/facebook.png' %}" alt="youtube" style="width: 30px;"></a>
-                        <a href="https://youtube.com/@mblhighschool1111?si=BjPS44z7LmNa8Q-u" target="_blank"><img src="{% static '/home_asset/images/youtube.png' %}"  style="width: 30px;"></a>
-                        <a href="https://www.facebook.com/profile.php?id=100010668037751&mibextid=zLoPMf" target="_blank"><img src="{% static '/home_asset/images/linkedin.png' %} "  style="width: 30px;"></a>
-                        <a href="" target="_blank"><img src="{% static '/home_asset/images/twitter.png' %}"  style="width: 30px;"/></a>			 -->
-
-
-                        <img src="{% static 'assets/img/logo.png' %}" alt="" style="width: 180px; margin-left: 10px;">
-                    </div>
+ {% comment %} <!---------- Popular Courses HTML Starts ---------> {% endcomment %}
+<div class="main-section bg-lightgrey">
+    <div class="container">
+       <!-- <div class="width-33"> -->
+          <div class="popular-course">
+             <h2 class="heading-text mt-50">সরকারি ডিজিটাল লিংক</h2>
+             <span class="heading-border"></span>
+             
+          </div>
+          <img src="{% static 'assets/img/mujib.png' %}" style="width: 350px;" alt="">
+       <!-- </div> -->
+       <div class="width-66" >
+          <div class="width-33">
+            <a href="http://forms.gov.bd/" style="color: black; font-weight: 550; font-family: 'Poppins', sans-serif !important;">
+             <div class="course-list">
+                <img src="{% static 'assets/img/icons/forms_portal_logo.png' %}" alt="" style="width: 150px;">
+             </div>
+            </a>
+          </div>
+          <div class="width-33">
+            <a href="https://www.teachers.gov.bd/" style="color: black; font-weight: 550; font-family: 'Poppins',sans-serif !important;">
+             <div class="course-list">
+                <img src="{% static 'assets/img/icons/TP main-logo.png' %}" alt="" style="width: 150px">
+             </div>
+            </a>
+          </div>
+          
+          <div class="width-33">
+            <a href="https://muktopaath.gov.bd/" style="color: black; font-weight: 550; font-family: 'Poppins',sans-serif !important;">
+                <div class="course-list">
+                   <img src="{% static 'assets/img/icons/MP logo.png' %}" alt="" style="width: 150px;">
                 </div>
-                <div class="footerMid">
-                    <h2>University of Bangladesh</h2>
-                    <div id="bodylowerRightPan">
+            </a>
+        </div>
+          <div class="width-33">
+            <a href="https://bangladesh.gov.bd/site/page/8ce50d24-d00b-48c1-83ad-276b4fa63202/%E0%A6%AD%E0%A6%BF%E0%A6%B6%E0%A6%A8-%E0%A7%A8%E0%A7%A6%E0%A7%A8%E0%A7%A7" style="color: black; font-weight: 550; font-family: 'Poppins',sans-serif !important;">
+                <div class="course-list">
+                   <img src="{% static 'assets/img/icons/vision_2021_bn.png' %}" alt="" style="width: 200px;">
+                </div>
+               </a>
+          </div>
 
-                        <ul>
-                            <li><a href="http://www.du.ac.bd/" target="_blank">University of Dhaka</a></li>
-                            <li><a href="http://www.juniv.edu/" target="_blank">Jahangirnagar  University</a></li>
-                            <li><a href="http://www.ru.ac.bd/" target="_blank">Rajshahi University</a></li>
-                            <li><a href="http://www.brur.ac.bd/" target="_blank">Begum Rokeya University</a></li>
-                            <li class="lastlink"><a href="http://www.hstu.ac.bd/" target="_blank">HSTU</a></li>
-                        </ul>
+          <div class="width-33">
+            <a href="https://konnect.edu.bd/public/" style="color: black; font-weight: 550; font-family: 'Poppins',sans-serif !important;">
+                <div class="course-list">
+                   <img src="{% static 'assets/img/icons/Konnect Logo.png' %}" alt="" style="width: 200px;">
+                </div>
+               </a>
+          </div>
+
+          
+
+          <div class="width-33">
+            <a href="http://www.ebook.gov.bd/" style="color: black; font-weight: 550; font-family: 'Poppins',sans-serif !important;">
+                <div class="course-list">
+                   <img src="{% static 'assets/img/icons/ebook_bangla (1).png' %}" alt="" style="width: 200px;">
+                </div>
+               </a>
+          </div>
+
+         
+        
+    </div>
+        
+          
+    </div>
+ </div>
+ {% comment %} <!---------- Popular Courses HTML Ends ---------> {% endcomment %}
 
 
 
-                    </div>
-                    <div id="bodylowerRightPan">
 
-                        <ul>
-                            <li><a href="http://www.cu.ac.bd/" target="_blank">University of Chittagonj</a></li>
+
+
+
+ {% comment %} <!---------- Gallery HTML Starts ---------> {% endcomment %}
+<div class="main-section">
+    <div class="container">
+       <h2 class="heading-text">Gallery</h2>
+       <span class="heading-border"></span>
+       <div class="gallery">
+          <div class="width-25"><img src="{% static 'assets/img/gallery/img2.jpg' %}"></div>
+          <div class="width-25"><img src="{% static 'assets/img/gallery/img3.jpg' %}"></div>
+          <div class="width-25"><img src="{% static 'assets/img/gallery/img4.jpg' %}"></div>
+          <div class="width-25"><img src="{% static 'assets/img/gallery/img6.jpg' %}"></div>
+          <div class="width-25"><img src="{% static 'assets/img/gallery/img7.jpg' %}"></div>
+          <div class="width-25"><img src="{% static 'assets/img/gallery/img5.jpg' %}"></div>
+          <div class="width-25"><img src="{% static 'assets/img/gallery/5.jpg' %}"></div>
+          <div class="width-25"><img src="{% static 'assets/img/gallery/16.jpg' %}"></div>
+       </div>
+    </div>
+ </div>
+ {% comment %} <!---------- Gallery HTML Ends ---------> {% endcomment %}
+
+
+
+ 
+
+ {% comment %} <!---------- Footer HTML Starts ---------> {% endcomment %}
+<div class="footer-section">
+    <div class="container">
+       <div class="width-25">
+          <div class="footer-link">
+             <img src="{% static 'assets/img/logo.png' %}" alt="" style="width: 200px;">
+          </div>
+       </div>
+       <div class="width-50">
+          <div class="footer-link">
+             <h2>Featured Links</h2>
+             <div class="width-100">
+                <ul class="footer-menu">
+                    <li><a href="http://www.du.ac.bd/" target="_blank">University of Dhaka</a></li>
+                    <li><a href="http://www.juniv.edu/" target="_blank">Jahangirnagar  University</a></li>
+                    <li><a href="http://www.ru.ac.bd/" target="_blank">Rajshahi University</a></li>
+                    <li><a href="http://www.brur.ac.bd/" target="_blank">Begum Rokeya University</a></li>
+                    <li class="lastlink"><a href="http://www.hstu.ac.bd/" target="_blank">HSTU</a></li>
+
+                    <li><a href="http://www.cu.ac.bd/" target="_blank">University of Chittagonj</a></li>
                             <li><a href="http://www.ku.ac.bd/" target="_blank">Khulna University</a></li>
                             <li><a href="http://www.jnu.ac.bd/" target="_blank">Jagannath University</a></li>
                             <li><a href="http://www.iu.ac.bd/" target="_blank">Islamic University, Kustia</a></li>
                             <li class="lastlink"><a href="http://www.buet.ac.bd/" target="_blank">BUET</a></li>
-                        </ul>
+                </ul>
+             </div>
+          </div>
+       </div>
+       <div class="width-25">
+          <div class="footer-link">
+             <h2>Contact Info</h2>
+             <ul class="footer-contact">
+                <li><span><b>E-MAIL:</b> molamgarihatblh@yahoo.com</span> </li>
+                <li><span> <b>WHATS-APP:</b> +8801816-150737</span> </li>
+                <li><span> <b>CONTACT NO.:</b> +8801813-936252</span> </li>
+                <li><span><b>WEBSITE:</b> https://www.mhblhs.edu.bd</span> </li>
+             </ul>
+          </div>
+       </div>
+       
+    </div>
+ </div>
+
+
+ 
+ </body>
+ </html>
+ <!---------- Footer HTML Ends --------->
 
 
 
-                    </div>				
-                </div>
-                                                    <div class="footerRight">
-                    <div class="medireshare clearfix">
-                        <h2>Contact us</h2>
-                        <ul class="linktypes clearfix">
-                            <li><span id="fDetails">Cell:</span> +8801713662630 </a></li>
-                            <li><span id="fDetails">E-Mail: molamgarihatblh@yahoo.com</span> </a></li>
-                        </ul>
-                        <h2>More Links</h2>
-                        <a href="https://www.facebook.com/molamgarihatblhighschool" target="_blank"><img src="{% static '/home_asset/images/facebook.png' %}" alt="youtube" style="width: 30px;"></a>
-                        <a href="https://youtube.com/@mblhighschool1111?si=BjPS44z7LmNa8Q-u" target="_blank"><img src="{% static '/home_asset/images/youtube.png' %}"  style="width: 30px;"></a>
-                        <a href="https://www.facebook.com/profile.php?id=100010668037751&mibextid=zLoPMf" target="_blank"><img src="{% static '/home_asset/images/linkedin.png' %} "  style="width: 30px;"></a>
-                        <a href="" target="_blank"><img src="{% static '/home_asset/images/twitter.png' %}"  style="width: 30px;"/></a>			
 
-
-                        <!-- <a href="https://www.facebook.com/ppimscmunshiganj/" target="_blank"><img src="" alt="facebook"></a>
-                        <a href="http://twitter.com/" target="_blank"><img src="{% static 'images/twitter-32x32.png' %}" alt="twitter"></a>
-                        <a href="http://youtube.com/" target="_blank"><img src="{% static 'images/youtube-32x32.png' %}" alt="youtube"></a>
-                        <a href="https://www.flickr.com/" target="_blank"><img src="{% static 'images/flickr-32x32.png' %}" alt="youtube"></a> -->
-                    </div>
-                </div>	
-                                            </div>		
-
-            <div class="footerArea">
-                <p>&copy; Molamgarihat BL High School, Kalai,Joypurhat.</p>
-                <h2>Technical Support: &nbsp; <b><i>Tahamidur Taief.</i></b></h2>
-            </div>
-
-        </div>
-
-
-        <script language="javascript" type="text/javascript" src="home_asset/js/jquery.js"></script>
-        <script language="javascript" type="text/javascript" src="home_asset/js/jquery.easing.js"></script>
-        <script language="javascript" type="text/javascript" src="home_asset/js/script.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                var buttons = {previous: $('#lofslidecontent45 .lof-previous'),
-                    next: $('#lofslidecontent45 .lof-next')};
-
-                $obj = $('#lofslidecontent45').lofJSidernews({interval: 4000,
-                    direction: 'opacity',
-                    easing: 'easeOutBounce',
-                    duration: 1200,
-                    auto: true,
-                    mainWidth: 960,
-                    buttons: buttons});
-            });
-        </script>
-
-        <script>
-            <!--
-         function nameDefined(ckie, nme)
-            {
-                var splitValues
-                var i
-                for (i = 0; i < ckie.length; ++i)
-                {
-                    splitValues = ckie[i].split("=")
-                    if (splitValues[0] == nme)
-                        return true
-                }
-                return false
-            }
-
-            function delBlanks(strng)
-            {
-                var result = ""
-                var i
-                var chrn
-                for (i = 0; i < strng.length; ++i) {
-                    chrn = strng.charAt(i)
-                    if (chrn != " ")
-                        result += chrn
-                }
-                return result
-            }
-            function getCookieValue(ckie, nme)
-            {
-                var splitValues
-                var i
-                for (i = 0; i < ckie.length; ++i) {
-                    splitValues = ckie[i].split("=")
-                    if (splitValues[0] == nme)
-                        return splitValues[1]
-                }
-                return ""
-            }
-            function insertCounter() {
-                readCookie()
-                displayCounter()
-            }
-         
-            function readCookie() {
-                var cookie = document.cookie
-                counter = 0
-                var chkdCookie = delBlanks(cookie)  //are on the client computer
-                var nvpair = chkdCookie.split(";")
-                if (nameDefined(nvpair, "pageCount"))
-                    counter = parseInt(getCookieValue(nvpair, "pageCount"))
-                ++counter
-                var futdate = new Date()
-                var expdate = futdate.getTime()
-                expdate += 3600000 * 24 * 30  //expires in 1 hour
-                futdate.setTime(expdate)
-
-                var newCookie = "pageCount=" + counter
-                newCookie += "; expires=" + futdate.toGMTString()
-                window.document.cookie = newCookie
-            }
-            // -->
-        </script>
-        <script>
-            <!--
-        insertCounter()
-
-            // -->
-            </script>
-
-        </body>
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-<!-- Mirrored from eduwebsite.stitbd.app/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 26 Aug 2023 19:22:56 GMT -->
-</html>

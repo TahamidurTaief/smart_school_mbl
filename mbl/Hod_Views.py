@@ -38,7 +38,9 @@ def admin_home(request):
     staff_count = Staff.objects.all().count()
     course_count = Course.objects.all().count()
     subject_count = SchoolSubjects.objects.all().count()
-    notice_obj = Notice.objects.all()[:5]
+    notice_obj = Notices.objects.all()[:5]
+
+    staff_obj = Staff.objects.all()
 
     student_gender_male = Student.objects.filter(gender='Male').count()
     student_gender_female = Student.objects.filter(gender='Female').count()
@@ -53,6 +55,8 @@ def admin_home(request):
         "student_gender_male":student_gender_male,
         "student_gender_female":student_gender_female,
         "notice_obj" : notice_obj,
+
+        "staff_obj" : staff_obj,
         
     }
 
@@ -2221,10 +2225,12 @@ def AddNotice(request):
         if request.method=="POST":
             title = request.POST.get('title')
             desc = request.POST.get('desc')
+            notice_link = request.POST.get('notice_link')
 
             notice = Notice(
                 headline = title,
-                notice  = desc
+                notice  = desc,
+                notice_link = notice_link,
             )
             notice.save()
             messages.success(request, f"{notice.headline} Notice Added Successfully")
@@ -2238,7 +2244,7 @@ def AddNotice(request):
 
 @login_required(login_url='login')
 def viewNotice(request):
-    notice_obj = Notice.objects.all()
+    notice_obj = Notices.objects.all()
 
     context = {
         'notice_obj' : notice_obj,
@@ -2265,10 +2271,12 @@ def updateNotice(request):
         title = request.POST.get('title')
         notice_id = request.POST.get('notice_id')
         desc = request.POST.get('desc')
+        notice_link = request.POST.get('notice_link')
 
         notice = Notice.objects.get(id = notice_id)
         notice.headline = title
         notice.notice = desc
+        notice.notice_link = notice_link
         notice.save()
         messages.success(request, f"{notice.headline}Notice updated Successfully")
         return redirect('view_notice')

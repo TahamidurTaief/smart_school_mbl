@@ -140,7 +140,7 @@
        <div class="col-md-6 d-flex">
           <div class="card flex-fill">
              <div class="card-header">
-                <h5 class="card-title">Star Students</h5>
+                <h5 class="card-title">Staffs</h5>
              </div>
              <div class="card-body">
                 <div class="table-responsive">
@@ -149,78 +149,25 @@
                          <tr>
                             <th>ID</th>
                             <th>Name</th>
-                            <th class="text-center">Marks</th>
-                            <th class="text-center">Percentage</th>
-                            <th class="text-right">Year</th>
+                            <th class="text-center">Qualification</th>
+                            <th class="text-right">Position</th>
                          </tr>
                       </thead>
                       <tbody>
+
+                        {% for i in staff_obj %}
+
                          <tr>
                             <td class="text-nowrap">
-                               <div>PRE2209</div>
+                               <div>{{i.id}}</div>
                             </td>
-                            <td class="text-nowrap">John Smith</td>
-                            <td class="text-center">1185</td>
-                            <td class="text-center">98%</td>
-                            <td class="text-right">
-                               <div>2019</div>
-                            </td>
+                            <td class="text-nowrap">{{i.admin.first_name}} {{i.admin.last_name}}</td>
+                            <td class="text-center">{{i.qualification}}</td>
+                            <td class="text-center">{{i.staff_type}}</td>
                          </tr>
-                         <tr>
-                            <td class="text-nowrap">
-                               <div>PRE1245</div>
-                            </td>
-                            <td class="text-nowrap">Jolie Hoskins</td>
-                            <td class="text-center">1195</td>
-                            <td class="text-center">99.5%</td>
-                            <td class="text-right">
-                               <div>2018</div>
-                            </td>
-                         </tr>
-                         <tr>
-                            <td class="text-nowrap">
-                               <div>PRE1245</div>
-                            </td>
-                            <td class="text-nowrap">Jolie Hoskins</td>
-                            <td class="text-center">1195</td>
-                            <td class="text-center">99.5%</td>
-                            <td class="text-right">
-                               <div>2018</div>
-                            </td>
-                         </tr>
-                         <tr>
-                            <td class="text-nowrap">
-                               <div>PRE1625</div>
-                            </td>
-                            <td class="text-nowrap">Pennington Joy</td>
-                            <td class="text-center">1196</td>
-                            <td class="text-center">99.6%</td>
-                            <td class="text-right">
-                               <div>2017</div>
-                            </td>
-                         </tr>
-                         <tr>
-                            <td class="text-nowrap">
-                               <div>PRE2516</div>
-                            </td>
-                            <td class="text-nowrap">Millie Marsden</td>
-                            <td class="text-center">1187</td>
-                            <td class="text-center">98.2%</td>
-                            <td class="text-right">
-                               <div>2016</div>
-                            </td>
-                         </tr>
-                         <tr>
-                            <td class="text-nowrap">
-                               <div>PRE2209</div>
-                            </td>
-                            <td class="text-nowrap">John Smith</td>
-                            <td class="text-center">1185</td>
-                            <td class="text-center">98%</td>
-                            <td class="text-right">
-                               <div>2015</div>
-                            </td>
-                         </tr>
+
+                           {% endfor %}
+                         
                       </tbody>
                    </table>
                 </div>
@@ -230,7 +177,7 @@
        <div class="col-md-6 d-flex">
           <div class="card flex-fill">
              <div class="card-header">
-                <h5 class="card-title">Student Activity</h5>
+                <h5 class="card-title">Notice Corner</h5>
              </div>
              <div class="card-body">
                 <ul class="activity-feed">

@@ -13,17 +13,17 @@ def staff_home(request):
 
 @login_required(login_url='login')
 def staffNotifications(request):
-    staaf = Staff.objects.filter(admin=request.user.id)
+    schoolteacher = SchoolTeacher.objects.filter(admin=request.user.id)
 
     notifications = None
-    for i in staaf:
-        notifications = Staff_Notification.objects.filter(staff_id=i.id)
+    for i in schoolteacher:
+        notifications = Staff_Notification.objects.filter(school_teacehr_id=i.id)
 
     context = {
         'notifications': notifications,
     }
 
-    return render(request, 'Staff/staff_admin_notifications.html', context)
+    return render(request, 'staff/staff_admin_notifications.html', context)
     
 
 
@@ -54,10 +54,10 @@ def staffApplyLeaveSave(request):
     if request.method == 'POST':
         leaveDate = request.POST.get('leave_date')
         leaveMessage = request.POST.get('leave_message')
-        staff = Staff.objects.get(admin=request.user.id)
+        schoolteacher = SchoolTeacher.objects.get(admin=request.user.id)
         
         
-        leaveReport = Staff_Leave(staff_id=staff, data=leaveDate, message=leaveMessage)
+        leaveReport = Staff_Leave(school_teacher_id=schoolteacher, data=leaveDate, message=leaveMessage)
         leaveReport.save()
         messages.success(request, 'Leave Applied Successfully')
         return redirect('staff_apply_leave')
@@ -86,9 +86,9 @@ def staffFeedback(request):
 def staffFeedbackSave(request):
     if request.method == 'POST':
         feedback = request.POST.get('feedback_message')
-        staff = Staff.objects.get(admin=request.user.id)
+        schoolteacher = SchoolTeacher.objects.get(admin=request.user.id)
         
-        feedback = Staff_Feedback(staff_id=staff, feedback=feedback, feedback_reply='')
+        feedback = Staff_Feedback(school_teacher_id=schoolteacher, feedback=feedback, feedback_reply='')
         feedback.save()
         messages.success(request, 'Feedback Sent Successfully')
         return redirect('staff_feedback')

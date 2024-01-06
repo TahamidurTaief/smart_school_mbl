@@ -181,16 +181,7 @@
                                                 {% for i in routine_report %}
                                                 <th colspan="8" class="routine-header" style="font-size: 15px; text-align:center; color:#f42a41; ;"><p>Class : {{i.section_id.class_id}}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  |  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  {{i.section_id.teacher_id}}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  |  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{i.section_id}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></th>
                                                 <div class="class_nam"></div>
-                                                <td class="text-right">
-                                                   <div class="actions" style="display:flex;">
-                                                     <a href="{% url 'edit_routine' i.id %}" class="btn btn-sm bg-danger-light">
-                                                        <i class="fas fa-pen"></i>
-                                                     </a>
-                                                     <a href="{% url 'delete_routine' i.id %}" class="btn btn-sm bg-success-light mr-2 ml-2">
-                                                        <i class="fas fa-trash"></i>
-                                                      </a>
-                                                   </div>
-                                                </td>
+                                                
                                              </tr>
 
                                              {% endfor %}

@@ -6,24 +6,25 @@ from django.contrib.auth.decorators import login_required
 from app.models import *
 
 
-
 def base(request):
     return render(request, 'base.html')
 
 
 def home(request):
+    notice_obj = Notices.objects.all()
     school_teacher_obj = SchoolTeacher.objects.all()
     staff_obj = Staff.objects.all()
-    web_notice_obj = webNotice.objects.all()
     admission_obj = admissionForm.objects.all()
+
+    print(notice_obj)
 
     context = {
         'school_teacher_obj': school_teacher_obj,
         'staff_obj': staff_obj,
-        'web_notice_obj': web_notice_obj,
+        "notice_obj" : notice_obj,
         'admission_obj': admission_obj,
     }
-    return render(request, 'website/home2.html', context)
+    return render(request, 'website/home.html', context)
 
 
 

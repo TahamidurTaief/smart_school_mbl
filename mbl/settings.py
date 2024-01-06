@@ -30,10 +30,13 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 # Application definition
 
 INSTALLED_APPS = [
     # 'jet',
+    # 'admin_adminlte.apps.AdminAdminlteConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -79,20 +82,20 @@ WSGI_APPLICATION = 'mbl.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # },
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    },
 
     # install this: pip install mysqlclient
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mbl',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST':'localhost',
-        'PORT':'',
-    },
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'mbl',
+    #     'USER': 'root',
+    #     'PASSWORD': '',
+    #     'HOST':'localhost',
+    #     'PORT':'',
+    # },
 
     # 'fingerprint': {
     #     'ENGINE': 'django.db.backends.mysql',

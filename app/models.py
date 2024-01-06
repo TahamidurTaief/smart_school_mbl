@@ -214,7 +214,7 @@ class CollegeSubjects(models.Model):
 
 
 class Staff_Notification(models.Model):
-    staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE, default="")
+    school_teacehr_id = models.ForeignKey(SchoolTeacher, on_delete=models.CASCADE, default="")
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.BooleanField(default=False, null=True)
@@ -345,14 +345,6 @@ class StudentResult(models.Model):
         return str(self.student_id.admin.first_name) + "  " + str(self.class_id)
 
 
-# class Weak_day(models.Model):
-#     name = models.CharField(max_length=10, default="", null=True)
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     updated_at = models.DateTimeField(auto_now=True)
-    
-#     def __str__(self):
-#         return str(self.name)
-    
 
 class Period(models.Model):
     name = models.CharField(max_length=10, default="", null=True)
@@ -413,26 +405,15 @@ class RoutineSubjects(models.Model):
     
     
     
-class Notice(models.Model):
+class Notices(models.Model):
     headline = models.CharField(max_length=20, default="", null=True)
     notice = models.TextField(default="", null=True)
+    notice_link = models.CharField(default="", null=True, max_length=500, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
 
 
-    def __str__(self):
-        return str(self.headline)
-
-
-
-
-class webNotice(models.Model):
-    headline = models.CharField(max_length=200, default="", null=True)
-    notice_link = models.TextField(default="", null=True, max_length=500)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    
     def __str__(self):
         return str(self.headline)
 

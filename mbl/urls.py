@@ -1,12 +1,13 @@
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from . import views, Hod_Views, Staff_Views, Student_Views
 
 urlpatterns = [
     # path('jet/', include('jet.urls', 'jet')),  # Django JET URLS
+    # path('superuser', include('admin_adminlte.urls')),
     path('', views.home, name='home'),
     path('teacher-staff/', views.web_teacher_staff, name='web_teacher_staff'),
 
